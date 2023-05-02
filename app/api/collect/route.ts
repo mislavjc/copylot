@@ -9,7 +9,7 @@ export async function POST(request: Request) {
 
   const agent = userAgent(request);
 
-  if (!agent || agent.isBot) {
+  if (!agent || agent.isBot || !agent.browser.name) {
     return NextResponse.json({
       message: 'No data collected',
     });
@@ -76,8 +76,6 @@ export async function POST(request: Request) {
   });
 
   const dataset = await resultSet.json();
-
-  console.log(dataset);
 
   return NextResponse.json({
     dataset,
