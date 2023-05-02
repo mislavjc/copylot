@@ -15,7 +15,7 @@ export const getGeoData = (request: Request) => {
 };
 
 export const generateCollectionData = (eventName: string) => {
-  const { hostname, pathname, search } = new URL(document.referrer);
+  const { hostname, pathname, search } = new URL(document?.referrer);
 
   return {
     event: {
