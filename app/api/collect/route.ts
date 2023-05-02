@@ -33,6 +33,11 @@ export async function POST(request: Request) {
 
   const dailySalt = new Date().getDate().toString();
 
+  const dateTime = new Date()
+    .toISOString()
+    .replace(/T/, ' ')
+    .replace(/\..+/, '');
+
   const hashedUserId = createHash('sha256')
     .update(dailySalt + hostname + ip + JSON.stringify(agent))
     .digest('hex');
@@ -41,7 +46,7 @@ export async function POST(request: Request) {
     table: 'sessions',
     values: [
       {
-        session_id: createHash('sha256').digest('hex'),
+        session_id: createHash('sha256').update(dateTime).digest('hex'),
         user_id: hashedUserId,
         website_id: hostname,
         hostname,
@@ -60,6 +65,7 @@ export async function POST(request: Request) {
         referrer_domain,
         page_title,
         event_name,
+        created_at: dateTime,
       },
     ],
     format: 'JSONEachRow',

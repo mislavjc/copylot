@@ -1,7 +1,6 @@
 CREATE TABLE sessions (
   website_id String,
   session_id FixedString(64),
-  event_id FixedString(64),
   --session
   hostname LowCardinality(String),
   browser LowCardinality(String),
