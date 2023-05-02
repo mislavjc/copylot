@@ -15,19 +15,25 @@ export const getGeoData = (request: Request) => {
 };
 
 export const generateCollectionData = (eventName: string) => {
-  const { hostname, pathname, search } = new URL(document?.referrer);
-
-  return {
+  const collectionData = {
     event: {
       event_name: eventName,
       screen_size: `${window.screen.width}x${window.screen.height}`,
       page_title: document.title,
     },
     url: window.location.href,
-    referrer: {
+    referrer: {},
+  };
+
+  if (document.referrer) {
+    const { hostname, pathname, search } = new URL(document.referrer);
+
+    collectionData.referrer = {
       referrer_domain: hostname,
       referrer_path: pathname,
       referrer_query: search,
-    },
-  };
+    };
+  }
+
+  return collectionData;
 };
