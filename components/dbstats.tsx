@@ -46,7 +46,7 @@ export const DbStats = async () => {
           </thead>
           <tbody>
             {stats.map((stat) => (
-              <tr className="p-0 m-0 border-t even:bg-muted">
+              <tr className="p-0 m-0 border-t even:bg-muted" key={stat.website_id}>
                 <td className="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
                   {stat.website_id}
                 </td>
