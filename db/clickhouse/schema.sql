@@ -1,7 +1,7 @@
 CREATE TABLE sessions (
   website_id String,
-  session_id UUID,
-  event_id UUID,
+  session_id FixedString(64),
+  event_id FixedString(64),
   --session
   hostname LowCardinality(String),
   browser LowCardinality(String),
@@ -25,10 +25,10 @@ CREATE TABLE sessions (
 ORDER BY
   (website_id, session_id, created_at) SETTINGS index_granularity = 8192;
 
-CREATE TABLE event (
+CREATE TABLE events (
   website_id String,
-  session_id UUID,
-  event_id UUID,
+  session_id FixedString(64),
+  event_id FixedString(64),
   url_path String,
   event_name String,
   event_key String,

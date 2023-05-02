@@ -41,7 +41,7 @@ export async function POST(request: Request) {
     table: 'sessions',
     values: [
       {
-        session_id: createHash('sha256'),
+        session_id: createHash('sha256').digest('hex'),
         user_id: hashedUserId,
         website_id: hostname,
         hostname,
@@ -62,6 +62,7 @@ export async function POST(request: Request) {
         event_name,
       },
     ],
+    format: 'JSONEachRow',
   });
 
   const resultSet = await client.query({
