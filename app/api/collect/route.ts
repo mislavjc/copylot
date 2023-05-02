@@ -9,6 +9,12 @@ export async function POST(request: Request) {
 
   const agent = userAgent(request);
 
+  if (!agent || agent.isBot) {
+    return NextResponse.json({
+      message: 'No data collected',
+    });
+  }
+
   const {
     browser: { name: browser },
     os: { name: os },
