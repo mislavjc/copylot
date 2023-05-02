@@ -3,6 +3,8 @@ import { Inter } from 'next/font/google';
 import { ClientFetch } from '@/components/clientfetch';
 import { DbStats } from '@/components/dbstats';
 
+export const revalidate = 1;
+
 export default function Home() {
   return (
     <main className="flex flex-col items-center min-h-screen p-24">
