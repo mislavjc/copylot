@@ -13,5 +13,5 @@ export const ClientFetch = () => {
     });
   }, []);
 
-  return <div>Client</div>;
+  return null;
 };
