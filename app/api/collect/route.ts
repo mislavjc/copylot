@@ -46,8 +46,7 @@ export async function POST(request: Request) {
     table: 'sessions',
     values: [
       {
-        session_id: createHash('sha256').update(dateTime).digest('hex'),
-        user_id: hashedUserId,
+        session_id: hashedUserId,
         website_id: hostname,
         hostname,
         browser,
