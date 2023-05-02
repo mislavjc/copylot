@@ -54,7 +54,7 @@ export async function POST(request: Request) {
         region,
         city,
         url_path: pathname,
-        url_query: url.searchParams.toString(),
+        url_query: url.searchParams,
         referrer_path,
         referrer_query,
         referrer_domain,
@@ -70,6 +70,8 @@ export async function POST(request: Request) {
   });
 
   const dataset = await resultSet.json();
+
+  console.log(dataset);
 
   return NextResponse.json({
     dataset,
