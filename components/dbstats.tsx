@@ -1,4 +1,4 @@
-import { sessionsAndViewsByWebsiteId } from "@/db/clickhouse";
+import { sessionsAndViewsByWebsiteId } from '@/db/clickhouse';
 
 export const DbStats = async () => {
   const stats = await sessionsAndViewsByWebsiteId();

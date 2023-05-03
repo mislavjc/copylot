@@ -1,7 +1,6 @@
-import Image from 'next/image';
-import { Inter } from 'next/font/google';
 import { ClientFetch } from '@/components/clientfetch';
 import { DbStats } from '@/components/dbstats';
+import { User } from '@/components/user';
 
 export const revalidate = 1;
 
@@ -11,6 +10,8 @@ export default function Home() {
       <ClientFetch />
       {/* @ts-ignore */}
       <DbStats />
+      {/* @ts-ignore */}
+      <User />
     </main>
   );
 }
