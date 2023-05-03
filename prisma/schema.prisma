@@ -40,13 +40,17 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
+  id             String        @id @default(cuid())
+  name           String?
+  email          String?       @unique
+  emailVerified  DateTime?
+  image          String?
+  accounts       Account[]
+  sessions       Session[]
+  organizationId String?
+  Organization   Organization? @relation(fields: [organizationId], references: [id])
+
+  @@index([organizationId])
 }
 
 model VerificationToken {
@@ -55,4 +59,85 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Organization {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  name String
+
+  members  User[]
+  projects Project[]
+}
+
+model Project {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  name           String
+  url            String
+  organizationId String
+
+  organization     Organization      @relation(fields: [organizationId], references: [id])
+  promptLibraries  PromptLibrary[]
+  toneDescriptions ToneDescription[]
+  experiments      Experiment[]
+
+  @@index([organizationId])
+}
+
+model PromptLibrary {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  name        String
+  description String
+  value       String
+  projectId   String
+
+  project Project @relation(fields: [projectId], references: [id])
+
+  @@index([projectId])
+}
+
+model ToneDescription {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  name        String
+  description String
+  value       String
+  projectId   String
+
+  project Project @relation(fields: [projectId], references: [id])
+
+  @@index([projectId])
+}
+
+model Experiment {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  name        String
+  description String
+  projectId   String
+
+  project    Project     @relation(fields: [projectId], references: [id])
+  variations Variation[]
+
+  @@index([projectId])
+}
+
+model Variation {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  name         String
+  value        String
+  experimentId String
+
+  experiment Experiment @relation(fields: [experimentId], references: [id])
+
+  @@index([experimentId])
 }
