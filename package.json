@@ -34,6 +34,7 @@
     "class-variance-authority": "^0.6.0",
     "clsx": "^1.2.1",
     "date-fns": "^2.30.0",
+    "isbot": "^3.6.10",
     "lucide-react": "^0.192.0",
     "next": "13.3.4",
     "react": "18.2.0",

@@ -7,10 +7,10 @@ export const cn = (...inputs: ClassValue[]) => {
 
 export const getGeoData = (request: Request) => {
   return {
-    ip: request.headers.get('x-real-ip'),
-    region: request.headers.get('x-vercel-ip-country-region'),
-    country: request.headers.get('x-vercel-ip-country'),
-    city: request.headers.get('x-vercel-ip-city'),
+    ip: request.headers.get('x-real-ip') || '',
+    region: request.headers.get('x-vercel-ip-country-region') || '',
+    country: request.headers.get('x-vercel-ip-country') || '',
+    city: request.headers.get('x-vercel-ip-city') || '',
   };
 };
 
