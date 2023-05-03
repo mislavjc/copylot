@@ -10,6 +10,9 @@ dependencies:
   '@commitlint/config-conventional':
     specifier: ^17.6.1
     version: 17.6.1
+  '@prisma/client':
+    specifier: ^4.13.0
+    version: 4.13.0(prisma@4.13.0)
   '@radix-ui/react-alert-dialog':
     specifier: ^1.0.3
     version: 1.0.3(@types/react@18.2.0)(react-dom@18.2.0)(react@18.2.0)
@@ -120,6 +123,9 @@ devDependencies:
   postcss:
     specifier: 8.4.23
     version: 8.4.23
+  prisma:
+    specifier: ^4.13.0
+    version: 4.13.0
   tailwindcss:
     specifier: 3.3.2
     version: 3.3.2(ts-node@10.9.1)
@@ -588,6 +594,28 @@ packages:
       picocolors: 1.0.0
       tslib: 2.5.0
     dev: true
+
+  /@prisma/client@4.13.0(prisma@4.13.0):
+    resolution: {integrity: sha512-YaiiICcRB2hatxsbnfB66uWXjcRw3jsZdlAVxmx0cFcTc/Ad/sKdHCcWSnqyDX47vAewkjRFwiLwrOUjswVvmA==}
+    engines: {node: '>=14.17'}
+    requiresBuild: true
+    peerDependencies:
+      prisma: '*'
+    peerDependenciesMeta:
+      prisma:
+        optional: true
+    dependencies:
+      '@prisma/engines-version': 4.13.0-50.1e7af066ee9cb95cf3a403c78d9aab3e6b04f37a
+      prisma: 4.13.0
+    dev: false
+
+  /@prisma/engines-version@4.13.0-50.1e7af066ee9cb95cf3a403c78d9aab3e6b04f37a:
+    resolution: {integrity: sha512-fsQlbkhPJf08JOzKoyoD9atdUijuGBekwoOPZC3YOygXEml1MTtgXVpnUNchQlRSY82OQ6pSGQ9PxUe4arcSLQ==}
+    dev: false
+
+  /@prisma/engines@4.13.0:
+    resolution: {integrity: sha512-HrniowHRZXHuGT9XRgoXEaP2gJLXM5RMoItaY2PkjvuZ+iHc0Zjbm/302MB8YsPdWozAPHHn+jpFEcEn71OgPw==}
+    requiresBuild: true
 
   /@radix-ui/number@1.0.0:
     resolution: {integrity: sha512-Ofwh/1HX69ZfJRiRBMTy7rgjAzHmwe4kW9C9Y99HTRUcYLUuVT0KESFj15rPjRgKJs20GPq8Bm5aEDJ8DuA3vA==}
@@ -3670,6 +3698,14 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
     dev: true
+
+  /prisma@4.13.0:
+    resolution: {integrity: sha512-L9mqjnSmvWIRCYJ9mQkwCtj4+JDYYTdhoyo8hlsHNDXaZLh/b4hR0IoKIBbTKxZuyHQzLopb/+0Rvb69uGV7uA==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      '@prisma/engines': 4.13.0
 
   /prop-types@15.8.1:
     resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}
