@@ -10,6 +10,7 @@ CREATE TABLE sessions (
   language LowCardinality(String),
   country LowCardinality(String),
   city String,
+  region LowCardinality(String),
   --pageview
   url_path String,
   url_query String,
