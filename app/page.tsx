@@ -2,7 +2,7 @@ import { ClientFetch } from '@/components/clientfetch';
 import { DbStats } from '@/components/dbstats';
 import { User } from '@/components/user';
 
-export const revalidate = 1;
+export const dynamic = 'force-dynamic';
 
 export default function Home() {
   return (
