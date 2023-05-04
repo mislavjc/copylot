@@ -1,8 +1,10 @@
 import { createClient } from '@clickhouse/client';
 
+import env from '@/lib/env';
+
 export const client = createClient({
-  host: process.env.CLICKHOUSE_HOST,
-  password: process.env.CLICKHOUSE_PASSWORD,
+  host: env.CLICKHOUSE_HOST,
+  password: env.CLICKHOUSE_PASSWORD,
 });
 
 enum TABLES {

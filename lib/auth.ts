@@ -5,6 +5,7 @@ import EmailProvider from 'next-auth/providers/email';
 
 import prisma from '@/db/prisma';
 import { sendVerificationRequest } from '@/lib/email';
+import env from '@/lib/env';
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -13,12 +14,12 @@ export const authOptions: NextAuthOptions = {
   },
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_ID!,
-      clientSecret: process.env.GOOGLE_SECRET!,
+      clientId: env.GOOGLE_ID!,
+      clientSecret: env.GOOGLE_SECRET!,
     }),
     EmailProvider({
-      server: `smtp://${process.env.SMTP_USER}:${process.env.SMTP_PASSWORD}@email-smtp.${process.env.AWS_SES_REGION}.amazonaws.com:587`,
-      from: process.env.SMTP_FROM,
+      server: `smtp://${env.SMTP_USER}:${env.SMTP_PASSWORD}@email-smtp.${env.AWS_SES_REGION}.amazonaws.com:587`,
+      from: env.SMTP_FROM,
       sendVerificationRequest,
     }),
   ],
