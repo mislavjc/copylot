@@ -12,6 +12,7 @@ const envSchema = z.object({
   SMTP_PASSWORD: z.string(),
   SMTP_FROM: z.string().email(),
   AWS_SES_REGION: z.string(),
+  OPENAI_API_KEY: z.string().optional(),
 });
 
 
