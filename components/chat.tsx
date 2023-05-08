@@ -4,34 +4,39 @@ import { FormEvent, useState } from 'react';
 import Markdown from 'markdown-to-jsx';
 
 import { Button } from './ui/button';
-import { createStreamingResponse } from '@/lib/openai';
+import { ChatStream, createStreamingResponse } from '@/lib/openai';
 import { Textarea } from './ui/textarea';
 import { Bot, User } from 'lucide-react';
 
-interface ChatStream {
-  text: string;
-  role: 'bot' | 'role';
+interface ChatProps {
+  history: ChatStream[];
 }
 
-export const Chat = () => {
-  const [text, setText] = useState('');
+export const Chat = ({ history }: ChatProps) => {
+  const [content, setText] = useState('');
   const [prompt, setPrompt] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [chatStream, setChatStream] = useState<ChatStream[]>([]);
+  const [chatStream, setChatStream] = useState<ChatStream[]>(history);
 
   async function handleOnGenerateText(
     e: FormEvent<HTMLFormElement>
   ): Promise<void> {
     e.preventDefault();
     setIsLoading(true);
-    if (text) {
-      setChatStream((prev) => [...(prev || []), { text, role: 'bot' }]);
+    if (content) {
+      setChatStream((prev) => [
+        ...(prev || []),
+        { content, role: 'assistant' },
+      ]);
     }
-    setChatStream((prev) => [...(prev || []), { text: prompt, role: 'role' }]);
+    setChatStream((prev) => [
+      ...(prev || []),
+      { content: prompt, role: 'user' },
+    ]);
     setText('');
     setPrompt('');
 
-    await createStreamingResponse(prompt, setText);
+    await createStreamingResponse(prompt, setText, chatStream);
 
     setIsLoading(false);
   }
@@ -46,17 +51,17 @@ export const Chat = () => {
                 className="flex gap-4 p-4 border rounded-md w-100"
                 key={index}
               >
-                <div>{chat.role === 'bot' ? <Bot /> : <User />}</div>
-                <Markdown>{chat.text}</Markdown>
+                <div>{chat.role === 'assistant' ? <Bot /> : <User />}</div>
+                <Markdown>{chat.content}</Markdown>
               </div>
             ))}
           </div>
-          {text && (
+          {content && (
             <div className="flex gap-4 p-4 border rounded-md w-100">
               <div>
                 <Bot />
               </div>
-              <div>{text}</div>
+              <div>{content}</div>
             </div>
           )}
         </div>

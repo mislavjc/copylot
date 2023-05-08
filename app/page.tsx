@@ -1,13 +1,15 @@
-import { Chat } from '@/components/chat';
+import { ChatWrapper } from '@/components/chat-wrapper';
 import { ClientFetch } from '@/components/clientfetch';
-
-export const dynamic = 'force-dynamic';
+import { User } from '@/components/user';
 
 export default function Home() {
   return (
     <main className="flex flex-col items-center min-h-screen">
+      {/* @ts-ignore  */}
+      <User />
       <ClientFetch />
-      <Chat />
+      {/* @ts-ignore  */}
+      <ChatWrapper />
     </main>
   );
 }

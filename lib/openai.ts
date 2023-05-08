@@ -1,7 +1,6 @@
 import { ParseEvent, createParser } from 'eventsource-parser';
 import { SetStateAction } from 'react';
 
-
 interface Delta {
   insert: string;
   content: string;
@@ -23,22 +22,30 @@ interface Data {
   choices: Choice[];
 }
 
+export interface ChatStream {
+  content: string;
+  role: 'assistant' | 'user';
+}
+
 export const createStreamingResponse = async (
   prompt: string,
-  setResponse: (value: SetStateAction<string>) => void
+  setResponse: (value: SetStateAction<string>) => void,
+  chatStream: ChatStream[]
 ) => {
-  const response = await fetch('/api/chat-streaming', {
+  const res = await fetch('/api/chat/streaming', {
     method: 'POST',
     body: JSON.stringify({
       prompt,
+      history: chatStream,
     }),
     headers: {
       'Content-Type': 'application/json',
     },
   });
 
-  const reader = response.body!.getReader();
+  const reader = res.body!.getReader();
   const decoder = new TextDecoder();
+  const strings: string[] = [];
 
   function onParse(event: ParseEvent) {
     if (event.type === 'event') {
@@ -47,6 +54,8 @@ export const createStreamingResponse = async (
         data.choices
           .filter(({ delta }) => !!delta.content)
           .forEach(({ delta }) => {
+            strings.push(delta.content);
+
             setResponse((prev) => {
               return `${prev || ''}${delta.content}`;
             });
@@ -62,7 +71,27 @@ export const createStreamingResponse = async (
   while (true) {
     const { value, done } = await reader.read();
     const dataString = decoder.decode(value);
-    if (done || dataString.includes('[DONE]')) break;
+    if (done || dataString.includes('[DONE]')) {
+      const mergedStrings = strings.join('');
+
+      fetch('/api/chat', {
+        method: 'POST',
+        body: JSON.stringify({
+          chat: [
+            {
+              role: 'user',
+              content: prompt,
+            },
+            {
+              role: 'assistant',
+              content: mergedStrings,
+            },
+          ],
+        }),
+      });
+
+      break;
+    }
     parser.feed(dataString);
   }
 };

@@ -1,11 +1,12 @@
-import env from "@/lib/env";
+import { ChatStream } from "@/lib/openai";
 
 export const runtime = 'edge';
 
-const createCompletion = async (prompt: string) => {
+const createCompletion = async (prompt: string, history: ChatStream[]) => {
   const config = {
     model: 'gpt-3.5-turbo',
     messages: [
+      ...history,
       {
         role: 'user',
         content: prompt,
@@ -25,9 +26,9 @@ const createCompletion = async (prompt: string) => {
 };
 
 export async function POST(request: Request) {
-  const { prompt } = await request.json();
+  const { prompt, history } = await request.json();
 
-  const completion = await createCompletion(prompt);
+  const completion = await createCompletion(prompt, history);
 
   return new Response(completion.body, {
     status: 200,
