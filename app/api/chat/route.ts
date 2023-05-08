@@ -25,10 +25,15 @@ export const POST = async (request: Request) => {
     redis.json.set(session.user.id, '$', chat);
   }
 
-  return new Response(JSON.stringify({ prompt: 'Hi' }), {
-    status: 200,
-    headers: {
-      'Content-Type': 'application/json; charset=utf-8',
-    },
-  });
+  return new Response(
+    JSON.stringify({
+      status: 'ok',
+    }),
+    {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+      },
+    }
+  );
 };
