@@ -18,7 +18,7 @@ export const Navbar = async ({ config }: NavbarProps) => {
   const session = await getCurrentUser();
 
   return (
-    <nav className="px-5 py-5 border">
+    <nav className="px-4 py-4 border">
       <div className="flex mx-auto max-w-7xl">
         <div className="justify-center hidden gap-6 md:flex">
           <span className="flex gap-2 ">

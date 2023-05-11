@@ -36,6 +36,30 @@ export const sessionsAndViewsByWebsiteId = async (): Promise<
   return await result.json();
 };
 
+interface SessionsAndViewsGroupedByWebsiteIdRow {
+  sessions: string;
+  views: string;
+  date: string;
+}
+
+export const sessionsAndViewsGroupedByWebsiteId = async (
+  website_id: string,
+): Promise<SessionsAndViewsGroupedByWebsiteIdRow[]> => {
+  const result = await client.query({
+    query: /* sql */ `
+      SELECT count(DISTINCT session_id) AS sessions, 
+        count(*) AS views,
+        date(created_at) as date
+      FROM ${TABLES.SESSIONS}
+      WHERE website_id = '${website_id}'
+      GROUP BY date(created_at)
+    `,
+    format: 'JSONEachRow',
+  });
+
+  return await result.json();
+}
+
 interface Session {
   session_id: string;
   website_id: string;

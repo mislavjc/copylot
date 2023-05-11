@@ -1,11 +1,9 @@
-import { TestTube2 } from 'lucide-react';
 import {
   AlertTriangle,
   ArrowRight,
   Check,
   ChevronLeft,
   ChevronRight,
-  Command,
   CreditCard,
   File,
   FileText,
@@ -24,6 +22,11 @@ import {
   User,
   X,
   type Icon as LucideIcon,
+  TestTube2,
+  TestTubes,
+  Users,
+  Library,
+  BarChart,
 } from 'lucide-react';
 
 export type Icon = LucideIcon;
@@ -52,4 +55,8 @@ export const Icons = {
   laptop: Laptop,
   twitter: Twitter,
   check: Check,
+  experiments: TestTubes,
+  users: Users,
+  library: Library,
+  stats: BarChart,
 };
