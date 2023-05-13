@@ -1,8 +1,14 @@
 import { BarChart } from '@/components/charts/Bar';
 import { sessionsAndViewsGroupedByWebsiteId } from '@/db/clickhouse';
 
-const StatsPage = async () => {
-  const stats = await sessionsAndViewsGroupedByWebsiteId('locahost:3000');
+interface StatsPageProps {
+  params: {
+    project: string;
+  };
+}
+
+const StatsPage = async ({ params }: StatsPageProps) => {
+  const stats = await sessionsAndViewsGroupedByWebsiteId(params.project);
 
   const data = {
     labels: stats.map((stat) => stat.date),

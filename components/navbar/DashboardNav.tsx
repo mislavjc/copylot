@@ -20,7 +20,7 @@ interface DashboardNavProps {
 
 export function DashboardNav({ config, projects }: DashboardNavProps) {
   const path = usePathname();
-  const { organization, project } = useParams();
+  const { project } = useParams();
 
   if (!config?.length) {
     return null;
@@ -35,9 +35,7 @@ export function DashboardNav({ config, projects }: DashboardNavProps) {
           item.href && (
             <Link
               key={index}
-              href={
-                item.disabled ? '/' : `/${organization}/${project}${item.href}`
-              }
+              href={item.disabled ? '/' : `/${project}${item.href}`}
             >
               <span
                 className={cn(

@@ -22,12 +22,6 @@ ChartJS.register(
 );
 
 const options = {
-  plugins: {
-    title: {
-      display: true,
-      text: 'Chart.js Bar Chart - Stacked',
-    },
-  },
   responsive: true,
   interaction: {
     mode: 'index' as const,
