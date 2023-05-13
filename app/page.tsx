@@ -1,4 +1,3 @@
-import { ClientFetch } from '@/components/clientfetch';
 import { Navbar } from '@/components/navbar/Navbar';
 import { User } from '@/components/user';
 import { navbarConfig } from '@/config/navbar';
@@ -11,7 +10,7 @@ export default function Home() {
       <main className="flex flex-col items-center min-h-screen">
         {/* @ts-ignore  */}
         <User />
-        <ClientFetch />
+        <button data-event="Hero CTA click" data-event-key="hero">Testing click events</button>
       </main>
     </div>
   );

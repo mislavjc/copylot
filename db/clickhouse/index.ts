@@ -133,3 +133,42 @@ export const insertSession = async ({
     format: 'JSONEachRow',
   });
 };
+
+interface Event {
+  website_id: string;
+  session_id: string;
+  event_id: string;
+  url_path: string;
+  event_name: string;
+  event_key: string;
+  event_value: string;
+  created_at: string;
+}
+
+export const insertEvent = async ({
+  website_id,
+  session_id,
+  event_id,
+  url_path,
+  event_name,
+  event_key,
+  event_value,
+  created_at,
+}: Event) => {
+  await client.insert({
+    table: TABLES.EVENTS,
+    values: [
+      {
+        website_id,
+        session_id,
+        event_id,
+        url_path,
+        event_name,
+        event_key,
+        event_value,
+        created_at,
+      },
+    ],
+    format: 'JSONEachRow',
+  });
+};
