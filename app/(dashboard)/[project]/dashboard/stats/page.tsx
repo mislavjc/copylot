@@ -7,6 +7,11 @@ interface StatsPageProps {
   };
 }
 
+export const metadata = {
+  title: 'Stats',
+  description: 'View your stats',
+}
+
 const StatsPage = async ({ params }: StatsPageProps) => {
   const stats = await sessionsAndViewsGroupedByWebsiteId(params.project);
 

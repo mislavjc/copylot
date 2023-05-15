@@ -8,6 +8,11 @@ interface PromptLibraryProps {
   };
 }
 
+export const metadata = {
+  title: 'Prompt library',
+  description: 'Manage your prompt library',
+}
+
 const PromptLibrary = async ({ params }: PromptLibraryProps) => {
   const promptLibrary = await getPromptLibraty(params.project);
   const project = await getProjectByUrl(params.project);

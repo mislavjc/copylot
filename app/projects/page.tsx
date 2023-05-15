@@ -2,6 +2,11 @@ import { ProjectForm } from '@/components/@project/project-form';
 import { ProjectsTable } from '@/components/@project/projects-table';
 import { Separator } from '@/components/ui/separator';
 
+export const metadata = {
+  title: 'Projects',
+  description: 'Manage your projects',
+}
+
 const ProjectsPage = () => {
   return (
     <div className="max-w-xl mx-auto">

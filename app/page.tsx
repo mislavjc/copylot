@@ -2,7 +2,12 @@ import { Navbar } from '@/components/@navbar/navbar';
 import { User } from '@/components/user';
 import { navbarConfig } from '@/config/navbar';
 
-export default function Home() {
+export const metadata = {
+  title: 'Home',
+  description: 'Home page',
+};
+
+const HomePage = () => {
   return (
     <div>
       {/* @ts-ignore */}
@@ -16,4 +21,6 @@ export default function Home() {
       </main>
     </div>
   );
-}
+};
+
+export default HomePage;
