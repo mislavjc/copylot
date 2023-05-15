@@ -24,7 +24,12 @@ export const ProjectSelect = ({ projects }: ProjectSelectProps) => {
   const selected = projects.find((project) => project.url === projectUrl);
 
   return (
-    <Select value={selected?.url}>
+    <Select
+      value={selected?.url}
+      onValueChange={(value) => {
+        router.push(`/${value}/dashboard`);
+      }}
+    >
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Select a project" />
       </SelectTrigger>
@@ -32,13 +37,7 @@ export const ProjectSelect = ({ projects }: ProjectSelectProps) => {
         <SelectGroup>
           <SelectLabel>Projects</SelectLabel>
           {projects.map((project) => (
-            <SelectItem
-              key={project.url}
-              value={project.url}
-              onClick={() => {
-                router.push(`/${project.url}/dashboard`);
-              }}
-            >
+            <SelectItem key={project.url} value={project.url}>
               {project.name}
             </SelectItem>
           ))}
