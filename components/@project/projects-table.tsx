@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { getProjects } from '@/lib/projects';
+import { getProjects } from '@/lib/api/projects';
 
 export const ProjectsTable = async () => {
   const projects = await getProjects();

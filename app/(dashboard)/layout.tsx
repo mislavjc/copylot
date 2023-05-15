@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 import { DashboardNav } from '@/components/@navbar/dashboard-nav';
 import { navbarConfig } from '@/config/navbar';
-import { getProjects } from '@/lib/projects';
+import { getProjects } from '@/lib/api/projects';
 
 interface DashboardLayoutProps {
   children: ReactNode;
