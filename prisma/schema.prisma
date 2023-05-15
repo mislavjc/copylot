@@ -92,7 +92,6 @@ model PromptLibrary {
   createdAt DateTime @default(now())
 
   name        String
-  description String
   value       String
   projectId   String
 
