@@ -1,16 +1,14 @@
 import { BarChart } from '@/components/@charts/bar';
 import { sessionsAndViewsGroupedByWebsiteId } from '@/db/clickhouse';
+import { AppParams } from '@/types/indext';
 
-interface StatsPageProps {
-  params: {
-    project: string;
-  };
-}
 
 export const metadata = {
   title: 'Stats',
   description: 'View your stats',
-}
+};
+
+interface StatsPageProps extends AppParams {}
 
 const StatsPage = async ({ params }: StatsPageProps) => {
   const stats = await sessionsAndViewsGroupedByWebsiteId(params.project);
