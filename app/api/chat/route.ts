@@ -1,7 +1,7 @@
-import { authOptions } from '@/lib/auth';
 import { getServerSession } from 'next-auth';
 
 import redis from '@/db/redis';
+import { authOptions } from '@/lib/auth';
 
 export const POST = async (request: Request) => {
   const { chat } = await request.json();

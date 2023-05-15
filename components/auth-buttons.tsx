@@ -1,7 +1,8 @@
 'use client';
 
-import { signIn, signOut } from 'next-auth/react';
 import Link from 'next/link';
+import { signIn, signOut } from 'next-auth/react';
+
 import { Button } from './ui/button';
 
 export const LoginButton = () => {

@@ -1,12 +1,13 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
+import { Bot, User } from 'lucide-react';
 import Markdown from 'markdown-to-jsx';
+import { FormEvent, useState } from 'react';
+
+import { ChatStream, createStreamingResponse } from '@/lib/openai';
 
 import { Button } from './ui/button';
-import { ChatStream, createStreamingResponse } from '@/lib/openai';
 import { Textarea } from './ui/textarea';
-import { Bot, User } from 'lucide-react';
 
 interface ChatProps {
   history: ChatStream[];

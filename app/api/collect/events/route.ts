@@ -1,6 +1,6 @@
-import { NextResponse, userAgent } from 'next/server';
 import { createHash } from 'crypto';
 import isbot from 'isbot';
+import { NextResponse, userAgent } from 'next/server';
 
 import { insertEvent } from '@/db/clickhouse';
 import { getGeoData } from '@/lib/utils';

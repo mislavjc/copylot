@@ -1,4 +1,5 @@
 import { getCurrentUser } from '@/lib/auth';
+
 import { LoginButton, LogoutButton } from './auth-buttons';
 
 export const User = async () => {

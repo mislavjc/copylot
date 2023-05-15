@@ -1,12 +1,13 @@
 'use client';
 
-import Link from 'next/link';
-import { usePathname, useParams } from 'next/navigation';
-
-import { cn } from '@/lib/utils';
-import { Icons } from '@/components/icons';
-import { ProjectSelect } from './project-select';
 import { Project } from '@prisma/client/edge';
+import Link from 'next/link';
+import { useParams,usePathname } from 'next/navigation';
+
+import { Icons } from '@/components/icons';
+import { cn } from '@/lib/utils';
+
+import { ProjectSelect } from './project-select';
 
 interface DashboardNavProps {
   config: Array<{

@@ -1,10 +1,10 @@
 import { ReactNode } from 'react';
 
 import { DashboardNav } from '@/components/@navbar/dashboard-nav';
-import { navbarConfig } from '@/config/navbar';
-import { getCurrentUser } from '@/lib/auth';
-import prisma from '@/db/prisma';
 import { Navbar } from '@/components/@navbar/navbar';
+import { navbarConfig } from '@/config/navbar';
+import prisma from '@/db/prisma';
+import { getCurrentUser } from '@/lib/auth';
 
 interface DashboardLayoutProps {
   children: ReactNode;

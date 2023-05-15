@@ -1,7 +1,7 @@
-import { NextAuthOptions, getServerSession } from 'next-auth';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import GoogleProvider from 'next-auth/providers/google';
+import { getServerSession,NextAuthOptions } from 'next-auth';
 import EmailProvider from 'next-auth/providers/email';
+import GoogleProvider from 'next-auth/providers/google';
 
 import prisma from '@/db/prisma';
 import { sendVerificationRequest } from '@/lib/email';

@@ -11,6 +11,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+
 import { UserAvatar } from './user-avatar';
 
 interface UserAccountNavProps {

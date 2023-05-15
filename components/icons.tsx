@@ -1,6 +1,7 @@
 import {
   AlertTriangle,
   ArrowRight,
+  BarChart,
   Check,
   ChevronLeft,
   ChevronRight,
@@ -8,8 +9,10 @@ import {
   File,
   FileText,
   HelpCircle,
+  type Icon as LucideIcon,
   Image,
   Laptop,
+  Library,
   Loader2,
   Moon,
   MoreVertical,
@@ -17,16 +20,13 @@ import {
   Plus,
   Settings,
   SunMedium,
+  TestTube2,
+  TestTubes,
   Trash,
   Twitter,
   User,
-  X,
-  type Icon as LucideIcon,
-  TestTube2,
-  TestTubes,
   Users,
-  Library,
-  BarChart,
+  X,
 } from 'lucide-react';
 
 export type Icon = LucideIcon;

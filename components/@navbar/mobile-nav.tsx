@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
+import { useState } from 'react';
 
-import { cn } from '@/lib/utils';
-import { useLockBody } from '@/hooks/use-lock-body';
 import { Icons } from '@/components/icons';
+import { useLockBody } from '@/hooks/use-lock-body';
+import { cn } from '@/lib/utils';
+
 import { NavbarProps } from './navbar';
 
 export const MobileNavWrapper = ({ config }: NavbarProps) => {

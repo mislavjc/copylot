@@ -1,4 +1,4 @@
-import { ParseEvent, createParser } from 'eventsource-parser';
+import { createParser,ParseEvent } from 'eventsource-parser';
 import { SetStateAction } from 'react';
 
 interface Delta {

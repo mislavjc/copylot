@@ -1,8 +1,10 @@
 import { getServerSession } from 'next-auth';
-import { Chat } from './chat';
-import { authOptions } from '@/lib/auth';
+
 import redis from '@/db/redis';
+import { authOptions } from '@/lib/auth';
 import { ChatStream } from '@/lib/openai';
+
+import { Chat } from './chat';
 
 const getChatHistory = async () => {
   const session = await getServerSession(authOptions);

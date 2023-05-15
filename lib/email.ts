@@ -1,6 +1,6 @@
+import { render } from '@react-email/render';
 import { SendVerificationRequestParams } from 'next-auth/providers';
 import { createTransport } from 'nodemailer';
-import { render } from '@react-email/render';
 
 import MagicLinkEmail from '@/emails/verify-email';
 

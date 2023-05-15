@@ -1,9 +1,9 @@
 import Link from 'next/link';
 
-import { cn } from '@/lib/utils';
-import { buttonVariants } from '@/components/ui/button';
 import { Icons } from '@/components/icons';
+import { buttonVariants } from '@/components/ui/button';
 import { UserAuthForm } from '@/components/user-auth-form';
+import { cn } from '@/lib/utils';
 
 export const metadata = {
   title: 'Create an account',
