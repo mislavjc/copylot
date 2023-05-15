@@ -2,6 +2,9 @@ import './globals.css';
 
 import { Inter } from 'next/font/google';
 
+import { Navbar } from '@/components/@navbar/navbar';
+import { navbarConfig } from '@/config/navbar';
+
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
@@ -19,7 +22,11 @@ export default function RootLayout({
       <head>
         <script defer src="/api/script"></script>
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {/* @ts-expect-error RSC */}
+        <Navbar config={navbarConfig.mainNav} />
+        {children}
+      </body>
     </html>
   );
 }
