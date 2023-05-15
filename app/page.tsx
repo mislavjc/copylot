@@ -1,6 +1,4 @@
-import { Navbar } from '@/components/@navbar/navbar';
 import { User } from '@/components/user';
-import { navbarConfig } from '@/config/navbar';
 
 export const metadata = {
   title: 'Home',
