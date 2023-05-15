@@ -10,8 +10,6 @@ export const metadata = {
 const HomePage = () => {
   return (
     <div>
-      {/* @ts-ignore */}
-      <Navbar config={navbarConfig.mainNav} />
       <main className="flex flex-col items-center min-h-screen">
         {/* @ts-ignore  */}
         <User />
