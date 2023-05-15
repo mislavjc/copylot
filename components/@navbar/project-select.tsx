@@ -1,7 +1,7 @@
 'use client';
 
 import { Project } from '@prisma/client/edge';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 
 import {
   Select,
@@ -18,12 +18,13 @@ interface ProjectSelectProps {
 }
 
 export const ProjectSelect = ({ projects }: ProjectSelectProps) => {
-  const { project: projectId } = useParams();
+  const { project: projectUrl } = useParams();
+  const router = useRouter();
 
-  const selected = projects.find((project) => project.id === projectId);
+  const selected = projects.find((project) => project.url === projectUrl);
 
   return (
-    <Select value={selected ? selected.id : undefined}>
+    <Select value={selected?.url}>
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Select a project" />
       </SelectTrigger>
@@ -31,7 +32,13 @@ export const ProjectSelect = ({ projects }: ProjectSelectProps) => {
         <SelectGroup>
           <SelectLabel>Projects</SelectLabel>
           {projects.map((project) => (
-            <SelectItem key={project.id} value={project.id}>
+            <SelectItem
+              key={project.url}
+              value={project.url}
+              onClick={() => {
+                router.push(`/${project.url}/dashboard`);
+              }}
+            >
               {project.name}
             </SelectItem>
           ))}
