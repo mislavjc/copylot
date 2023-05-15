@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { useLockBody } from '@/hooks/use-lock-body';
 import { Icons } from '@/components/icons';
-import { NavbarProps } from './Navbar';
+import { NavbarProps } from './navbar';
 
 export const MobileNavWrapper = ({ config }: NavbarProps) => {
   const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);

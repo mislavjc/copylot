@@ -1,4 +1,4 @@
-import { BarChart } from '@/components/charts/Bar';
+import { BarChart } from '@/components/@charts/bar';
 import { sessionsAndViewsGroupedByWebsiteId } from '@/db/clickhouse';
 
 interface StatsPageProps {

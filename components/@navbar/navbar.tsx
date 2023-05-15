@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { getCurrentUser } from '@/lib/auth';
 
 import { Icons } from '../icons';
-import { MobileNavWrapper } from './MobileNav';
-import { UserAccountNav } from './UserAccountNav';
+import { MobileNavWrapper } from './mobile-nav';
+import { UserAccountNav } from './user-account-nav';
 
 export interface NavbarProps {
   config: Array<{
