@@ -30,7 +30,7 @@ export const navbarConfig: NavbarConfig = {
   sidebarNav: [
     {
       title: 'Experiments',
-      href: '/dashboard',
+      href: '/dashboard/experiments',
       icon: 'experiments',
     },
     {
