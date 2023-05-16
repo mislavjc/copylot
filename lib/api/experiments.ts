@@ -11,3 +11,11 @@ export const getExperiments = async (projectUrl: string) => {
     },
   });
 };
+
+export const getExperiment = async (experimentId: string) => {
+  return await prisma.experiment.findUnique({
+    where: {
+      id: experimentId,
+    },
+  });
+};

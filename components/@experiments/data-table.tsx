@@ -31,15 +31,17 @@ import {
   TableRow,
 } from '@/components/ui/table';
 
+import { ExperimentDialog } from './dialog';
+
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
 }
 
-export function DataTable<TData, TValue>({
+export const DataTable = <TData, TValue>({
   columns,
   data,
-}: DataTableProps<TData, TValue>) {
+}: DataTableProps<TData, TValue>) => {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -78,6 +80,7 @@ export function DataTable<TData, TValue>({
           }
           className="max-w-sm"
         />
+        <ExperimentDialog />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
@@ -131,6 +134,7 @@ export function DataTable<TData, TValue>({
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && 'selected'}
+                  onClick={() => console.log(row.getValue('id'))}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
@@ -149,7 +153,6 @@ export function DataTable<TData, TValue>({
                   className="h-48 text-center"
                 >
                   <div className="mb-4">No experiments found.</div>
-                  <Button>Create a new one</Button>
                 </TableCell>
               </TableRow>
             )}
@@ -158,4 +161,4 @@ export function DataTable<TData, TValue>({
       </div>
     </div>
   );
-}
+};

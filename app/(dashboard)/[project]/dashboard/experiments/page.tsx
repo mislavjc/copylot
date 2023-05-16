@@ -1,5 +1,4 @@
-import { columns } from '@/components/@experiments/columns';
-import { DataTable } from '@/components/@experiments/data-table';
+import { DataTableWrapper } from '@/components/@experiments/data-table-wrapper';
 import { getExperiments } from '@/lib/api/experiments';
 import { AppParams } from '@/types/indext';
 
@@ -15,7 +14,7 @@ const ExperimentsPage = async ({ params }: ExperimentsPageProps) => {
 
   return (
     <div className="container py-10 mx-auto">
-      <DataTable columns={columns} data={data} />
+      <DataTableWrapper project={params.project} data={data} />
     </div>
   );
 };
