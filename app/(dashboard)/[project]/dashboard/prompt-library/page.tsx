@@ -7,8 +7,8 @@ export const metadata = {
   title: 'Prompt library',
   description: 'Manage your prompt library',
 };
-interface PromptLibraryProps extends AppParams {}
 
+interface PromptLibraryProps extends AppParams {}
 
 const PromptLibrary = async ({ params }: PromptLibraryProps) => {
   const promptLibrary = await getPromptLibraty(params.project);

@@ -3,9 +3,15 @@ import { DataTable } from '@/components/data-table';
 import { getExperiment } from '@/lib/api/experiments';
 import { AppParams } from '@/types/indext';
 
-export interface ExperimentPageProps extends AppParams {
+export const metadata = {
+  title: 'Experiment',
+  description: 'Manage your experiment',
+}
+
+interface ExperimentPageProps extends AppParams {
   params: AppParams['params'] & { experimentId: string };
 }
+
 const ExperimentPage = async ({ params }: ExperimentPageProps) => {
   const experiment = await getExperiment(params.experimentId);
 
