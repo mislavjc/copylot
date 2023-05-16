@@ -1,4 +1,4 @@
-import { DataTableWrapper } from '@/components/@experiments/data-table-wrapper';
+import { DataTableWrapper } from '@/components/@experiments/experiments-table/wrapper';
 import { getExperiments } from '@/lib/api/experiments';
 import { AppParams } from '@/types/indext';
 

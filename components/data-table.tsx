@@ -31,16 +31,16 @@ import {
   TableRow,
 } from '@/components/ui/table';
 
-import { ExperimentDialog } from './dialog';
-
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  cta?: React.ReactNode;
 }
 
 export const DataTable = <TData, TValue>({
   columns,
   data,
+  cta,
 }: DataTableProps<TData, TValue>) => {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -73,14 +73,14 @@ export const DataTable = <TData, TValue>({
     <div>
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter experiments..."
+          placeholder="Filter table..."
           value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
           onChange={(event) =>
             table.getColumn('name')?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
-        <ExperimentDialog />
+        {cta}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
@@ -134,7 +134,6 @@ export const DataTable = <TData, TValue>({
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && 'selected'}
-                  onClick={() => console.log(row.getValue('id'))}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
@@ -152,7 +151,7 @@ export const DataTable = <TData, TValue>({
                   colSpan={columns.length}
                   className="h-48 text-center"
                 >
-                  <div className="mb-4">No experiments found.</div>
+                  <div className="mb-4">No data found.</div>
                 </TableCell>
               </TableRow>
             )}

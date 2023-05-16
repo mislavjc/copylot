@@ -15,7 +15,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { createExperiment } from '@/lib/api/actions';
 
-import { Textarea } from '../ui/textarea';
+import { Textarea } from '../../ui/textarea';
 
 export const ExperimentDialog = () => {
   const [name, setName] = useState('');

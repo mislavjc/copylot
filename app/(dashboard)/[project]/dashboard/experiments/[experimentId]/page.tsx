@@ -1,3 +1,5 @@
+import { columns } from '@/components/@experiments/variation-table/columns';
+import { DataTable } from '@/components/data-table';
 import { getExperiment } from '@/lib/api/experiments';
 import { AppParams } from '@/types/indext';
 
@@ -14,7 +16,7 @@ const ExperimentPage = async ({ params }: ExperimentPageProps) => {
         <span className="text-gray-500">&apos;{experiment?.name}&apos;</span>
       </h1>
       <h2 className="mt-2 text-gray-500 tex4t-xl">{experiment?.description}</h2>
-    
+      <DataTable columns={columns} data={experiment?.variations ?? []} />
     </div>
   );
 };

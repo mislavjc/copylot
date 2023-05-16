@@ -17,5 +17,8 @@ export const getExperiment = async (experimentId: string) => {
     where: {
       id: experimentId,
     },
+    include: {
+      variations: true,
+    }
   });
 };
