@@ -48,24 +48,43 @@ export const GET = () => {
   };
 
   // Add event listeners to buttons with data-event attribute
-  const buttons = document.querySelectorAll('button[data-event]');
+  const buttons = document.querySelectorAll('button[data-variation]');
 
   buttons.forEach((button) => {
     button.addEventListener('click', (event) => {
       const eventName = button.dataset.event;
+      const variationId = button.dataset.variation;
+      const experimentId = button.dataset.experiment;
 
       const collectionData = {
         event: {
-          event_name: eventName,
-          event_key: button.dataset['event-key'],
-          event_value: button.textContent,
+          event_name: 'experiment_click',
+          event_key: experimentId,
+          event_value: variationId,
         },
         url: window.location.href,
       };
 
       sendEventData(collectionData);
-      console.log('clicked button');
     });
+  });
+
+  const elementsWithABTest = document.querySelectorAll('[data-variation]');
+
+  elementsWithABTest.forEach((element) => {
+    const variationId = element.dataset.variation;
+    const experimentId = element.dataset.experiment;
+
+    const collectionData = {
+      event: {
+        event_name: 'experiment_view',
+        event_key: experimentId,
+        event_value: variationId,
+      },
+      url: window.location.href,
+    };
+
+    sendEventData(collectionData);
   });
 
   // Send analytics data when the user navigates to a new page

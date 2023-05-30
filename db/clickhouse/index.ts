@@ -172,3 +172,26 @@ export const insertEvent = async ({
     format: 'JSONEachRow',
   });
 };
+
+export interface VariationStatsByExperimentIdRow {
+  event_value: string;
+  event_name: string;
+  count: string;
+}
+
+export const getVariationStatsByExperimentId = async (
+  experiment_id: string
+): Promise<VariationStatsByExperimentIdRow[]> => {
+  const result = await client.query({
+    query: /* sql */ `
+      SELECT event_value, event_name, count(*) as count
+      FROM ${TABLES.EVENTS}
+      WHERE event_key = '${experiment_id}'
+      GROUP BY event_value, event_name
+      ORDER BY count DESC
+    `,
+    format: 'JSONEachRow',
+  });
+
+  return await result.json();
+};

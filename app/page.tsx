@@ -1,19 +1,40 @@
-import { User } from '@/components/user';
-
 export const metadata = {
   title: 'Home',
   description: 'Home page',
 };
 
-const HomePage = () => {
+const experimentId = 'clhpdqoye0000qy0h7c6501po';
+
+const getVariation = async () => {
+  const variation = await fetch(
+    `http://localhost:3000/api/experiment/${experimentId}/variations`,
+    {
+      next: {
+        revalidate: 1,
+      },
+    }
+  );
+
+  const variationData = await variation.json().then(({ data }) => data);
+
+  return variationData as {
+    id: string;
+    value: string;
+  };
+};
+
+const HomePage = async () => {
+  const variation = await getVariation();
+
   return (
     <div>
       <main className="flex flex-col items-center min-h-screen">
-        {/* @ts-ignore  */}
-        <User />
-        <button data-event="Hero CTA click" data-event-key="hero">
+        <button data-variation={variation.id} data-experiment={experimentId}>
           Testing click events
         </button>
+        <h1 data-variation={variation.id} data-experiment={experimentId}>
+          {variation.value}
+        </h1>
       </main>
     </div>
   );
