@@ -63,3 +63,23 @@ export const createExperiment = async (
 
   return experiment;
 };
+
+export const createVariation = async (
+  experimentId: string,
+  data: Prisma.VariationCreateWithoutExperimentInput
+) => {
+  const variation = await prisma.variation.create({
+    data: {
+      ...data,
+      experiment: {
+        connect: {
+          id: experimentId,
+        },
+      },
+    },
+  });
+
+  revalidateTag('variation');
+
+  return variation;
+};

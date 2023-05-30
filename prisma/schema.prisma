@@ -91,9 +91,9 @@ model PromptLibrary {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
 
-  name        String
-  value       String
-  projectId   String
+  name      String
+  value     String
+  projectId String
 
   project Project @relation(fields: [projectId], references: [id])
 
@@ -135,7 +135,7 @@ model Variation {
   updatedAt DateTime @updatedAt
 
   name         String
-  value        String
+  value        String @db.Text
   experimentId String
 
   experiment Experiment @relation(fields: [experimentId], references: [id])

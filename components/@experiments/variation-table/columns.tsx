@@ -7,12 +7,6 @@ import { DataTableColumnHeader } from '@/components/data-table-column-header';
 
 export const columns: ColumnDef<Variation>[] = [
   {
-    accessorKey: 'id',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Id" />
-    ),
-  },
-  {
     accessorKey: 'name',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Name" />

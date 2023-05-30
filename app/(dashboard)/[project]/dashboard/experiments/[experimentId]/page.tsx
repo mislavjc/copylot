@@ -1,12 +1,14 @@
 import { columns } from '@/components/@experiments/variation-table/columns';
+import { VariationPlayground } from '@/components/@experiments/variation-table/playground';
 import { DataTable } from '@/components/data-table';
 import { getExperiment } from '@/lib/api/experiments';
+import { getPromptLibraty } from '@/lib/api/prompt-library';
 import { AppParams } from '@/types/indext';
 
 export const metadata = {
   title: 'Experiment',
   description: 'Manage your experiment',
-}
+};
 
 interface ExperimentPageProps extends AppParams {
   params: AppParams['params'] & { experimentId: string };
@@ -14,6 +16,7 @@ interface ExperimentPageProps extends AppParams {
 
 const ExperimentPage = async ({ params }: ExperimentPageProps) => {
   const experiment = await getExperiment(params.experimentId);
+  const promptLibrary = await getPromptLibraty(params.project);
 
   return (
     <div>
@@ -23,6 +26,10 @@ const ExperimentPage = async ({ params }: ExperimentPageProps) => {
       </h1>
       <h2 className="mt-2 text-gray-500 tex4t-xl">{experiment?.description}</h2>
       <DataTable columns={columns} data={experiment?.variations ?? []} />
+      <VariationPlayground
+        experimentId={params.experimentId}
+        promptLibrary={promptLibrary}
+      />
     </div>
   );
 };

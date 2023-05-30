@@ -19,6 +19,7 @@ import {
   Pizza,
   Plus,
   Settings,
+  Shuffle,
   SunMedium,
   TestTube2,
   TestTubes,
@@ -59,4 +60,5 @@ export const Icons = {
   users: Users,
   library: Library,
   stats: BarChart,
+  shuffle: Shuffle,
 };
