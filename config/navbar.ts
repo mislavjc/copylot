@@ -34,16 +34,6 @@ export const navbarConfig: NavbarConfig = {
       icon: 'experiments',
     },
     {
-      title: 'Datasets',
-      href: '/dashboard/datasets',
-      icon: 'page',
-    },
-    {
-      title: 'Members',
-      href: '/dashboard/settings',
-      icon: 'users',
-    },
-    {
       title: 'Prompt library',
       href: '/dashboard/prompt-library',
       icon: 'library',
