@@ -1,7 +1,11 @@
 (function () {
   'use strict';
 
-  const generateCollectionData = (eventName) => {
+  const generateCollectionData = (
+    eventName,
+    eventKey = null,
+    eventValue = null
+  ) => {
     const collectionData = {
       event: {
         event_name: eventName,
@@ -11,6 +15,11 @@
       url: window.location.href,
       referrer: {},
     };
+
+    if (eventKey && eventValue) {
+      collectionData.event.event_key = eventKey;
+      collectionData.event.event_value = eventValue;
+    }
 
     if (document.referrer) {
       const { hostname, pathname, search } = new URL(document.referrer);
@@ -25,65 +34,64 @@
     return collectionData;
   };
 
-  // Sends analytics data to server
-  const sendAnalyticsData = (collectionData) => {
-    fetch('/api/collect', {
+  const sendData = (collectionData, endpoint) => {
+    fetch(endpoint, {
       method: 'POST',
       body: JSON.stringify(collectionData),
     });
   };
 
-  const sendEventData = (collectionData) => {
-    fetch('/api/collect/events', {
-      method: 'POST',
-      body: JSON.stringify(collectionData),
+  const handleEvent = (eventName, eventKey, eventValue) => {
+    const collectionData = generateCollectionData(
+      eventName,
+      eventKey,
+      eventValue
+    );
+    sendData(collectionData, '/api/collect/events');
+  };
+
+  const handleViewEvent = (element, eventName) => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+        const variationId = element.dataset.variation;
+        const experimentId = element.dataset.experiment;
+        handleEvent(eventName, experimentId, variationId);
+        observer.unobserve(entry.target);
+      });
     });
+
+    observer.observe(element);
+  };
+
+  const attachEvents = (selector, eventName, isViewEvent = false) => {
+    const elements = document.querySelectorAll(selector);
+
+    elements.forEach((element) => {
+      if (isViewEvent) {
+        handleViewEvent(element, eventName);
+      } else {
+        element.addEventListener('click', () => {
+          const variationId = element.dataset.variation;
+          const experimentId = element.dataset.experiment;
+          handleEvent(eventName, experimentId, variationId);
+        });
+      }
+    });
+  };
+
+  const handlePageView = () => {
+    const collectionData = generateCollectionData('page_view');
+    sendData(collectionData, '/api/collect');
   };
 
   // Add event listeners to buttons with data-event attribute
-  const buttons = document.querySelectorAll('button[data-variation]');
+  attachEvents('button[data-variation]', 'experiment_click');
 
-  buttons.forEach((button) => {
-    button.addEventListener('click', (event) => {
-      const variationId = button.dataset.variation;
-      const experimentId = button.dataset.experiment;
-
-      const collectionData = {
-        event: {
-          event_name: 'experiment_click',
-          event_key: experimentId,
-          event_value: variationId,
-        },
-        url: window.location.href,
-      };
-
-      sendEventData(collectionData);
-    });
-  });
-
-  const elementsWithABTest = document.querySelectorAll('[data-variation]');
-
-  elementsWithABTest.forEach((element) => {
-    const variationId = element.dataset.variation;
-    const experimentId = element.dataset.experiment;
-
-    const collectionData = {
-      event: {
-        event_name: 'experiment_view',
-        event_key: experimentId,
-        event_value: variationId,
-      },
-      url: window.location.href,
-    };
-
-    sendEventData(collectionData);
-  });
-
-  // Send analytics data when the user navigates to a new page
-  const handlePageView = () => {
-    const collectionData = generateCollectionData('page_view');
-    sendAnalyticsData(collectionData);
-  };
+  // Attach view events to elements with A/B test
+  attachEvents('[data-variation]', 'experiment_view', true);
 
   // Watch for router changes using the popstate event
   window.addEventListener('popstate', handlePageView);
