@@ -5,7 +5,7 @@ import { Separator } from '@/components/ui/separator';
 export const metadata = {
   title: 'Projects',
   description: 'Manage your projects',
-}
+};
 
 const ProjectsPage = () => {
   return (

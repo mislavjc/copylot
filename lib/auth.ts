@@ -1,5 +1,5 @@
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import { getServerSession,NextAuthOptions } from 'next-auth';
+import { getServerSession, NextAuthOptions } from 'next-auth';
 import EmailProvider from 'next-auth/providers/email';
 import GoogleProvider from 'next-auth/providers/google';
 
@@ -61,6 +61,12 @@ export const authOptions: NextAuthOptions = {
 };
 
 export const getCurrentUser = async () => {
+  const session = await getServerSession(authOptions);
+
+  return session?.user;
+};
+
+export const getServerUser = async () => {
   const session = await getServerSession(authOptions);
 
   return session?.user;

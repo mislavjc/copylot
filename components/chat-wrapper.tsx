@@ -1,15 +1,13 @@
-import { getServerSession } from 'next-auth';
-
 import redis from '@/db/redis';
-import { authOptions } from '@/lib/auth';
+import { getServerUser } from '@/lib/auth';
 import { ChatStream } from '@/lib/openai';
 
 import { Chat } from './chat';
 
 const getChatHistory = async () => {
-  const session = await getServerSession(authOptions);
+  const user = await getServerUser();
 
-  return (await redis.json.get(session?.user.id!)) as ChatStream[] | null;
+  return (await redis.json.get(user?.id!)) as ChatStream[] | null;
 };
 
 export const ChatWrapper = async () => {

@@ -2,7 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Project } from '@prisma/client/edge';
-import { useParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -28,7 +28,6 @@ export const ProjectForm = ({ project }: ProjectFormProps) => {
   });
 
   const router = useRouter();
-  const { organization } = useParams();
 
   const onSubmit = async (data: FormData) => {
     const { name, url } = data;
@@ -46,12 +45,12 @@ export const ProjectForm = ({ project }: ProjectFormProps) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ name, url, organizationId: organization }),
+      body: JSON.stringify({ name, url }),
     });
 
-    const { id } = await response.json();
+    const { url: projecturl } = await response.json();
 
-    router.push(`/${organization}/${id}`);
+    router.push(`/${projecturl}/dashboard`);
   };
 
   return (
