@@ -1,4 +1,6 @@
-import prisma from '@/db/prisma';
+import { getVariation } from '@/lib/api/variations';
+
+export const runtime = 'edge';
 
 export const GET = async (
   _request: Request,
@@ -10,21 +12,14 @@ export const GET = async (
 ) => {
   const { experimentId } = context.params;
 
-  const variations = await prisma.variation.findMany({
-    where: {
-      experimentId,
-    },
-  });
-
-  const randomVariation =
-    variations[Math.floor(Math.random() * variations.length)];
+  const variation = await getVariation(experimentId);
 
   return new Response(
     JSON.stringify({
       status: 'ok',
       data: {
-        id: randomVariation.id,
-        value: randomVariation.value,
+        id: variation.id,
+        value: variation.value,
       },
     }),
     {

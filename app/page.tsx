@@ -1,3 +1,5 @@
+import { getVariation } from "@/lib/api/variations";
+
 export const metadata = {
   title: 'Home',
   description: 'Home page',
@@ -5,26 +7,9 @@ export const metadata = {
 
 const experimentId = 'clhpdqoye0000qy0h7c6501po';
 
-const getVariation = async () => {
-  const variation = await fetch(
-    `${process.env.NEXTAUTH_URL || `https://${process.env.VERCEL_URL}`}/api/experiment/${experimentId}/variations`,
-    {
-      next: {
-        revalidate: 1,
-      },
-    }
-  );
-
-  const variationData = await variation.json().then(({ data }) => data);
-
-  return variationData as {
-    id: string;
-    value: string;
-  };
-};
 
 const HomePage = async () => {
-  const variation = await getVariation();
+  const variation = await getVariation(experimentId);
 
   return (
     <div>
