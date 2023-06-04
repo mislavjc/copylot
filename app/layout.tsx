@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <script defer src="/api/script"></script>
+        <script defer src="/script.js"></script>
       </head>
       <body className={inter.className}>
         <Navbar config={navbarConfig.mainNav} />

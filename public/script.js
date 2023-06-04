@@ -1,18 +1,11 @@
-export const runtime = 'edge';
-
-export const GET = () => {
-  return new Response(
-    `   
 (function () {
   'use strict';
-
-  console.log('testing!!');
 
   const generateCollectionData = (eventName) => {
     const collectionData = {
       event: {
         event_name: eventName,
-        screen_size: window.screen.width + 'x' + window.screen.height,
+        screen_size: `${window.screen.width}x${window.screen.height}`,
         page_title: document.title,
       },
       url: window.location.href,
@@ -52,7 +45,6 @@ export const GET = () => {
 
   buttons.forEach((button) => {
     button.addEventListener('click', (event) => {
-      const eventName = button.dataset.event;
       const variationId = button.dataset.variation;
       const experimentId = button.dataset.experiment;
 
@@ -99,9 +91,3 @@ export const GET = () => {
   // Send analytics data when the page first loads
   handlePageView();
 })();
-    `,
-    {
-      headers: { 'content-type': 'text/javascript' },
-    }
-  );
-};
