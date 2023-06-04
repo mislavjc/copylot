@@ -47,7 +47,7 @@ export const Chart = async ({ experimentId }: ChartProps) => {
   const chartData = {
     labels: Array.from(new Set(stats.map((record) => record.name))),
     datasets: Object.keys(groups).map((event_name, i) => ({
-      label: event_name,
+      label: event_name.replace(/_/g, ' '),
       data: groups[event_name].map((record) => Number(record.count)),
       backgroundColor: colors[i % colors.length], // Use colors cyclically
       borderColor: borderColors[i % borderColors.length],
