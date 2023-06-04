@@ -7,7 +7,7 @@ const experimentId = 'clhpdqoye0000qy0h7c6501po';
 
 const getVariation = async () => {
   const variation = await fetch(
-    `http://localhost:3000/api/experiment/${experimentId}/variations`,
+    `${process.env.NEXTAUTH_URL}/api/experiment/${experimentId}/variations`,
     {
       next: {
         revalidate: 1,
