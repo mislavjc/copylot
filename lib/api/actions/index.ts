@@ -83,3 +83,17 @@ export const createVariation = async (
 
   return variation;
 };
+
+export const updateProject = async (
+  projectId: string,
+  data: Prisma.ProjectUpdateInput
+) => {
+  await prisma.project.update({
+    where: {
+      id: projectId,
+    },
+    data,
+  });
+
+  revalidateTag('projects');
+};
