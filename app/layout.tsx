@@ -22,7 +22,6 @@ export default function RootLayout({
         <script defer src="/api/script"></script>
       </head>
       <body className={inter.className}>
-        {/* @ts-expect-error RSC */}
         <Navbar config={navbarConfig.mainNav} />
         {children}
       </body>
