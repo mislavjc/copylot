@@ -7,7 +7,7 @@ const experimentId = 'clhpdqoye0000qy0h7c6501po';
 
 const getVariation = async () => {
   const variation = await fetch(
-    `${process.env.NEXTAUTH_URL || process.env.VERCEL_URL}/api/experiment/${experimentId}/variations`,
+    `${process.env.NEXTAUTH_URL || `https://${process.env.VERCEL_URL}`}/api/experiment/${experimentId}/variations`,
     {
       next: {
         revalidate: 1,
