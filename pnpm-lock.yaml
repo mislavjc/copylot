@@ -128,6 +128,9 @@ dependencies:
   nodemailer:
     specifier: ^6.9.3
     version: 6.9.3
+  prism-react-renderer:
+    specifier: ^2.0.4
+    version: 2.0.4(react@18.2.0)
   react:
     specifier: 18.2.0
     version: 18.2.0
@@ -1915,6 +1918,10 @@ packages:
 
   /@types/normalize-package-data@2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
+    dev: false
+
+  /@types/prismjs@1.26.0:
+    resolution: {integrity: sha512-ZTaqn/qSqUuAq1YwvOFQfVW1AR/oQJlLSZVustdjwI+GZ8kr0MSHBj0tsXPW1EqHubx50gtBEjbPGsdZwQwCjQ==}
     dev: false
 
   /@types/prop-types@15.7.5:
@@ -4733,6 +4740,16 @@ packages:
       condense-newlines: 0.2.1
       extend-shallow: 2.0.1
       js-beautify: 1.14.7
+    dev: false
+
+  /prism-react-renderer@2.0.4(react@18.2.0):
+    resolution: {integrity: sha512-1fcayBPhlGWLjKHeZMA2eJbvLsq1YJsoP3CUOF0BNlobw4knAYS6EWHYawywaZ5zoIxYkgxuqrrkCj7b+135ow==}
+    peerDependencies:
+      react: '>=16.0.0'
+    dependencies:
+      '@types/prismjs': 1.26.0
+      clsx: 1.2.1
+      react: 18.2.0
     dev: false
 
   /prisma@4.15.0:
