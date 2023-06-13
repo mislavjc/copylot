@@ -8,7 +8,9 @@ export const metadata = {
   description: 'Manage your settings',
 };
 
-const code = `<script defer src="${process.env.NEXTAUTH_URL}/script.js"></script>`;
+const code = `<script defer src="${
+  process.env.NEXTAUTH_URL || process.env.VERCEL_URL
+}/script.js"></script>`;
 
 interface SettingsPageProps extends AppParams {}
 
