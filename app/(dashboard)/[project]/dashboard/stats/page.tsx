@@ -1,7 +1,6 @@
-import { BarChart } from '@/components/@charts/bar';
+import { LineChart } from '@/components/@charts/line';
 import { sessionsAndViewsGroupedByWebsiteId } from '@/db/clickhouse';
 import { AppParams } from '@/types/indext';
-
 
 export const metadata = {
   title: 'Stats',
@@ -13,21 +12,22 @@ interface StatsPageProps extends AppParams {}
 const StatsPage = async ({ params }: StatsPageProps) => {
   const stats = await sessionsAndViewsGroupedByWebsiteId(params.project);
 
-  const data = {
-    labels: stats.map((stat) => stat.date),
-    datasets: [
-      {
-        label: 'Sessions',
-        data: stats.map((stat) => parseInt(stat.sessions)),
-        backgroundColor: 'rgb(255, 99, 132)',
-      },
-      {
-        label: 'Views',
-        data: stats.map((stat) => parseInt(stat.views)),
-        backgroundColor: 'rgb(54, 162, 235)',
-      },
-    ],
-  };
+  const data = [
+    {
+      id: 'Sessions',
+      data: stats.map((stat) => ({
+        y: parseInt(stat.sessions),
+        x: stat.date,
+      })),
+    },
+    // {
+    //   id: 'Views',
+    //   data: stats.map((stat) => ({
+    //     y: parseInt(stat.views),
+    //     x: stat.date,
+    //   })),
+    // },
+  ];
 
   return (
     <div className="w-full">
@@ -46,8 +46,8 @@ const StatsPage = async ({ params }: StatsPageProps) => {
           </span>
         </div>
       </div>
-      <div>
-        <BarChart data={data} />
+      <div className="w-full h-[500px]">
+        <LineChart data={data} />
       </div>
     </div>
   );
