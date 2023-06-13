@@ -1,6 +1,11 @@
+import { CloroplethMap } from '@/components/@charts/geo';
 import { LineChart } from '@/components/@charts/line';
 import { StatsTabs } from '@/components/@stats/stats-tabs';
-import { sessionsAndViewsGroupedByWebsiteId } from '@/db/clickhouse';
+import {
+  sessionsAndViewsGroupedByCountry,
+  sessionsAndViewsGroupedByWebsiteId,
+} from '@/db/clickhouse';
+import { getCountryCode3 } from '@/lib/countries';
 import { AppParams } from '@/types/indext';
 
 export const metadata = {
@@ -12,22 +17,36 @@ interface StatsPageProps extends AppParams {}
 
 const StatsPage = async ({ params }: StatsPageProps) => {
   const stats = await sessionsAndViewsGroupedByWebsiteId(params.project);
+  const countryStats = await sessionsAndViewsGroupedByCountry(params.project);
 
-  const sessionData = [{
-    id: 'Sessions',
-    data: stats.map((stat) => ({
-      y: parseInt(stat.sessions),
-      x: stat.date,
-    })),
-  }]
+  const sessionData = [
+    {
+      id: 'Sessions',
+      data: stats.map((stat) => ({
+        y: parseInt(stat.sessions),
+        x: stat.date,
+      })),
+    },
+  ];
 
-  const viewData = [{
-    id: 'Views',
-    data: stats.map((stat) => ({
-      y: parseInt(stat.views),
-      x: stat.date,
-    })),
-  }]
+  const viewData = [
+    {
+      id: 'Views',
+      data: stats.map((stat) => ({
+        y: parseInt(stat.views),
+        x: stat.date,
+      })),
+    },
+  ];
+
+  const countryData = countryStats.map((stat) => ({
+    id: getCountryCode3(stat.country),
+    value: parseInt(stat.sessions),
+  }));
+
+  const highestCountryCount = Math.max(
+    ...countryData.map((country) => country.value)
+  );
 
   return (
     <div className="w-full">
@@ -58,6 +77,12 @@ const StatsPage = async ({ params }: StatsPageProps) => {
           },
         ]}
       />
+      <div className="w-full h-96">
+        <CloroplethMap
+          data={countryData}
+          highestCountryCount={highestCountryCount}
+        />
+      </div>
     </div>
   );
 };
