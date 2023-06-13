@@ -1,4 +1,5 @@
 import { LineChart } from '@/components/@charts/line';
+import { StatsTabs } from '@/components/@stats/stats-tabs';
 import { sessionsAndViewsGroupedByWebsiteId } from '@/db/clickhouse';
 import { AppParams } from '@/types/indext';
 
@@ -12,22 +13,21 @@ interface StatsPageProps extends AppParams {}
 const StatsPage = async ({ params }: StatsPageProps) => {
   const stats = await sessionsAndViewsGroupedByWebsiteId(params.project);
 
-  const data = [
-    {
-      id: 'Sessions',
-      data: stats.map((stat) => ({
-        y: parseInt(stat.sessions),
-        x: stat.date,
-      })),
-    },
-    // {
-    //   id: 'Views',
-    //   data: stats.map((stat) => ({
-    //     y: parseInt(stat.views),
-    //     x: stat.date,
-    //   })),
-    // },
-  ];
+  const sessionData = [{
+    id: 'Sessions',
+    data: stats.map((stat) => ({
+      y: parseInt(stat.sessions),
+      x: stat.date,
+    })),
+  }]
+
+  const viewData = [{
+    id: 'Views',
+    data: stats.map((stat) => ({
+      y: parseInt(stat.views),
+      x: stat.date,
+    })),
+  }]
 
   return (
     <div className="w-full">
@@ -46,9 +46,18 @@ const StatsPage = async ({ params }: StatsPageProps) => {
           </span>
         </div>
       </div>
-      <div className="w-full h-[500px]">
-        <LineChart data={data} />
-      </div>
+      <StatsTabs
+        options={[
+          {
+            label: 'Sessions',
+            tab: <LineChart data={sessionData} />,
+          },
+          {
+            label: 'Views',
+            tab: <LineChart data={viewData} />,
+          },
+        ]}
+      />
     </div>
   );
 };
