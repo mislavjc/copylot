@@ -27,8 +27,6 @@ export const CloroplethMap = ({
       valueFormat=".2"
       projectionTranslation={[0.5, 0.5]}
       projectionRotation={[0, 0, 0]}
-      enableGraticule={true}
-      graticuleLineColor="#dddddd"
       borderWidth={0.5}
       borderColor="#152538"
       tooltip={({ feature }) => {

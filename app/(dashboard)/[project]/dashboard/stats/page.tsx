@@ -2,6 +2,13 @@ import { CloroplethMap } from '@/components/@charts/geo';
 import { LineChart } from '@/components/@charts/line';
 import { StatsTabs } from '@/components/@stats/stats-tabs';
 import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import {
   sessionsAndViewsGroupedByCountry,
   sessionsAndViewsGroupedByWebsiteId,
 } from '@/db/clickhouse';
@@ -65,23 +72,35 @@ const StatsPage = async ({ params }: StatsPageProps) => {
           </span>
         </div>
       </div>
-      <StatsTabs
-        options={[
-          {
-            label: 'Sessions',
-            tab: <LineChart data={sessionData} />,
-          },
-          {
-            label: 'Views',
-            tab: <LineChart data={viewData} />,
-          },
-        ]}
-      />
-      <div className="w-full h-96">
-        <CloroplethMap
-          data={countryData}
-          highestCountryCount={highestCountryCount}
-        />
+      <div className="flex flex-col gap-4">
+        <Card>
+          <StatsTabs
+            options={[
+              {
+                label: 'Sessions',
+                tab: <LineChart data={sessionData} />,
+              },
+              {
+                label: 'Views',
+                tab: <LineChart data={viewData} />,
+              },
+            ]}
+          />
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle>Locations</CardTitle>
+            <CardDescription>Usage by country</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="w-full h-96">
+              <CloroplethMap
+                data={countryData}
+                highestCountryCount={highestCountryCount}
+              />
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
