@@ -1,6 +1,7 @@
 'use client';
 
 import { Prisma, PromptLibrary, Variation } from '@prisma/client/edge';
+import { useCompletion } from 'ai/react';
 import { useEffect, useState } from 'react';
 
 import {
@@ -12,7 +13,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { createVariation } from '@/lib/api/actions';
-import { createStreamingResponse } from '@/lib/openai';
 
 interface VariationPlaygroundProps {
   experimentId: string;
@@ -25,6 +25,14 @@ export const VariationPlayground = ({
   experimentId,
   promptLibrary,
 }: VariationPlaygroundProps) => {
+  const {
+    completion,
+    handleSubmit,
+    handleInputChange,
+    setInput,
+    setCompletion,
+  } = useCompletion();
+
   const [selected, setSelected] = useState<VariationType>({
     name: '',
     value: '',
@@ -33,46 +41,40 @@ export const VariationPlayground = ({
     name: '',
     value: '',
   });
-  const [prompt, setPrompt] = useState(selectedPrompt.value);
-  const [variation, setVariation] = useState('');
+  const [prompt, setPrompt] = useState('');
 
   useEffect(() => {
     if (selectedPrompt.value) {
       setPrompt(selectedPrompt.value);
+      setInput(selectedPrompt.value);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedPrompt]);
 
-  const handleGenrateVariation = async () => {
-    setVariation('');
-
-    await createStreamingResponse(prompt, setVariation, []);
-  };
-
-  const remixVariation = async () => {
-    const variationContext = `Take text from ${variation} and rewrite it as a new variation while keeping prompt: ${prompt} in mind.`;
-
-    setVariation('');
-
-    await createStreamingResponse(variationContext, setVariation, []);
-  };
+  const variationContext = `Take text "${completion}" and rewrite it as a new variation while keeping prompt: ${prompt} in mind.`;
 
   return (
     <div>
       <h1 className="mt-4 text-2xl">Variation Playground</h1>
       <div className="flex-col gap-4 mt-4">
-        <div className="flex gap-4 my-4">
-          <Input
-            value={prompt}
-            onChange={(e) => setPrompt(e.target.value)}
-            placeholder="Write a prompt, you can also pick it from prompt library."
-          />
-          <PromptSelect
-            selected={selectedPrompt}
-            setSelected={setSelectedPrompt}
-            promptLibrary={promptLibrary}
-          />
+        <div>
+          <form onSubmit={handleSubmit} className="flex gap-4 my-4">
+            <Input
+              value={prompt}
+              onChange={(e) => {
+                handleInputChange(e);
+                setPrompt(e.target.value);
+              }}
+              placeholder="Write a prompt, you can also pick it from prompt library."
+            />
+            <PromptSelect
+              selected={selectedPrompt}
+              setSelected={setSelectedPrompt}
+              promptLibrary={promptLibrary}
+            />
+            <Button>Generate</Button>
+          </form>
         </div>
-        <Button onClick={handleGenrateVariation}>Generate</Button>
         <Input
           value={selected.name}
           onChange={(e) =>
@@ -85,27 +87,30 @@ export const VariationPlayground = ({
           className="my-4"
         />
         <Textarea
-          value={variation}
+          value={completion}
           onChange={(e) => {
-            setVariation(e.target.value);
+            setCompletion(e.target.value);
           }}
           placeholder="The variation content will be displayed here, you can always edit it."
           className="my-4 h-96 min-h-fit"
         />
         <div className="flex justify-between">
-          <Button
-            variant="secondary"
-            onClick={remixVariation}
-            disabled={!variation}
+          <form
+            onSubmit={(e) => {
+              setInput(variationContext);
+              handleSubmit(e);
+            }}
           >
-            <Icons.shuffle className="mr-2" />
-            Remix prompt
-          </Button>
+            <Button variant="secondary" disabled={!completion}>
+              <Icons.shuffle className="mr-2" />
+              Remix prompt
+            </Button>
+          </form>
           <Button
             onClick={() =>
               createVariation(experimentId, {
                 name: selected.name,
-                value: variation,
+                value: completion,
               })
             }
           >
