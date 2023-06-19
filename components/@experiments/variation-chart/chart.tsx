@@ -55,12 +55,7 @@ export const Chart = async ({ experimentId }: ChartProps) => {
     })),
   };
 
-  return (
-    <div>
-      <h1>Chart</h1>
-      <BarChart data={chartData} />
-    </div>
-  );
+  return <BarChart data={chartData} />;
 };
 
 interface StatsData extends VariationStatsByExperimentIdRow {
