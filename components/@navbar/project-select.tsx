@@ -1,6 +1,7 @@
 'use client';
 
 import { Project } from '@prisma/client/edge';
+import Avatar from 'boring-avatars';
 import { useParams, useRouter } from 'next/navigation';
 
 import {
@@ -30,7 +31,7 @@ export const ProjectSelect = ({ projects }: ProjectSelectProps) => {
         router.push(`/${value}/dashboard`);
       }}
     >
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger className="flex items-center gap-2 border-0 font-semibold hover:bg-accent hover:text-accent-foreground">
         <SelectValue placeholder="Select a project" />
       </SelectTrigger>
       <SelectContent>
@@ -38,7 +39,10 @@ export const ProjectSelect = ({ projects }: ProjectSelectProps) => {
           <SelectLabel>Projects</SelectLabel>
           {projects.map((project) => (
             <SelectItem key={project.url} value={project.url}>
-              {project.name}
+              <div className="flex items-center gap-2">
+                <Avatar size={24} name={project.id} variant="marble" />
+                {project.name}
+              </div>
             </SelectItem>
           ))}
         </SelectGroup>
