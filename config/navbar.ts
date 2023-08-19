@@ -18,13 +18,12 @@ interface NavbarConfig {
 export const navbarConfig: NavbarConfig = {
   mainNav: [
     {
-      title: 'Documentation',
-      href: '/docs',
+      title: 'Projects',
+      href: '/projects',
     },
     {
-      title: 'Support',
-      href: '/support',
-      disabled: true,
+      title: 'Settings',
+      href: '/settings',
     },
   ],
   sidebarNav: [
