@@ -5,6 +5,9 @@ const nextConfig = {
     serverActions: true,
     esmExternals: 'loose',
   },
+  images: {
+    domains: ['source.boringavatars.com'],
+  },
 };
 
 module.exports = nextConfig;

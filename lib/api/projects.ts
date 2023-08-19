@@ -9,6 +9,15 @@ export const getProjects = async () => {
     where: {
       organizationId: user?.organizationId,
     },
+    include: {
+      _count: {
+        select: {
+          experiments: true,
+          promptLibraries: true,
+          toneDescriptions: true,
+        },
+      },
+    },
   });
 };
 
