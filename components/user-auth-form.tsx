@@ -1,20 +1,21 @@
 'use client';
 
+import * as React from 'react';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import { signIn } from 'next-auth/react';
-import * as React from 'react';
-import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
 import GoogleSvg from '/public/icons/google.svg';
-import { buttonVariants } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { toast } from '@/components/ui/use-toast';
-import { cn } from '@/lib/utils';
-import { userAuthSchema } from '@/lib/validations/auth';
+import { buttonVariants } from 'ui/button';
+import { Input } from 'ui/input';
+import { Label } from 'ui/label';
+import { toast } from 'ui/use-toast';
+
+import { cn } from 'lib/utils';
+import { userAuthSchema } from 'lib/validations/auth';
 
 import { Icons } from './icons';
 
@@ -84,7 +85,9 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             )}
           </div>
           <button className={cn(buttonVariants())} disabled={isLoading}>
-            {isLoading && <Icons.spinner className="w-4 h-4 mr-2 animate-spin" />}
+            {isLoading && (
+              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+            )}
             Sign In with Email
           </button>
         </div>
@@ -94,7 +97,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
           <span className="w-full border-t" />
         </div>
         <div className="relative flex justify-center text-xs uppercase">
-          <span className="px-2 bg-background text-muted-foreground">
+          <span className="bg-background px-2 text-muted-foreground">
             Or continue with
           </span>
         </div>
@@ -109,9 +112,15 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         disabled={isLoading || isGitHubLoading}
       >
         {isGitHubLoading ? (
-          <Icons.spinner className="w-4 h-4 mr-2 animate-spin" />
+          <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
         ) : (
-          <Image src={GoogleSvg} alt="google" width={16} height={16} className="mr-2" />
+          <Image
+            src={GoogleSvg}
+            alt="google"
+            width={16}
+            height={16}
+            className="mr-2"
+          />
         )}{' '}
         Google
       </button>

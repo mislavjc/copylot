@@ -2,10 +2,11 @@
 
 import { Project } from '@prisma/client/edge';
 import Link from 'next/link';
-import { useParams,usePathname } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
 
-import { Icons } from '@/components/icons';
-import { cn } from '@/lib/utils';
+import { Icons } from 'components/icons';
+
+import { cn } from 'lib/utils';
 
 import { ProjectSelect } from './project-select';
 
@@ -42,10 +43,10 @@ export function DashboardNav({ config, projects }: DashboardNavProps) {
                 className={cn(
                   'group flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground',
                   path === item.href ? 'bg-accent' : 'transparent',
-                  item.disabled && 'cursor-not-allowed opacity-80'
+                  item.disabled && 'cursor-not-allowed opacity-80',
                 )}
               >
-                <Icon className="w-4 h-4 mr-2" />
+                <Icon className="mr-2 h-4 w-4" />
                 <span>{item.title}</span>
               </span>
             </Link>

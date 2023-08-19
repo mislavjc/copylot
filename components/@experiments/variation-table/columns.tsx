@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
 import { Variation } from '@prisma/client/edge';
 import { ColumnDef } from '@tanstack/react-table';
 
-import { DataTableColumnHeader } from '@/components/data-table-column-header';
+import { DataTableColumnHeader } from 'components/data-table-column-header';
 
 export const columns: ColumnDef<Variation>[] = [
   {

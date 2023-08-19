@@ -33,9 +33,10 @@ export const CloroplethMap = ({
         if (!feature.value) return null;
 
         return (
-          <div className="bg-slate-50 px-2 py-1 rounded text-sm">
+          <div className="rounded bg-slate-50 px-2 py-1 text-sm">
             <div className=" font-bold">{feature.label}</div>
-            <span className="font-bold text-red-600">{feature.value}</span> sessions
+            <span className="font-bold text-red-600">{feature.value}</span>{' '}
+            sessions
           </div>
         );
       }}

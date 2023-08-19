@@ -1,18 +1,20 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { Prisma, PromptLibrary, Variation } from '@prisma/client/edge';
 import { useCompletion } from 'ai/react';
-import { useEffect, useState } from 'react';
+
+import { Button } from 'ui/button';
+import { Input } from 'ui/input';
+import { Textarea } from 'ui/textarea';
 
 import {
   PromptLibraryType,
   PromptSelect,
-} from '@/components/@prompt-libraty/prompt-select';
-import { Icons } from '@/components/icons';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { createVariation } from '@/lib/api/actions';
+} from 'components/@prompt-libraty/prompt-select';
+import { Icons } from 'components/icons';
+
+import { createVariation } from 'lib/api/actions';
 
 interface VariationPlaygroundProps {
   experimentId: string;
@@ -56,9 +58,9 @@ export const VariationPlayground = ({
   return (
     <div>
       <h1 className="mt-4 text-2xl">Variation Playground</h1>
-      <div className="flex-col gap-4 mt-4">
+      <div className="mt-4 flex-col gap-4">
         <div>
-          <form onSubmit={handleSubmit} className="flex gap-4 my-4">
+          <form onSubmit={handleSubmit} className="my-4 flex gap-4">
             <Input
               value={prompt}
               onChange={(e) => {

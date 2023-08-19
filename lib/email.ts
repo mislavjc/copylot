@@ -1,14 +1,13 @@
 import { render } from '@react-email/render';
+import MagicLinkEmail from 'emails/verify-email';
 import { SendVerificationRequestParams } from 'next-auth/providers';
 import { createTransport } from 'nodemailer';
 
-import MagicLinkEmail from '@/emails/verify-email';
-
 export const sendVerificationRequest = async (
-  params: SendVerificationRequestParams
+  params: SendVerificationRequestParams,
 ) => {
   const emailHtml = render(MagicLinkEmail({ magicLink: params.url }));
-  
+
   const { identifier, url, provider } = params;
   const { host } = new URL(url);
 

@@ -4,7 +4,7 @@
   const generateCollectionData = (
     eventName,
     eventKey = null,
-    eventValue = null
+    eventValue = null,
   ) => {
     const collectionData = {
       event: {
@@ -45,7 +45,7 @@
     const collectionData = generateCollectionData(
       eventName,
       eventKey,
-      eventValue
+      eventValue,
     );
     sendData(collectionData, '/api/collect/events');
   };

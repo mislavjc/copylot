@@ -4,8 +4,9 @@ import { Experiment } from '@prisma/client/edge';
 import { ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
 
-import { DataTableColumnHeader } from '@/components/data-table-column-header';
-import { Button } from '@/components/ui/button';
+import { Button } from 'ui/button';
+
+import { DataTableColumnHeader } from 'components/data-table-column-header';
 
 export const generateColumns = (projectUrl: string) => {
   const columns: ColumnDef<Experiment>[] = [
@@ -45,9 +46,7 @@ export const generateColumns = (projectUrl: string) => {
 
         return (
           <Button>
-            <Link
-              href={`/${projectUrl}/dashboard/experiments/${id}`}
-            >
+            <Link href={`/${projectUrl}/dashboard/experiments/${id}`}>
               Open
             </Link>
           </Button>

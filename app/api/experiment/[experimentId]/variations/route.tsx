@@ -1,4 +1,4 @@
-import { getVariation } from '@/lib/api/variations';
+import { getVariation } from 'lib/api/variations';
 
 export const runtime = 'edge';
 
@@ -8,7 +8,7 @@ export const GET = async (
     params: {
       experimentId: string;
     };
-  }
+  },
 ) => {
   const { experimentId } = context.params;
 
@@ -27,6 +27,6 @@ export const GET = async (
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
       },
-    }
+    },
   );
 };

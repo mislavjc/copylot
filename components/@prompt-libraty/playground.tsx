@@ -1,13 +1,15 @@
 'use client';
 
-import { Project, PromptLibrary } from '@prisma/client/edge';
 import { useState } from 'react';
+import { Project, PromptLibrary } from '@prisma/client/edge';
 
-import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
-import { addPromptToLibrary, updatePromptInLibrary } from '@/lib/api/actions';
+import { Button } from 'ui/button';
+import { Textarea } from 'ui/textarea';
+
+import { addPromptToLibrary, updatePromptInLibrary } from 'lib/api/actions';
 
 import { Input } from '../ui/input';
+
 import { PromptLibraryType, PromptSelect } from './prompt-select';
 
 interface PlaygroundProps {
@@ -63,7 +65,7 @@ export const Playground = ({ promptLibrary, project }: PlaygroundProps) => {
           </Button>
         </div>
       </div>
-      <div className="flex-col gap-4 mt-4">
+      <div className="mt-4 flex-col gap-4">
         <Input
           value={selected.name}
           onChange={(e) =>

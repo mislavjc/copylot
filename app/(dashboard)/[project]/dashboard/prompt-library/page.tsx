@@ -1,7 +1,9 @@
-import { Playground } from '@/components/@prompt-libraty/playground';
-import { getProjectByUrl } from '@/lib/api/projects';
-import { getPromptLibraty } from '@/lib/api/prompt-library';
-import { AppParams } from '@/types/indext';
+import { Playground } from 'components/@prompt-libraty/playground';
+
+import { getProjectByUrl } from 'lib/api/projects';
+import { getPromptLibraty } from 'lib/api/prompt-library';
+
+import { AppParams } from 'types/indext';
 
 export const metadata = {
   title: 'Prompt library',

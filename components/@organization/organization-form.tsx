@@ -1,14 +1,15 @@
 'use client';
 
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
-import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { organizationFormCreateSchema } from '@/lib/validations/organization';
+import { Button } from 'ui/button';
+import { Input } from 'ui/input';
+import { Label } from 'ui/label';
+
+import { organizationFormCreateSchema } from 'lib/validations/organization';
 
 type FormData = z.infer<typeof organizationFormCreateSchema>;
 
@@ -36,9 +37,9 @@ export const OrganizationForm = () => {
   };
 
   return (
-    <div className="p-5 border rounded">
+    <div className="rounded border p-5">
       <form className="flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-        <div className="grid w-full items-center gap-1.5 mb-1.5">
+        <div className="mb-1.5 grid w-full items-center gap-1.5">
           <Label htmlFor="name">Organization name</Label>
           <Input
             type="text"

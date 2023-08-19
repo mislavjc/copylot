@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { Button } from '@/components/ui/button';
+import { Button } from 'ui/button';
 import {
   Table,
   TableBody,
@@ -8,14 +8,15 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
-import { getProjects } from '@/lib/api/projects';
+} from 'ui/table';
+
+import { getProjects } from 'lib/api/projects';
 
 export const ProjectsTable = async () => {
   const projects = await getProjects();
 
   return (
-    <Table className="border rounded">
+    <Table className="rounded border">
       <TableHeader>
         <TableRow>
           <TableHead>Name</TableHead>

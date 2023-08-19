@@ -1,6 +1,8 @@
 export const getCountryCode3 = (countryCode: string) => {
-  return isoCode3.hasOwnProperty(countryCode) ? isoCode3[countryCode] : countryCode;
-}
+  return isoCode3.hasOwnProperty(countryCode)
+    ? isoCode3[countryCode]
+    : countryCode;
+};
 
 const isoCode3: { [index: string]: string } = {
   AF: 'AFG',

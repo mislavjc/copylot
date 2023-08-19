@@ -1,10 +1,12 @@
-import { Chart } from '@/components/@experiments/variation-chart/chart';
-import { columns } from '@/components/@experiments/variation-table/columns';
-import { VariationPlayground } from '@/components/@experiments/variation-table/playground';
-import { DataTable } from '@/components/data-table';
-import { getExperiment } from '@/lib/api/experiments';
-import { getPromptLibraty } from '@/lib/api/prompt-library';
-import { AppParams } from '@/types/indext';
+import { Chart } from 'components/@experiments/variation-chart/chart';
+import { columns } from 'components/@experiments/variation-table/columns';
+import { VariationPlayground } from 'components/@experiments/variation-table/playground';
+import { DataTable } from 'components/data-table';
+
+import { getExperiment } from 'lib/api/experiments';
+import { getPromptLibraty } from 'lib/api/prompt-library';
+
+import { AppParams } from 'types/indext';
 
 export const metadata = {
   title: 'Experiment',

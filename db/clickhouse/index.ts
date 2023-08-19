@@ -1,6 +1,6 @@
 import { createClient } from '@clickhouse/client';
 
-import env from '@/lib/env';
+import env from 'lib/env';
 
 export const client = createClient({
   host: env.CLICKHOUSE_HOST,
@@ -43,7 +43,7 @@ interface SessionsAndViewsGroupedByWebsiteIdRow {
 }
 
 export const sessionsAndViewsGroupedByWebsiteId = async (
-  website_id: string
+  website_id: string,
 ): Promise<SessionsAndViewsGroupedByWebsiteIdRow[]> => {
   const decodedUrl = decodeURIComponent(website_id);
 
@@ -69,7 +69,7 @@ interface SessionsAndViewsGroupedByCountryRow {
 }
 
 export const sessionsAndViewsGroupedByCountry = async (
-  website_id: string
+  website_id: string,
 ): Promise<SessionsAndViewsGroupedByCountryRow[]> => {
   const decodedUrl = decodeURIComponent(website_id);
 
@@ -207,7 +207,7 @@ export interface VariationStatsByExperimentIdRow {
 }
 
 export const getVariationStatsByExperimentId = async (
-  experiment_id: string
+  experiment_id: string,
 ): Promise<VariationStatsByExperimentIdRow[]> => {
   const result = await client.query({
     query: /* sql */ `

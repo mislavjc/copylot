@@ -1,14 +1,14 @@
 'use server';
 
 import { Prisma } from '@prisma/client/edge';
+import prisma from 'db/prisma';
 import { revalidateTag } from 'next/cache';
 
-import prisma from '@/db/prisma';
-import { getProjectByUrl } from '@/lib/api/projects';
+import { getProjectByUrl } from 'lib/api/projects';
 
 export const addPromptToLibrary = async (
   projectId: string,
-  data: Prisma.PromptLibraryCreateWithoutProjectInput
+  data: Prisma.PromptLibraryCreateWithoutProjectInput,
 ) => {
   await prisma.promptLibrary.create({
     data: {
@@ -26,7 +26,7 @@ export const addPromptToLibrary = async (
 
 export const updatePromptInLibrary = async (
   promptId: string,
-  data: Prisma.PromptLibraryUpdateInput
+  data: Prisma.PromptLibraryUpdateInput,
 ) => {
   await prisma.promptLibrary.update({
     where: {
@@ -40,7 +40,7 @@ export const updatePromptInLibrary = async (
 
 export const createExperiment = async (
   projectUrl: string,
-  data: Prisma.ExperimentCreateWithoutProjectInput
+  data: Prisma.ExperimentCreateWithoutProjectInput,
 ) => {
   const project = await getProjectByUrl(projectUrl);
 
@@ -66,7 +66,7 @@ export const createExperiment = async (
 
 export const createVariation = async (
   experimentId: string,
-  data: Prisma.VariationCreateWithoutExperimentInput
+  data: Prisma.VariationCreateWithoutExperimentInput,
 ) => {
   const variation = await prisma.variation.create({
     data: {
@@ -86,7 +86,7 @@ export const createVariation = async (
 
 export const updateProject = async (
   projectId: string,
-  data: Prisma.ProjectUpdateInput
+  data: Prisma.ProjectUpdateInput,
 ) => {
   await prisma.project.update({
     where: {

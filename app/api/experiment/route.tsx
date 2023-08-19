@@ -1,6 +1,4 @@
-export const GET = async (
-  request: Request,
-) => {
+export const GET = async (request: Request) => {
   return new Response(
     JSON.stringify({
       status: 'ok',
@@ -10,6 +8,6 @@ export const GET = async (
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
       },
-    }
+    },
   );
 };

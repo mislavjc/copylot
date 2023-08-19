@@ -2,7 +2,7 @@
 
 import { Experiment } from '@prisma/client/edge';
 
-import { DataTable } from '@/components/data-table';
+import { DataTable } from 'components/data-table';
 
 import { generateColumns } from './columns';
 import { ExperimentDialog } from './dialog';

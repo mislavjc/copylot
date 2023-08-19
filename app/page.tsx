@@ -1,4 +1,4 @@
-import { getVariation } from "@/lib/api/variations";
+import { getVariation } from 'lib/api/variations';
 
 export const metadata = {
   title: 'Home',
@@ -7,13 +7,12 @@ export const metadata = {
 
 const experimentId = 'clhpdqoye0000qy0h7c6501po';
 
-
 const HomePage = async () => {
   const variation = await getVariation(experimentId);
 
   return (
     <div>
-      <main className="flex flex-col items-center min-h-screen">
+      <main className="flex min-h-screen flex-col items-center">
         <button data-variation={variation.id} data-experiment={experimentId}>
           Testing click events
         </button>

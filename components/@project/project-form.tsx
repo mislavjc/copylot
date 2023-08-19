@@ -1,16 +1,17 @@
 'use client';
 
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Project } from '@prisma/client/edge';
 import { useRouter } from 'next/navigation';
-import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { updateProject } from '@/lib/api/actions';
-import { projectFormCreateSchema } from '@/lib/validations/project';
+import { Button } from 'ui/button';
+import { Input } from 'ui/input';
+import { Label } from 'ui/label';
+
+import { updateProject } from 'lib/api/actions';
+import { projectFormCreateSchema } from 'lib/validations/project';
 
 type FormData = z.infer<typeof projectFormCreateSchema>;
 
@@ -56,7 +57,7 @@ export const ProjectForm = ({ project }: ProjectFormProps) => {
   return (
     <div>
       <form className="flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-        <div className="grid w-full items-center gap-1.5 mb-3">
+        <div className="mb-3 grid w-full items-center gap-1.5">
           <Label htmlFor="name">Project name</Label>
           <Input
             type="text"
@@ -68,7 +69,7 @@ export const ProjectForm = ({ project }: ProjectFormProps) => {
             You can change this later.
           </p>
         </div>
-        <div className="grid w-full items-center gap-1.5 mb-3">
+        <div className="mb-3 grid w-full items-center gap-1.5">
           <Label htmlFor="url">Website URL</Label>
           <Input
             type="text"

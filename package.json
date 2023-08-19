@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prisma:generate": "pnpx prisma generate --data-proxy"
+    "prisma:generate": "pnpx prisma generate --data-proxy",
+    "postinstall": "pnpx prisma generate --data-proxy"
   },
   "dependencies": {
     "@clickhouse/client": "^0.2.1",
@@ -71,7 +72,10 @@
     "@types/react-dom": "18.2.7",
     "eslint": "8.47.0",
     "eslint-config-next": "13.4.19",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-plugin-tailwindcss": "^3.13.0",
     "husky": "^8.0.3",
     "postcss": "8.4.28",
     "prisma": "5.1.1",

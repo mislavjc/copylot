@@ -1,4 +1,4 @@
-import { getCurrentUser } from '@/lib/auth';
+import { getCurrentUser } from 'lib/auth';
 
 import { LoginButton, LogoutButton } from './auth-buttons';
 

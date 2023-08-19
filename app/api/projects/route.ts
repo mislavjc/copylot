@@ -1,5 +1,6 @@
-import prisma from '@/db/prisma';
-import { getServerUser } from '@/lib/auth';
+import prisma from 'db/prisma';
+
+import { getServerUser } from 'lib/auth';
 
 export const POST = async (request: Request) => {
   const { name, url } = await request.json();

@@ -1,7 +1,7 @@
-import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { useParams, useRouter } from 'next/navigation';
 
-import { Button } from '@/components/ui/button';
+import { Button } from 'ui/button';
 import {
   Dialog,
   DialogContent,
@@ -10,10 +10,11 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { createExperiment } from '@/lib/api/actions';
+} from 'ui/dialog';
+import { Input } from 'ui/input';
+import { Label } from 'ui/label';
+
+import { createExperiment } from 'lib/api/actions';
 
 import { Textarea } from '../../ui/textarea';
 
@@ -25,7 +26,10 @@ export const ExperimentDialog = () => {
   const { project } = useParams();
 
   const onSubmit = async () => {
-    const experiment = await createExperiment(project as string, { name, description });
+    const experiment = await createExperiment(project as string, {
+      name,
+      description,
+    });
 
     router.push(`/${project}/dashboard/experiments/${experiment.id}`);
   };
@@ -43,7 +47,7 @@ export const ExperimentDialog = () => {
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
-          <div className="grid items-center grid-cols-4 gap-4">
+          <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="name" className="text-right">
               Name
             </Label>
@@ -54,7 +58,7 @@ export const ExperimentDialog = () => {
               onChange={(event) => setName(event.target.value)}
             />
           </div>
-          <div className="grid items-center grid-cols-4 gap-4">
+          <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="description" className="text-right">
               Description
             </Label>

@@ -1,11 +1,11 @@
 import { Variation } from '@prisma/client/edge';
-
-import { BarChart } from '@/components/@charts/bar';
 import {
   getVariationStatsByExperimentId,
   VariationStatsByExperimentIdRow,
-} from '@/db/clickhouse';
-import prisma from '@/db/prisma';
+} from 'db/clickhouse';
+import prisma from 'db/prisma';
+
+import { BarChart } from 'components/@charts/bar';
 
 interface ChartProps {
   experimentId: string;
@@ -63,7 +63,7 @@ interface StatsData extends VariationStatsByExperimentIdRow {
 }
 
 const linkData = async (
-  data: VariationStatsByExperimentIdRow[]
+  data: VariationStatsByExperimentIdRow[],
 ): Promise<void> => {
   const eventValues = data.map((record) => record.event_value);
 

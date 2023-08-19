@@ -1,11 +1,11 @@
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
+import prisma from 'db/prisma';
 import { getServerSession, NextAuthOptions } from 'next-auth';
 import EmailProvider from 'next-auth/providers/email';
 import GoogleProvider from 'next-auth/providers/google';
 
-import prisma from '@/db/prisma';
-import { sendVerificationRequest } from '@/lib/email';
-import env from '@/lib/env';
+import { sendVerificationRequest } from 'lib/email';
+import env from 'lib/env';
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),

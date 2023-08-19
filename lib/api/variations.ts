@@ -1,5 +1,6 @@
-import prisma from '@/db/prisma';
-import { getRandomData } from '@/lib/utils';
+import prisma from 'db/prisma';
+
+import { getRandomData } from 'lib/utils';
 
 export const getVariation = async (experimentId: string) => {
   const variations = await prisma.variation.findMany({

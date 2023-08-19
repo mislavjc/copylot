@@ -1,4 +1,4 @@
-import prisma from '@/db/prisma';
+import prisma from 'db/prisma';
 
 import { getProjectByUrl } from './projects';
 
@@ -19,6 +19,6 @@ export const getExperiment = async (experimentId: string) => {
     },
     include: {
       variations: true,
-    }
+    },
   });
 };

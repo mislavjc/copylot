@@ -1,5 +1,6 @@
 'use client';
 
+import { Bar } from 'react-chartjs-2';
 import {
   BarElement,
   CategoryScale,
@@ -10,7 +11,6 @@ import {
   Title,
   Tooltip,
 } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
 
 ChartJS.register(
   CategoryScale,
@@ -18,7 +18,7 @@ ChartJS.register(
   BarElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
 );
 
 const options = {
