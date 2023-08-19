@@ -25,7 +25,7 @@ export const ExperimentDialog = () => {
   const { project } = useParams();
 
   const onSubmit = async () => {
-    const experiment = await createExperiment(project, { name, description });
+    const experiment = await createExperiment(project as string, { name, description });
 
     router.push(`/${project}/dashboard/experiments/${experiment.id}`);
   };

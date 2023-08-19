@@ -9,7 +9,6 @@ import {
   File,
   FileText,
   HelpCircle,
-  type Icon as LucideIcon,
   Image,
   Laptop,
   Library,
@@ -29,8 +28,6 @@ import {
   Users,
   X,
 } from 'lucide-react';
-
-export type Icon = LucideIcon;
 
 export const Icons = {
   logo: TestTube2,
