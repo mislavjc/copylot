@@ -12,8 +12,6 @@
   },
   "dependencies": {
     "@clickhouse/client": "^0.2.1",
-    "@commitlint/cli": "^17.7.1",
-    "@commitlint/config-conventional": "^17.7.0",
     "@hookform/resolvers": "^3.2.0",
     "@next-auth/prisma-adapter": "^1.0.7",
     "@nivo/geo": "^0.83.0",
@@ -66,6 +64,8 @@
     "zod": "^3.22.2"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
     "@types/node": "20.5.1",
     "@types/nodemailer": "^6.4.9",
     "@types/react": "18.2.20",
