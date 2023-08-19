@@ -1,25 +1,25 @@
 import { getCurrentUser } from 'lib/auth';
+import { cn } from 'lib/utils';
 
 import { Icons } from '../icons';
 
-import { Links } from './links';
+import { Links, LinksConfig } from './links';
 import { UserAccountNav } from './user-account-nav';
 
-export interface NavConfig {
-  title: string;
-  href: string;
-  disabled?: boolean;
-}
-
 export interface NavbarProps {
-  config: NavConfig[];
+  config?: LinksConfig[];
+  isDashboard?: boolean;
 }
 
-export const Navbar = async ({ config }: NavbarProps) => {
+export const Navbar = async ({ config = [], isDashboard }: NavbarProps) => {
   const session = await getCurrentUser();
 
   return (
-    <nav className="border p-4 pb-0">
+    <nav
+      className={cn('border p-4', {
+        'pb-0': config,
+      })}
+    >
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-col space-y-4">
           <div className="flex justify-center gap-6">
@@ -31,7 +31,7 @@ export const Navbar = async ({ config }: NavbarProps) => {
               <UserAccountNav user={session!} />
             </span>
           </div>
-          <Links config={config} />
+          <Links config={config} isDashboard={isDashboard} />
         </div>
       </div>
     </nav>

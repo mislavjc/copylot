@@ -1,23 +1,17 @@
 import { ReactNode } from 'react';
 import { navbarConfig } from 'config/navbar';
 
-import { DashboardNav } from 'components/@navbar/dashboard-nav';
-
-import { getProjects } from 'lib/api/projects';
+import { Navbar } from 'components/@navbar/navbar';
 
 interface DashboardLayoutProps {
   children: ReactNode;
 }
 
-const DashboardLayout = async ({ children }: DashboardLayoutProps) => {
-  const projects = await getProjects();
-
+const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   return (
     <div>
-      <div className="mx-auto my-6 flex max-w-7xl gap-6">
-        <aside className="hidden w-[200px] flex-col md:flex">
-          <DashboardNav config={navbarConfig.sidebarNav} projects={projects} />
-        </aside>
+      <Navbar config={navbarConfig.dashboardNav} isDashboard />
+      <div className="mx-auto my-6 flex max-w-screen-lg gap-6">
         <main className="w-full">{children}</main>
       </div>
     </div>

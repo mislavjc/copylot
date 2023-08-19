@@ -11,12 +11,12 @@ interface SidebarNav extends BaseNav {
 }
 
 interface NavbarConfig {
-  mainNav: BaseNav[];
-  sidebarNav: SidebarNav[];
+  projectsNav: BaseNav[];
+  dashboardNav: SidebarNav[];
 }
 
 export const navbarConfig: NavbarConfig = {
-  mainNav: [
+  projectsNav: [
     {
       title: 'Projects',
       href: '/projects',
@@ -26,7 +26,7 @@ export const navbarConfig: NavbarConfig = {
       href: '/settings',
     },
   ],
-  sidebarNav: [
+  dashboardNav: [
     {
       title: 'Experiments',
       href: '/dashboard/experiments',

@@ -21,10 +21,7 @@ export default function RootLayout({
       <head>
         <script defer src="/script.js"></script>
       </head>
-      <body className={inter.className}>
-        <Navbar config={navbarConfig.mainNav} />
-        {children}
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }
