@@ -21,7 +21,6 @@ const SettingsPage = async ({ params }: SettingsPageProps) => {
 
   return (
     <div className="">
-      <h1 className="mb-4 text-3xl font-bold">Settings</h1>
       <ProjectForm project={project!} />
       <div className="mt-4">
         <h2 className="mb-4 text-xl font-bold">Installation</h2>

@@ -15,7 +15,7 @@ const ExperimentsPage = async ({ params }: ExperimentsPageProps) => {
   const data = await getExperiments(params.project);
 
   return (
-    <div className="container mx-auto py-10">
+    <div className="mx-auto">
       <DataTableWrapper project={params.project} data={data} />
     </div>
   );

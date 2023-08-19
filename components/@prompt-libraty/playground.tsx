@@ -26,7 +26,6 @@ export const Playground = ({ promptLibrary, project }: PlaygroundProps) => {
   return (
     <div>
       <div className="flex justify-between">
-        <h1 className="text-3xl font-bold">Prompt library</h1>
         <div className="flex gap-2">
           <PromptSelect
             selected={selected}

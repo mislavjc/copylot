@@ -23,10 +23,6 @@ const ExperimentPage = async ({ params }: ExperimentPageProps) => {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold">
-        Experiment{' '}
-        <span className="text-gray-500">&apos;{experiment?.name}&apos;</span>
-      </h1>
       <Chart experimentId={experiment?.id!} />
       <DataTable columns={columns} data={experiment?.variations ?? []} />
       <VariationPlayground

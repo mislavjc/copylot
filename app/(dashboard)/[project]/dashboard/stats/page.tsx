@@ -61,7 +61,6 @@ const StatsPage = async ({ params }: StatsPageProps) => {
 
   return (
     <div className="w-full">
-      <h1 className="text-3xl font-bold">Stats</h1>
       <div className="my-4 flex gap-4">
         <div className="flex flex-col gap-2">
           <span className="text-sm text-gray-500">Sessions</span>
