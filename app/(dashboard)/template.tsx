@@ -13,6 +13,9 @@ interface Routes {
 }
 
 const routeMapping: Routes = {
+  dashboard: {
+    title: 'Dashboard',
+  },
   stats: {
     title: 'Stats',
   },
