@@ -28,6 +28,11 @@ export const navbarConfig: NavbarConfig = {
   ],
   dashboardNav: [
     {
+      title: 'Dashboard',
+      href: '/dashboard',
+      icon: 'logo',
+    },
+    {
       title: 'Experiments',
       href: '/dashboard/experiments',
       icon: 'experiments',
