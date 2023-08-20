@@ -1,11 +1,8 @@
-import { Variation } from '@prisma/client/edge';
-import {
-  getVariationStatsByExperimentId,
-  VariationStatsByExperimentIdRow,
-} from 'db/clickhouse';
-import prisma from 'db/prisma';
+import { getVariationStatsByExperimentId } from 'db/clickhouse';
 
 import { BarChart } from 'components/@charts/bar';
+
+import { linkData, processStats } from 'lib/charts';
 
 interface ChartProps {
   experimentId: string;
@@ -14,70 +11,26 @@ interface ChartProps {
 const getStats = async (experimentId: string) => {
   const stats = await getVariationStatsByExperimentId(experimentId);
 
-  await linkData(stats);
+  const linkedData = await linkData(stats);
 
-  return stats as StatsData[];
+  return processStats(linkedData);
 };
 
-const colors = [
-  'rgba(75, 192, 192, 0.2)', // Cyan
-  'rgba(255, 99, 132, 0.2)', // Red
-  'rgba(255, 206, 86, 0.2)', // Yellow
-  'rgba(54, 162, 235, 0.2)', // Blue
-];
-
-const borderColors = [
-  'rgba(75, 192, 192, 1)', // Cyan
-  'rgba(255, 99, 132, 1)', // Red
-  'rgba(255, 206, 86, 1)', // Yellow
-  'rgba(54, 162, 235, 1)', // Blue
-];
+const colors = {
+  experiment_click: '#007bff',
+  experiment_view: '#ff7f0e',
+};
 
 export const Chart = async ({ experimentId }: ChartProps) => {
   const stats = await getStats(experimentId);
-  const groups: { [key: string]: StatsData[] } = {};
 
-  for (const record of stats) {
-    if (!groups[record.event_name]) {
-      groups[record.event_name] = [];
-    }
-    groups[record.event_name].push(record);
-  }
-
-  const chartData = {
-    labels: Array.from(new Set(stats.map((record) => record.name))),
-    datasets: Object.keys(groups).map((event_name, i) => ({
-      label: event_name.replace(/_/g, ' '),
-      data: groups[event_name].map((record) => Number(record.count)),
-      backgroundColor: colors[i % colors.length], // Use colors cyclically
-      borderColor: borderColors[i % borderColors.length],
-      borderWidth: 1,
-    })),
-  };
-
-  return <BarChart data={chartData} />;
-};
-
-interface StatsData extends VariationStatsByExperimentIdRow {
-  name: string;
-}
-
-const linkData = async (
-  data: VariationStatsByExperimentIdRow[],
-): Promise<void> => {
-  const eventValues = data.map((record) => record.event_value);
-
-  const variations: Variation[] = await prisma.variation.findMany({
-    where: {
-      id: {
-        in: eventValues,
-      },
-    },
-  });
-
-  for (const record of data as StatsData[]) {
-    const variation = variations.find((v) => v.id === record.event_value);
-
-    record.name = variation?.name ?? 'Unknown';
-  }
+  return (
+    <div className="h-[50vh] w-full">
+      <BarChart
+        data={stats}
+        keys={['experiment_view', 'experiment_click']}
+        colors={colors}
+      />
+    </div>
+  );
 };
