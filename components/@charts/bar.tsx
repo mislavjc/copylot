@@ -86,7 +86,7 @@ export const BarChart = <T extends {}>({ data, keys, colors }: Props<T>) => {
                             key={`bar-stack-${barStack.index}-${bar.index}`}
                             x={bar.x}
                             y={bar.y}
-                            height={bar.height}
+                            height={bar.height < 0 ? 0 : bar.height}
                             width={bar.width}
                             fill={bar.color}
                             onMouseMove={(event) => {
