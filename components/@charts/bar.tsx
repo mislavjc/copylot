@@ -1,6 +1,7 @@
 'use client';
 
 import { AxisBottom, AxisLeft } from '@visx/axis';
+import { localPoint } from '@visx/event';
 import { Grid } from '@visx/grid';
 import { Group } from '@visx/group';
 import { ParentSize } from '@visx/responsive';
@@ -29,7 +30,7 @@ export const BarChart = <T extends {}>({ data, keys, colors }: Props<T>) => {
   const getLabel = (d: ChartData<T>) => d.date || d.name || '';
 
   return (
-    <ParentSize>
+    <ParentSize className="relative">
       {(parent) => {
         const { width, height } = parent;
 
@@ -58,7 +59,7 @@ export const BarChart = <T extends {}>({ data, keys, colors }: Props<T>) => {
         });
 
         return (
-          <div>
+          <div className="relative">
             <svg width={width} height={height}>
               <Group left={margin.left} top={margin.top}>
                 <Grid
@@ -89,13 +90,15 @@ export const BarChart = <T extends {}>({ data, keys, colors }: Props<T>) => {
                             width={bar.width}
                             fill={bar.color}
                             onMouseMove={(event) => {
-                              const svgX = event.clientX;
-                              const svgY = event.clientY;
+                              const coords = localPoint(event) || {
+                                x: 0,
+                                y: 0,
+                              };
 
                               showTooltip({
                                 tooltipData: bar.bar.data,
-                                tooltipTop: svgY,
-                                tooltipLeft: svgX,
+                                tooltipTop: coords.y,
+                                tooltipLeft: coords.x,
                               });
                             }}
                             onMouseLeave={hideTooltip}

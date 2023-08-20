@@ -14,7 +14,6 @@
     "@clickhouse/client": "^0.2.1",
     "@hookform/resolvers": "^3.2.0",
     "@next-auth/prisma-adapter": "^1.0.7",
-    "@nivo/geo": "^0.83.0",
     "@prisma/client": "5.1.1",
     "@radix-ui/react-alert-dialog": "^1.0.4",
     "@radix-ui/react-aspect-ratio": "^1.0.3",
@@ -38,9 +37,11 @@
     "@react-email/components": "^0.0.7",
     "@react-email/render": "^0.0.7",
     "@tanstack/react-table": "^8.9.3",
+    "@types/topojson-client": "^3.1.1",
     "@upstash/redis": "^1.22.0",
     "@visx/axis": "^3.3.0",
     "@visx/event": "^3.3.0",
+    "@visx/geo": "^3.3.0",
     "@visx/grid": "^3.3.0",
     "@visx/group": "^3.3.0",
     "@visx/responsive": "^3.3.0",
@@ -68,6 +69,7 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.45.4",
     "tailwind-merge": "^1.14.0",
+    "topojson-client": "^3.1.0",
     "zod": "^3.22.2"
   },
   "devDependencies": {

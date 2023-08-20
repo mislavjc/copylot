@@ -3,14 +3,6 @@ import {
   sessionsAndViewsGroupedByWebsiteId,
 } from 'db/clickhouse';
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from 'ui/card';
-
 import { BarChart } from 'components/@charts/bar';
 import { CloroplethMap } from 'components/@charts/geo';
 
@@ -19,7 +11,7 @@ import { getCountryCode3 } from 'lib/countries';
 import { AppParams } from 'types/indext';
 
 export const metadata = {
-  title: 'Stats',
+  title: 'Copylot | Stats',
   description: 'View your stats',
 };
 
@@ -35,13 +27,9 @@ const StatsPage = async ({ params }: StatsPageProps) => {
   const countryStats = await sessionsAndViewsGroupedByCountry(params.project);
 
   const countryData = countryStats.map((stat) => ({
-    id: getCountryCode3(stat.country),
+    countryCode: getCountryCode3(stat.country),
     value: parseInt(stat.sessions),
   }));
-
-  const highestCountryCount = Math.max(
-    ...countryData.map((country) => country.value),
-  );
 
   return (
     <div className="w-full">
@@ -59,24 +47,11 @@ const StatsPage = async ({ params }: StatsPageProps) => {
           </span>
         </div>
       </div>
-      <div className="flex flex-col gap-4">
-        <div className="h-[50vh] w-full">
-          <BarChart data={stats} keys={['sessions', 'views']} colors={colors} />
-        </div>
-        <Card>
-          <CardHeader>
-            <CardTitle>Locations</CardTitle>
-            <CardDescription>Usage by country</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="h-96 w-full">
-              <CloroplethMap
-                data={countryData}
-                highestCountryCount={highestCountryCount}
-              />
-            </div>
-          </CardContent>
-        </Card>
+      <div className="h-[50vh] w-full">
+        <BarChart data={stats} keys={['sessions', 'views']} colors={colors} />
+      </div>
+      <div className="h-[50vh] w-full p-8">
+        <CloroplethMap data={countryData} />
       </div>
     </div>
   );
