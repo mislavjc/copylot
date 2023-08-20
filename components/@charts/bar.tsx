@@ -11,21 +11,22 @@ import { format } from 'date-fns';
 
 import { formatKey } from 'lib/utils';
 
-type ChartData = {
-  [key: string]: string | number | undefined;
+type ChartData<T> = T & {
+  date?: string;
+  name?: string;
 };
 
-type Props = {
-  data: ChartData[];
-  keys: string[];
+interface Props<T extends { [K in string]: number | string | undefined }> {
+  data: ChartData<T>[];
+  keys: (keyof T)[];
   colors: { [key: string]: string };
-};
+}
 
-export const BarChart: React.FC<Props> = ({ data, keys, colors }) => {
+export const BarChart = <T extends {}>({ data, keys, colors }: Props<T>) => {
   const { showTooltip, hideTooltip, tooltipData, tooltipTop, tooltipLeft } =
-    useTooltip<ChartData>();
+    useTooltip<ChartData<T>>();
 
-  const getLabel = (d: ChartData) => d.date || d.name || '';
+  const getLabel = (d: ChartData<T>) => d.date || d.name || '';
 
   return (
     <ParentSize>
@@ -70,7 +71,7 @@ export const BarChart: React.FC<Props> = ({ data, keys, colors }) => {
                 />
                 <BarStack
                   data={data}
-                  keys={keys}
+                  keys={keys as (string | number)[]}
                   x={getLabel}
                   xScale={xScale}
                   yScale={yScale}
@@ -114,6 +115,7 @@ export const BarChart: React.FC<Props> = ({ data, keys, colors }) => {
                 <AxisBottom
                   scale={xScale}
                   top={yMax}
+                  numTicks={8}
                   labelOffset={12}
                   tickLabelProps={{
                     className: 'text-sm font-sans text-neutral-500',

@@ -34,7 +34,6 @@ interface ProcessedData {
   name: string;
   experiment_click: string;
   experiment_view: string;
-  [key: string]: string | number;
 }
 
 export const processStats = (stats: StatsData[]) => {
