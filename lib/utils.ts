@@ -17,3 +17,10 @@ export const getGeoData = (request: Request) => {
 export const getRandomData = <TData>(data: TData[]) => {
   return data[Math.floor(Math.random() * data.length)];
 };
+
+export const formatKey = (key: string): string => {
+  return key
+    .split('_')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+};

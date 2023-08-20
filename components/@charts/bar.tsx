@@ -6,6 +6,10 @@ import { Group } from '@visx/group';
 import { ParentSize } from '@visx/responsive';
 import { scaleBand, scaleLinear } from '@visx/scale';
 import { BarStack } from '@visx/shape';
+import { defaultStyles, TooltipWithBounds, useTooltip } from '@visx/tooltip';
+import { format } from 'date-fns';
+
+import { formatKey } from 'lib/utils';
 
 type ChartData = {
   [key: string]: string | number | undefined;
@@ -18,6 +22,9 @@ type Props = {
 };
 
 export const BarChart: React.FC<Props> = ({ data, keys, colors }) => {
+  const { showTooltip, hideTooltip, tooltipData, tooltipTop, tooltipLeft } =
+    useTooltip<ChartData>();
+
   const getLabel = (d: ChartData) => d.date || d.name || '';
 
   return (
@@ -50,69 +57,102 @@ export const BarChart: React.FC<Props> = ({ data, keys, colors }) => {
         });
 
         return (
-          <svg width={width} height={height}>
-            <Group left={margin.left} top={margin.top}>
-              <Grid
-                xScale={xScale}
-                yScale={yScale}
-                width={xMax}
-                height={yMax}
-                stroke="#e0e0e0"
-                strokeOpacity={0.5}
-              />
-              <BarStack
-                data={data}
-                keys={keys}
-                x={getLabel}
-                xScale={xScale}
-                yScale={yScale}
-                color={(key: keyof typeof colors) => colors[key]}
-              >
-                {(barStacks) => {
-                  return barStacks.map((barStack) => {
-                    return barStack.bars.map((bar) => {
-                      return (
-                        <rect
-                          key={`bar-stack-${barStack.index}-${bar.index}`}
-                          x={bar.x}
-                          y={bar.y}
-                          height={bar.height}
-                          width={bar.width}
-                          fill={bar.color}
-                          onClick={() => {
-                            alert(
-                              `clicked: ${JSON.stringify(
-                                Object.values(bar.bar.data),
-                              )}`,
-                            );
-                          }}
-                        />
-                      );
+          <div>
+            <svg width={width} height={height}>
+              <Group left={margin.left} top={margin.top}>
+                <Grid
+                  xScale={xScale}
+                  yScale={yScale}
+                  width={xMax}
+                  height={yMax}
+                  stroke="#e0e0e0"
+                  strokeOpacity={0.5}
+                />
+                <BarStack
+                  data={data}
+                  keys={keys}
+                  x={getLabel}
+                  xScale={xScale}
+                  yScale={yScale}
+                  color={(key: keyof typeof colors) => colors[key]}
+                >
+                  {(barStacks) => {
+                    return barStacks.map((barStack) => {
+                      return barStack.bars.map((bar) => {
+                        return (
+                          <rect
+                            key={`bar-stack-${barStack.index}-${bar.index}`}
+                            x={bar.x}
+                            y={bar.y}
+                            height={bar.height}
+                            width={bar.width}
+                            fill={bar.color}
+                            onMouseMove={(event) => {
+                              const svgX = event.clientX;
+                              const svgY = event.clientY;
+
+                              showTooltip({
+                                tooltipData: bar.bar.data,
+                                tooltipTop: svgY,
+                                tooltipLeft: svgX,
+                              });
+                            }}
+                            onMouseLeave={hideTooltip}
+                            onClick={() => {
+                              alert(
+                                `clicked: ${JSON.stringify(
+                                  Object.values(bar.bar.data),
+                                )}`,
+                              );
+                            }}
+                          />
+                        );
+                      });
                     });
-                  });
-                }}
-              </BarStack>
-              <AxisBottom
-                scale={xScale}
-                top={yMax}
-                labelOffset={12}
-                tickLabelProps={{
-                  className: 'text-sm font-sans text-neutral-500',
-                }}
-                hideTicks
-                hideAxisLine
-              />
-              <AxisLeft
-                scale={yScale}
-                numTicks={4}
-                tickLabelProps={{
-                  className: 'text-sm font-sans text-neutral-500',
-                }}
-                hideTicks
-                hideAxisLine
-              />
-            </Group>
-          </svg>
+                  }}
+                </BarStack>
+                <AxisBottom
+                  scale={xScale}
+                  top={yMax}
+                  labelOffset={12}
+                  tickLabelProps={{
+                    className: 'text-sm font-sans text-neutral-500',
+                  }}
+                  hideTicks
+                  hideAxisLine
+                />
+                <AxisLeft
+                  scale={yScale}
+                  numTicks={4}
+                  tickLabelProps={{
+                    className: 'text-sm font-sans text-neutral-500',
+                  }}
+                  hideTicks
+                  hideAxisLine
+                />
+              </Group>
+            </svg>
+            {tooltipData && (
+              <TooltipWithBounds
+                top={tooltipTop}
+                left={tooltipLeft}
+                style={defaultStyles}
+              >
+                <div className="flex flex-col gap-1 p-1">
+                  {Object.entries(tooltipData).map(([key, value]) => (
+                    <div key={key}>
+                      <span>{formatKey(key)}</span>:{' '}
+                      <span className="font-semibold">
+                        {key === 'date'
+                          ? format(new Date(value as string), 'MMMM do yyyy')
+                          : value}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </TooltipWithBounds>
+            )}
+          </div>
         );
       }}
     </ParentSize>
