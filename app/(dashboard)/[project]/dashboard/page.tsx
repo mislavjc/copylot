@@ -26,6 +26,6 @@ const data = [
 ];
 
 const colors = {
-  views: '#007bff',
+  views: '#1E40AF',
   sessions: '#ff7f0e',
 };
