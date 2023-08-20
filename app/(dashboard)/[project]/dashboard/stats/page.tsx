@@ -1,12 +1,12 @@
-import {
-  sessionsAndViewsGroupedByCountry,
-  sessionsAndViewsGroupedByWebsiteId,
-} from 'db/clickhouse';
-
 import { BarChart } from 'components/@charts/bar';
 import { CloroplethMap } from 'components/@charts/geo';
 
 import { getCountryCode3 } from 'lib/countries';
+
+import {
+  sessionsAndViewsGroupedByCountry,
+  sessionsAndViewsGroupedByWebsiteId,
+} from 'db/clickhouse';
 
 import { AppParams } from 'types/indext';
 

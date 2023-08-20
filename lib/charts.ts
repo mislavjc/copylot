@@ -1,4 +1,5 @@
 import { Variation } from '@prisma/client/edge';
+
 import { VariationStatsByExperimentIdRow } from 'db/clickhouse';
 import prisma from 'db/prisma';
 

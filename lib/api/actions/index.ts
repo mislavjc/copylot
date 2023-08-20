@@ -1,10 +1,11 @@
 'use server';
 
 import { Prisma } from '@prisma/client/edge';
-import prisma from 'db/prisma';
 import { revalidateTag } from 'next/cache';
 
 import { getProjectByUrl } from 'lib/api/projects';
+
+import prisma from 'db/prisma';
 
 export const addPromptToLibrary = async (
   projectId: string,

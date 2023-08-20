@@ -1,9 +1,10 @@
-import { getVariationStatsByExperimentId } from 'db/clickhouse';
 import { ServerOff } from 'lucide-react';
 
 import { BarChart } from 'components/@charts/bar';
 
 import { linkData, processStats } from 'lib/charts';
+
+import { getVariationStatsByExperimentId } from 'db/clickhouse';
 
 interface ChartProps {
   experimentId: string;

@@ -1,6 +1,6 @@
-import prisma from 'db/prisma';
-
 import { getCurrentUser } from 'lib/auth';
+
+import prisma from 'db/prisma';
 
 export const getProjects = async () => {
   const user = await getCurrentUser();

@@ -1,9 +1,10 @@
 import { createHash } from 'crypto';
-import { insertEvent } from 'db/clickhouse';
 import isbot from 'isbot';
 import { NextResponse, userAgent } from 'next/server';
 
 import { getGeoData } from 'lib/utils';
+
+import { insertEvent } from 'db/clickhouse';
 
 export async function POST(request: Request) {
   const geoData = getGeoData(request);
