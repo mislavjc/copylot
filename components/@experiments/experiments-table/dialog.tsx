@@ -21,11 +21,14 @@ import { Textarea } from '../../ui/textarea';
 export const ExperimentDialog = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const router = useRouter();
   const { project } = useParams();
 
   const onSubmit = async () => {
+    setIsSubmitting(true);
+
     const experiment = await createExperiment(project as string, {
       name,
       description,
@@ -71,7 +74,9 @@ export const ExperimentDialog = () => {
           </div>
         </div>
         <DialogFooter>
-          <Button onClick={onSubmit}>Create</Button>
+          <Button disabled={isSubmitting} onClick={onSubmit}>
+            {isSubmitting ? 'Creating...' : 'Create'}
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
