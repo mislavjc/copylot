@@ -1,7 +1,5 @@
-import { navbarConfig } from 'config/navbar';
 import { Inter } from 'next/font/google';
-
-import { Navbar } from 'components/@navbar/navbar';
+import PlausibleProvider from 'next-plausible';
 
 import './globals.css';
 
@@ -20,6 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <script defer src="/script.js"></script>
+        <PlausibleProvider domain="copylot.co" />
       </head>
       <body className={inter.className}>{children}</body>
     </html>
