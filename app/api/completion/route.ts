@@ -1,6 +1,8 @@
 import { OpenAIStream, StreamingTextResponse } from 'ai';
 import { Configuration, OpenAIApi } from 'openai-edge';
 
+import { checkRateLimit } from 'lib/ratelimit';
+
 export const runtime = 'edge';
 
 const apiConfig = new Configuration({
@@ -10,6 +12,12 @@ const apiConfig = new Configuration({
 const openai = new OpenAIApi(apiConfig);
 
 export async function POST(req: Request) {
+  const rateLimitResult = await checkRateLimit(req, 20, '1h');
+
+  if (rateLimitResult.response) {
+    return rateLimitResult.response;
+  }
+
   const { prompt } = await req.json();
 
   const response = await openai.createChatCompletion({

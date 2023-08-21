@@ -7,6 +7,7 @@ import { useCompletion } from 'ai/react';
 import { Button } from 'ui/button';
 import { Input } from 'ui/input';
 import { Textarea } from 'ui/textarea';
+import { toast } from 'ui/use-toast';
 
 import {
   PromptLibraryType,
@@ -33,7 +34,15 @@ export const VariationPlayground = ({
     handleInputChange,
     setInput,
     setCompletion,
-  } = useCompletion();
+  } = useCompletion({
+    onError: (error) => {
+      toast({
+        title: 'Error',
+        description: error.message,
+        variant: 'destructive',
+      });
+    },
+  });
 
   const [selected, setSelected] = useState<VariationType>({
     name: '',
