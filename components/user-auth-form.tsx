@@ -23,7 +23,7 @@ interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 type FormData = z.infer<typeof userAuthSchema>;
 
-export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
+export const UserAuthForm = ({ className, ...props }: UserAuthFormProps) => {
   const {
     register,
     handleSubmit,
@@ -35,13 +35,13 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const [isGitHubLoading, setIsGitHubLoading] = React.useState<boolean>(false);
   const searchParams = useSearchParams();
 
-  async function onSubmit(data: FormData) {
+  const onSubmit = async (data: FormData) => {
     setIsLoading(true);
 
     const signInResult = await signIn('email', {
       email: data.email.toLowerCase(),
       redirect: false,
-      callbackUrl: searchParams?.get('from') || '/',
+      callbackUrl: searchParams?.get('callbackUrl') || '/',
     });
 
     setIsLoading(false);
@@ -58,7 +58,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       title: 'Check your email',
       description: 'We sent you a login link. Be sure to check your spam too.',
     });
-  }
+  };
 
   return (
     <div className={cn('grid gap-6', className)} {...props}>
@@ -107,7 +107,10 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         className={cn(buttonVariants({ variant: 'outline' }))}
         onClick={() => {
           setIsGitHubLoading(true);
-          signIn('google');
+          signIn('google', {
+            redirect: false,
+            callbackUrl: searchParams?.get('callbackUrl') || '/',
+          });
         }}
         disabled={isLoading || isGitHubLoading}
       >
@@ -126,4 +129,4 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       </button>
     </div>
   );
-}
+};
