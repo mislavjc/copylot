@@ -6,7 +6,9 @@ export default withAuth({
   },
   callbacks: {
     authorized: ({ req, token }) => {
-      const isDashboardUrl = req.nextUrl.pathname.includes('/dashboard');
+      const isDashboardUrl =
+        req.nextUrl.pathname.includes('/dashboard') ||
+        req.nextUrl.pathname.includes('/projects');
 
       if (isDashboardUrl && !token?.organizationId) {
         return false;
