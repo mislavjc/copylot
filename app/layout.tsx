@@ -1,6 +1,8 @@
 import { Inter } from 'next/font/google';
 import PlausibleProvider from 'next-plausible';
 
+import { Toaster } from 'ui/toaster';
+
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
@@ -20,7 +22,10 @@ export default function RootLayout({
         <script defer src="/script.js"></script>
         <PlausibleProvider domain="copylot.co" />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {children}
+        <Toaster />
+      </body>
     </html>
   );
 }
