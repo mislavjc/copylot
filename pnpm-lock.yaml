@@ -83,9 +83,6 @@ dependencies:
   '@tanstack/react-table':
     specifier: ^8.9.3
     version: 8.9.3(react-dom@18.2.0)(react@18.2.0)
-  '@types/topojson-client':
-    specifier: ^3.1.1
-    version: 3.1.1
   '@upstash/ratelimit':
     specifier: ^0.4.3
     version: 0.4.3
@@ -205,6 +202,9 @@ devDependencies:
   '@types/react-dom':
     specifier: 18.2.7
     version: 18.2.7
+  '@types/topojson-client':
+    specifier: ^3.1.1
+    version: 3.1.1
   eslint:
     specifier: 8.47.0
     version: 8.47.0
@@ -2034,7 +2034,6 @@ packages:
 
   /@types/geojson@7946.0.10:
     resolution: {integrity: sha512-Nmh0K3iWQJzniTuPRcJn5hxXkfB1T1pgB89SBig5PlJQU5yocazeu4jATJlaA0GYFKWMqDdvYemoSnF2pXgLVA==}
-    dev: false
 
   /@types/json5@0.0.29:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
@@ -2103,13 +2102,13 @@ packages:
     dependencies:
       '@types/geojson': 7946.0.10
       '@types/topojson-specification': 1.0.2
-    dev: false
+    dev: true
 
   /@types/topojson-specification@1.0.2:
     resolution: {integrity: sha512-SGc1NdX9g3UGDp6S+p+uyG+Z8CehS51sUJ9bejA25Xgn2kkAguILk6J9nxXK+0M/mbTBN7ypMA7+4HVLNMJ8ag==}
     dependencies:
       '@types/geojson': 7946.0.10
-    dev: false
+    dev: true
 
   /@typescript-eslint/parser@5.59.2(eslint@8.47.0)(typescript@5.1.6):
     resolution: {integrity: sha512-uq0sKyw6ao1iFOZZGk9F8Nro/8+gfB5ezl1cA06SrqbgJAt0SRoFhb9pXaHvkrxUpZaoLxt8KlovHNk8Gp6/HQ==}
