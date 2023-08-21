@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { User } from 'next-auth';
-import { signOut } from 'next-auth/react';
+import { signIn, signOut } from 'next-auth/react';
 
 import {
   DropdownMenu,
@@ -18,7 +18,7 @@ interface UserAccountNavProps {
   user: User;
 }
 
-export function UserAccountNav({ user }: UserAccountNavProps) {
+export const UserAccountNav = ({ user }: UserAccountNavProps) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -36,25 +36,46 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
                 {user?.email}
               </p>
             )}
+            {!user && (
+              <p className="text-sm text-muted-foreground">
+                You are not signed in.
+              </p>
+            )}
           </div>
         </div>
+        {user && (
+          <>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem asChild>
+              <Link href="/projects">Projects</Link>
+            </DropdownMenuItem>
+          </>
+        )}
         <DropdownMenuSeparator />
-        <DropdownMenuItem asChild>
-          <Link href="/projects">Projects</Link>
-        </DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem
-          className="cursor-pointer"
-          onSelect={(event) => {
-            event.preventDefault();
-            signOut({
-              callbackUrl: `${window.location.origin}/login`,
-            });
-          }}
-        >
-          Sign out
-        </DropdownMenuItem>
+        {user ? (
+          <DropdownMenuItem
+            className="cursor-pointer"
+            onSelect={(event) => {
+              event.preventDefault();
+              signOut({
+                callbackUrl: `${window.location.origin}/login`,
+              });
+            }}
+          >
+            Sign out
+          </DropdownMenuItem>
+        ) : (
+          <DropdownMenuItem
+            className="cursor-pointer"
+            onSelect={(event) => {
+              event.preventDefault();
+              signIn();
+            }}
+          >
+            Sign in
+          </DropdownMenuItem>
+        )}
       </DropdownMenuContent>
     </DropdownMenu>
   );
-}
+};
