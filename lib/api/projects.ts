@@ -7,7 +7,7 @@ export const getProjects = async () => {
 
   return await prisma.project.findMany({
     where: {
-      organizationId: user?.organizationId,
+      organizationId: user?.organizationId!,
     },
     include: {
       _count: {
