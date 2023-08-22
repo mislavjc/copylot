@@ -17,6 +17,7 @@ import {
   MoreVertical,
   Pizza,
   Plus,
+  ServerOff,
   Settings,
   Shuffle,
   SunMedium,
@@ -58,4 +59,5 @@ export const Icons = {
   library: Library,
   stats: BarChart,
   shuffle: Shuffle,
+  serverOff: ServerOff,
 };
