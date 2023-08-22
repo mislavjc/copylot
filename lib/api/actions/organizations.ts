@@ -1,5 +1,7 @@
 'use server';
 
+import { Prisma } from '@prisma/client/edge';
+import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
 import { decode, encode } from 'next-auth/jwt';
 
@@ -45,4 +47,18 @@ export const createOrganization = async (name: string) => {
   });
 
   cookieStore.set('next-auth.session-token', encoded);
+};
+
+export const updateOrganization = async (
+  id: string,
+  data: Prisma.OrganizationUpdateInput,
+) => {
+  await prisma.organization.update({
+    where: {
+      id,
+    },
+    data,
+  });
+
+  revalidatePath('/organization');
 };
