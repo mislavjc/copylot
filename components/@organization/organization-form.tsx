@@ -9,6 +9,7 @@ import { Button } from 'ui/button';
 import { Input } from 'ui/input';
 import { Label } from 'ui/label';
 
+import { createOrganization } from 'lib/api/actions/organizations';
 import { organizationFormCreateSchema } from 'lib/validations/organization';
 
 type FormData = z.infer<typeof organizationFormCreateSchema>;
@@ -23,17 +24,9 @@ export const OrganizationForm = () => {
   const onSubmit = async (data: FormData) => {
     const { name } = data;
 
-    const response = await fetch('/api/organizations', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ name }),
-    });
+    await createOrganization(name);
 
-    const { id } = await response.json();
-
-    router.push(`/${id}`);
+    router.push('/projects');
   };
 
   return (

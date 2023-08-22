@@ -1,23 +1,39 @@
+import { NextResponse } from 'next/server';
 import withAuth from 'next-auth/middleware';
 
-export default withAuth({
-  pages: {
-    signIn: '/login',
-  },
-  callbacks: {
-    authorized: ({ req, token }) => {
-      const isDashboardUrl =
-        req.nextUrl.pathname.includes('/dashboard') ||
-        req.nextUrl.pathname.includes('/projects');
+const isProtectedUrl = (req: Request, protectedUrls: string[]) => {
+  return protectedUrls.some((url) => req.url.includes(url));
+};
 
-      if (isDashboardUrl && !token?.organizationId) {
-        return false;
+const protectedUrls = ['/dashboard', '/projects'];
+
+export default withAuth(
+  (req) => {
+    if (isProtectedUrl(req, protectedUrls)) {
+      if (!req.nextauth.token) {
+        return NextResponse.redirect(new URL('/login', req.url));
       }
 
-      return true;
+      if (!req.nextauth.token.organizationId) {
+        return NextResponse.redirect(new URL('/organization', req.url));
+      }
+    }
+  },
+  {
+    pages: {
+      signIn: '/login',
+    },
+    callbacks: {
+      authorized: ({ req, token }) => {
+        if (isProtectedUrl(req, protectedUrls) && !token) {
+          return false;
+        }
+
+        return true;
+      },
     },
   },
-});
+);
 
 export const config = {
   matcher: [
