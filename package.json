@@ -68,6 +68,9 @@
     "react-day-picker": "^8.8.1",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.45.4",
+    "react-markdown": "^8.0.7",
+    "remark-gfm": "^3.0.1",
+    "remark-math": "^5.1.1",
     "tailwind-merge": "^1.14.0",
     "topojson-client": "^3.1.0",
     "zod": "^3.22.2"

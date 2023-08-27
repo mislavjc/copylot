@@ -52,9 +52,7 @@ const SettingsPage = async ({ params }: SettingsPageProps) => {
             <p className="mb-4">
               Add the following script to your website to start using Copylot.
             </p>
-            <div className="overflow-auto">
-              <CodeBlock code={code} />
-            </div>
+            <CodeBlock code={code} />
           </CardContent>
         </Card>
       </div>
