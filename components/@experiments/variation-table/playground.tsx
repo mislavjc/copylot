@@ -8,10 +8,12 @@ import {
   Variation,
 } from '@prisma/client/edge';
 import { useCompletion } from 'ai/react';
+import { useParams, useRouter } from 'next/navigation';
 
 import { Button } from 'ui/button';
 import { Input } from 'ui/input';
 import { Textarea } from 'ui/textarea';
+import { ToastAction } from 'ui/toast';
 import { toast } from 'ui/use-toast';
 
 import {
@@ -36,6 +38,9 @@ export const VariationPlayground = ({
   promptLibrary,
   toneDescription,
 }: VariationPlaygroundProps) => {
+  const { project } = useParams();
+  const router = useRouter();
+
   const {
     completion,
     handleSubmit,
@@ -49,6 +54,21 @@ export const VariationPlayground = ({
         description: error.message,
         variant: 'destructive',
       });
+    },
+    onFinish: () => {
+      if (!toneDescription)
+        toast({
+          title: 'Tip',
+          description: 'Add tone to improve quality of generated content!',
+          action: (
+            <ToastAction
+              altText="Goto setttings"
+              onClick={() => router.push(`/${project}/dashboard/settings`)}
+            >
+              Add tone
+            </ToastAction>
+          ),
+        });
     },
     body: {
       systemPrompt: toneDescription && createSystemPrompt(toneDescription),
