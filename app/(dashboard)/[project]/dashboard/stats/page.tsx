@@ -57,6 +57,7 @@ const StatsPage = async ({ params }: StatsPageProps) => {
             <BarChart
               data={stats}
               keys={['sessions', 'views']}
+              tooltipKeys={['date', 'sessions', 'views']}
               colors={colors}
             />
           </div>

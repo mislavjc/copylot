@@ -22,10 +22,16 @@ type ChartData<T> = T & {
 interface Props<T extends { [K in string]: number | string | undefined }> {
   data: ChartData<T>[];
   keys: (keyof T)[];
+  tooltipKeys: (keyof T)[];
   colors: { [key: string]: string };
 }
 
-export const BarChart = <T extends {}>({ data, keys, colors }: Props<T>) => {
+export const BarChart = <T extends {}>({
+  data,
+  keys,
+  colors,
+  tooltipKeys = [],
+}: Props<T>) => {
   const { showTooltip, hideTooltip, tooltipData, tooltipTop, tooltipLeft } =
     useTooltip<ChartData<T>>();
 
@@ -99,11 +105,12 @@ export const BarChart = <T extends {}>({ data, keys, colors }: Props<T>) => {
                                 y: 0,
                               };
 
-                              showTooltip({
-                                tooltipData: bar.bar.data,
-                                tooltipTop: coords.y,
-                                tooltipLeft: coords.x,
-                              });
+                              if (tooltipKeys.length > 0)
+                                showTooltip({
+                                  tooltipData: bar.bar.data,
+                                  tooltipTop: coords.y,
+                                  tooltipLeft: coords.x,
+                                });
                             }}
                             onMouseLeave={hideTooltip}
                           />
@@ -150,16 +157,22 @@ export const BarChart = <T extends {}>({ data, keys, colors }: Props<T>) => {
                 style={defaultStyles}
               >
                 <div className="flex flex-col gap-1 p-1">
-                  {Object.entries(tooltipData).map(([key, value]) => (
-                    <div key={key}>
-                      <span>{formatKey(key)}</span>:{' '}
-                      <span className="font-semibold">
-                        {key === 'date'
-                          ? format(new Date(value as string), 'MMMM do yyyy')
-                          : value}
-                      </span>
-                    </div>
-                  ))}
+                  {Object.entries(tooltipData).map(([key, value]) => {
+                    if (!tooltipKeys.includes(key as keyof T)) {
+                      return null;
+                    }
+
+                    return (
+                      <div key={key}>
+                        <span>{formatKey(key)}</span>:{' '}
+                        <span className="font-semibold">
+                          {key === 'date'
+                            ? format(new Date(value as string), 'MMMM do yyyy')
+                            : value}
+                        </span>
+                      </div>
+                    );
+                  })}
                 </div>
               </TooltipWithBounds>
             )}

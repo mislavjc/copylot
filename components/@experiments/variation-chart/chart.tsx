@@ -31,6 +31,12 @@ export const Chart = async ({ experimentId }: ChartProps) => {
         <BarChart
           data={stats}
           keys={['experiment_view', 'experiment_click']}
+          tooltipKeys={[
+            'name',
+            'experiment_view',
+            'experiment_click',
+            'click_through_rate',
+          ]}
           colors={colors}
         />
       ) : (

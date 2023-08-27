@@ -9,7 +9,12 @@ const Dashboard = () => {
   return (
     <div>
       <div className="h-[50vh] w-full">
-        <BarChart data={data} keys={['sessions', 'views']} colors={colors} />
+        <BarChart
+          data={data}
+          keys={['sessions', 'views']}
+          tooltipKeys={['date', 'sessions', 'views']}
+          colors={colors}
+        />
       </div>
     </div>
   );
