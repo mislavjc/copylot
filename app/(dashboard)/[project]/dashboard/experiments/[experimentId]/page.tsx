@@ -9,7 +9,7 @@ import { getExperiment } from 'lib/api/experiments';
 import { getPromptLibraty } from 'lib/api/prompt-library';
 import { getToneByProjectId } from 'lib/api/tone';
 
-import { AppParams } from 'types/indext';
+import { AppParams } from 'types';
 
 export const metadata = {
   title: 'Copylot | Experiment',

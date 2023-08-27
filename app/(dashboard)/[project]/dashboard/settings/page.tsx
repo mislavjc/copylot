@@ -7,7 +7,7 @@ import { CodeBlock } from 'components/code-block';
 import { getProjectByUrl } from 'lib/api/projects';
 import { getToneByProjectId } from 'lib/api/tone';
 
-import { AppParams } from 'types/indext';
+import { AppParams } from 'types';
 
 export const metadata = {
   title: 'Copylot | Settings',

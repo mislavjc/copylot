@@ -2,6 +2,7 @@ import {
   AlertTriangle,
   ArrowRight,
   BarChart,
+  Bot,
   Check,
   ChevronLeft,
   ChevronRight,
@@ -32,6 +33,7 @@ import {
 } from 'lucide-react';
 
 export const Icons = {
+  bot: Bot,
   logo: TestTube2,
   close: X,
   spinner: Loader2,

@@ -5,7 +5,7 @@ import { Playground } from 'components/@prompt-libraty/playground';
 import { getProjectByUrl } from 'lib/api/projects';
 import { getPromptLibraty } from 'lib/api/prompt-library';
 
-import { AppParams } from 'types/indext';
+import { AppParams } from 'types';
 
 export const metadata = {
   title: 'Copylot | Prompt library',

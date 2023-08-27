@@ -12,6 +12,24 @@ interface Routes {
   [key: string]: RouteInfo;
 }
 
+const getRouteInfo = (route: string): RouteInfo | null => {
+  const pathSegments = route.split('/');
+
+  if (pathSegments.includes('experiments') && pathSegments.length === 5) {
+    return {
+      title: `Experiment`,
+    };
+  }
+
+  const path = pathSegments.pop();
+
+  if (!path) {
+    return null;
+  }
+
+  return routeMapping[path] || null;
+};
+
 const routeMapping: Routes = {
   dashboard: {
     title: 'Dashboard',
@@ -28,24 +46,9 @@ const routeMapping: Routes = {
   experiments: {
     title: 'Experiments',
   },
-};
-
-const getRouteInfo = (route: string): RouteInfo | null => {
-  const pathSegments = route.split('/');
-
-  if (pathSegments.includes('experiments') && pathSegments.length > 4) {
-    return {
-      title: `Experiment`,
-    };
-  }
-
-  const path = pathSegments.pop();
-
-  if (!path) {
-    return null;
-  }
-
-  return routeMapping[path] || null;
+  chat: {
+    title: 'Chat',
+  },
 };
 
 const DashboardTemplate = ({ children }: { children: React.ReactNode }) => {

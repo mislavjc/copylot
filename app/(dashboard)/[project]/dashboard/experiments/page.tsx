@@ -4,7 +4,7 @@ import { DataTableWrapper } from 'components/@experiments/experiments-table/wrap
 
 import { getExperiments } from 'lib/api/experiments';
 
-import { AppParams } from 'types/indext';
+import { AppParams } from 'types';
 
 export const metadata = {
   title: 'Copylot | Experiments',

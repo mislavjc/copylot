@@ -33,7 +33,7 @@ export const linkData = async (
   return statsData;
 };
 
-interface ProcessedData {
+export interface ProcessedData {
   name: string;
   value: string;
   experiment_click: string;

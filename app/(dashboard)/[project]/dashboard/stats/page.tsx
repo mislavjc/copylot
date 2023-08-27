@@ -10,7 +10,7 @@ import {
   sessionsAndViewsGroupedByWebsiteId,
 } from 'db/clickhouse';
 
-import { AppParams } from 'types/indext';
+import { AppParams } from 'types';
 
 export const metadata = {
   title: 'Copylot | Stats',

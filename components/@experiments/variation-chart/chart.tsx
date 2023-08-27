@@ -9,7 +9,7 @@ interface ChartProps {
   experimentId: string;
 }
 
-const getStats = async (experimentId: string) => {
+export const getStats = async (experimentId: string) => {
   const stats = await getVariationStatsByExperimentId(experimentId);
 
   const linkedData = await linkData(stats);
