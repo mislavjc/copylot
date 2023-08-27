@@ -5,6 +5,7 @@ import prisma from 'db/prisma';
 
 interface StatsData extends VariationStatsByExperimentIdRow {
   name: string;
+  value: string;
 }
 
 export const linkData = async (
@@ -25,6 +26,7 @@ export const linkData = async (
     return {
       ...record,
       name: variation?.name ?? 'Unknown',
+      value: variation?.value ?? 'Unknown',
     };
   });
 
@@ -35,6 +37,7 @@ interface ProcessedData {
   name: string;
   experiment_click: string;
   experiment_view: string;
+  click_through_rate: string;
 }
 
 export const processStats = (stats: StatsData[]) => {
@@ -55,10 +58,16 @@ export const processStats = (stats: StatsData[]) => {
   variationNames.forEach((name) => {
     const viewCount = viewMap.get(name) || '0';
     const clickCount = clickMap.get(name) || '0';
+
+    const click_through_rate =
+      Math.round((parseInt(clickCount) / parseInt(viewCount)) * 10_000) / 100 +
+      '%';
+
     processedData.push({
       name,
       experiment_click: clickCount,
       experiment_view: viewCount,
+      click_through_rate,
     });
   });
 
