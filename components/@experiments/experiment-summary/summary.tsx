@@ -31,16 +31,7 @@ export const Summary = ({
     body: {
       experimentId,
       systemPrompt: `
-        Please analyze the following dataset, which contains information about various experiments. Each entry in the dataset has the following attributes:
-
-        - **name**: The name of the experiment variation.
-        - **value**: A value associated with the experiment variation.
-        - **experiment_click**: The number of clicks recorded for the experiment.
-        - **experiment_view**: The number of views recorded for the experiment.
-        - **click_through_rate**: The calculated click-through rate for the experiment.
-
-        Based on this data, answer any relevant questions.
-
+        Please analyze the following dataset...
         DATA
         ${JSON.stringify(stats)}
         END DATA
@@ -61,7 +52,7 @@ export const Summary = ({
                 <Icons.bot className="h-7 w-7 rounded bg-blue-600 p-1 text-gray-50" />
               )}
             </div>
-            <div className="w-full">
+            <div className="w-full overflow-x-auto sm:w-auto">
               <MemoizedReactMarkdown
                 remarkPlugins={[remarkGfm, remarkMath]}
                 components={{
@@ -112,7 +103,7 @@ export const Summary = ({
 
       <form
         onSubmit={handleSubmit}
-        className="fixed bottom-0 w-full max-w-screen-md"
+        className="fixed bottom-0 left-0 w-screen max-w-screen-md md:left-auto"
       >
         <div className="relative rounded border bg-white p-4">
           <Textarea
