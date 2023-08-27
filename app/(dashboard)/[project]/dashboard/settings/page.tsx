@@ -5,6 +5,7 @@ import { ToneForm } from 'components/@tone/tone-form';
 import { CodeBlock } from 'components/code-block';
 
 import { getProjectByUrl } from 'lib/api/projects';
+import { getToneByProjectId } from 'lib/api/tone';
 
 import { AppParams } from 'types/indext';
 
@@ -21,6 +22,7 @@ interface SettingsPageProps extends AppParams {}
 
 const SettingsPage = async ({ params }: SettingsPageProps) => {
   const project = await getProjectByUrl(params.project);
+  const toneDescription = await getToneByProjectId(project!.id);
 
   return (
     <div className="flex flex-col gap-4">
@@ -29,10 +31,7 @@ const SettingsPage = async ({ params }: SettingsPageProps) => {
           <CardTitle>Tone settings</CardTitle>
         </CardHeader>
         <CardContent className="pt-4">
-          <ToneForm
-            projectId={project!.id}
-            toneDescription={project!.toneDescription ?? null}
-          />
+          <ToneForm projectId={project!.id} toneDescription={toneDescription} />
         </CardContent>
       </Card>
 
