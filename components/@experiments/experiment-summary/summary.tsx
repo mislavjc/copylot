@@ -1,5 +1,6 @@
 'use client';
 
+import { Message } from '@prisma/client/edge';
 import { useChat } from 'ai/react';
 import { CornerDownLeft } from 'lucide-react';
 
@@ -13,11 +14,18 @@ import { ProcessedData } from 'lib/charts';
 
 interface SummaryProps {
   stats: ProcessedData[];
+  experimentId: string;
+  initialMessages: Message[];
 }
 
-export const Summary = ({ stats }: SummaryProps) => {
+export const Summary = ({
+  stats,
+  experimentId,
+  initialMessages,
+}: SummaryProps) => {
   const { messages, input, handleInputChange, handleSubmit } = useChat({
     body: {
+      experimentId,
       systemPrompt: `
         Please analyze the following dataset, which contains information about various experiments. Each entry in the dataset has the following attributes:
 
@@ -34,6 +42,7 @@ export const Summary = ({ stats }: SummaryProps) => {
         END DATA
       `,
     },
+    initialMessages,
   });
 
   return (

@@ -131,8 +131,30 @@ model Experiment {
 
   project    Project     @relation(fields: [projectId], references: [id])
   variations Variation[]
+  Message    Message[]
 
   @@index([projectId])
+}
+
+model Message {
+  id           String      @id @default(cuid())
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+
+  role         MessageRole @default(user)
+  content      String      @db.VarChar(5000)
+  experimentId String
+
+  Experiment   Experiment  @relation(fields: [experimentId], references: [id])
+
+  @@index([experimentId])
+}
+
+enum MessageRole {
+  user
+  system
+  assistant
+  function
 }
 
 model Variation {
