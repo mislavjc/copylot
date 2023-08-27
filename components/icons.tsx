@@ -17,6 +17,7 @@ import {
   MoreVertical,
   Pizza,
   Plus,
+  Save,
   ServerOff,
   Settings,
   Shuffle,
@@ -60,4 +61,5 @@ export const Icons = {
   stats: BarChart,
   shuffle: Shuffle,
   serverOff: ServerOff,
+  save: Save,
 };

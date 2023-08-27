@@ -32,36 +32,6 @@ export const Playground = ({ promptLibrary, project }: PlaygroundProps) => {
             setSelected={setSelected}
             promptLibrary={promptLibrary}
           />
-          <Button
-            onClick={() => {
-              if (selected.name && selected.value) {
-                if (selected?.id) {
-                  updatePromptInLibrary(selected.id, {
-                    name: selected.name,
-                    value: selected.value,
-                  });
-                } else {
-                  addPromptToLibrary(project.id, {
-                    name: selected.name,
-                    value: selected.value,
-                  });
-                }
-              }
-            }}
-          >
-            Save
-          </Button>
-          <Button
-            onClick={() => {
-              setSelected({
-                name: '',
-                value: '',
-              });
-            }}
-            variant="secondary"
-          >
-            Clear
-          </Button>
         </div>
       </div>
       <div className="mt-4 flex-col gap-4">
@@ -87,6 +57,38 @@ export const Playground = ({ promptLibrary, project }: PlaygroundProps) => {
           placeholder="Write your prompt here. You can use markdown to format your prompt."
           className="my-4 h-96 min-h-fit"
         />
+      </div>
+      <div className="flex justify-between gap-2">
+        <Button
+          onClick={() => {
+            if (selected.name && selected.value) {
+              if (selected?.id) {
+                updatePromptInLibrary(selected.id, {
+                  name: selected.name,
+                  value: selected.value,
+                });
+              } else {
+                addPromptToLibrary(project.id, {
+                  name: selected.name,
+                  value: selected.value,
+                });
+              }
+            }
+          }}
+        >
+          Save prompt
+        </Button>
+        <Button
+          onClick={() => {
+            setSelected({
+              name: '',
+              value: '',
+            });
+          }}
+          variant="secondary"
+        >
+          Clear
+        </Button>
       </div>
     </div>
   );
