@@ -14,6 +14,8 @@ import { Icons } from 'components/icons';
 import { MemoizedReactMarkdown } from 'components/markdown';
 import { Separator } from 'components/ui/separator';
 
+import { useEnterSubmit } from 'hooks/use-enter-submit';
+
 import { ProcessedData } from 'lib/charts';
 
 interface SummaryProps {
@@ -39,6 +41,8 @@ export const Summary = ({
     },
     initialMessages,
   });
+
+  const { formRef, onKeyDown } = useEnterSubmit();
 
   return (
     <div>
@@ -104,6 +108,7 @@ export const Summary = ({
       <form
         onSubmit={handleSubmit}
         className="fixed bottom-0 left-0 w-screen max-w-screen-md md:left-auto"
+        ref={formRef}
       >
         <div className="relative rounded border bg-white p-4">
           <Textarea
@@ -111,6 +116,7 @@ export const Summary = ({
             onChange={handleInputChange}
             className="min-h-[50px] w-full resize-none bg-transparent px-4 py-[1rem] pr-20 focus-within:outline-none sm:text-sm"
             placeholder="Type your question here..."
+            onKeyDown={onKeyDown}
           />
           <Button type="submit" className="absolute right-4 top-6 mr-4 mt-2">
             <CornerDownLeft />
