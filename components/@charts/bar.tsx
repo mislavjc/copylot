@@ -8,7 +8,7 @@ import { ParentSize } from '@visx/responsive';
 import { scaleBand, scaleLinear } from '@visx/scale';
 import { BarStack } from '@visx/shape';
 import { defaultStyles, TooltipWithBounds, useTooltip } from '@visx/tooltip';
-import { format } from 'date-fns';
+import { format, isValid, parseISO } from 'date-fns';
 
 import { formatKey } from 'lib/utils';
 
@@ -125,6 +125,15 @@ export const BarChart = <T extends {}>({ data, keys, colors }: Props<T>) => {
                   }}
                   hideTicks
                   hideAxisLine
+                  tickFormat={(d) => {
+                    if (/^\d{4}-\d{2}-\d{2}$/.test(d)) {
+                      const date = parseISO(d);
+                      if (isValid(date)) {
+                        return format(date, 'MMMM do');
+                      }
+                    }
+                    return `${d}`;
+                  }}
                 />
                 <AxisLeft
                   scale={yScale}
