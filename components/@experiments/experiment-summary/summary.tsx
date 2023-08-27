@@ -118,7 +118,11 @@ export const Summary = ({
             placeholder="Type your question here..."
             onKeyDown={onKeyDown}
           />
-          <Button type="submit" className="absolute right-4 top-6 mr-4 mt-2">
+          <Button
+            type="submit"
+            className="absolute right-4 top-6 mr-4 mt-2"
+            disabled={!input}
+          >
             <CornerDownLeft />
           </Button>
         </div>
