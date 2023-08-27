@@ -10,7 +10,7 @@ const ProjectsPage = () => {
   return (
     <div className="min-h-[calc(100vh-111px)] bg-slate-50">
       <ProjectsHeader />
-      <div className="mx-auto mt-8 max-w-screen-lg">
+      <div className="mx-auto mt-8 max-w-screen-lg p-4">
         <Projects />
       </div>
     </div>

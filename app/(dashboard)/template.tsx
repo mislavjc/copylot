@@ -63,7 +63,9 @@ const DashboardTemplate = ({ children }: { children: React.ReactNode }) => {
         </div>
       </div>
       <div className="min-h-[calc(100vh-216px)] bg-gray-50">
-        <div className="mx-auto max-w-screen-lg gap-6 py-6">{children}</div>
+        <div className="mx-auto max-w-screen-lg gap-6 px-4 py-6">
+          {children}
+        </div>
       </div>
     </div>
   );

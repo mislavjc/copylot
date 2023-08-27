@@ -6,7 +6,7 @@ const ProjectsLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
       <Navbar config={navbarConfig.projectsNav} />
-      {children}
+      <main>{children}</main>
     </div>
   );
 };
