@@ -24,6 +24,8 @@
               ["^(|ui)(/.*|$)"],
               // Internal packages.
               ["^(|components)(/.*|$)"],
+              // hooks
+              ["^(|hooks)(/.*|$)"],
               // Emails
               ["^(|emails)(/.*|$)"],
               // Lib

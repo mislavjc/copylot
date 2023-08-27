@@ -10,6 +10,8 @@ import { BarStack } from '@visx/shape';
 import { defaultStyles, TooltipWithBounds, useTooltip } from '@visx/tooltip';
 import { format, isValid, parseISO } from 'date-fns';
 
+import { useResponsiveTicks } from 'hooks/use-reponsive-ticks';
+
 import { formatKey } from 'lib/utils';
 
 type ChartData<T> = T & {
@@ -26,6 +28,8 @@ interface Props<T extends { [K in string]: number | string | undefined }> {
 export const BarChart = <T extends {}>({ data, keys, colors }: Props<T>) => {
   const { showTooltip, hideTooltip, tooltipData, tooltipTop, tooltipLeft } =
     useTooltip<ChartData<T>>();
+
+  const numTicks = useResponsiveTicks();
 
   const getLabel = (d: ChartData<T>) => d.date || d.name || '';
 
@@ -102,13 +106,6 @@ export const BarChart = <T extends {}>({ data, keys, colors }: Props<T>) => {
                               });
                             }}
                             onMouseLeave={hideTooltip}
-                            onClick={() => {
-                              alert(
-                                `clicked: ${JSON.stringify(
-                                  Object.values(bar.bar.data),
-                                )}`,
-                              );
-                            }}
                           />
                         );
                       });
@@ -118,7 +115,7 @@ export const BarChart = <T extends {}>({ data, keys, colors }: Props<T>) => {
                 <AxisBottom
                   scale={xScale}
                   top={yMax}
-                  numTicks={8}
+                  numTicks={numTicks}
                   labelOffset={12}
                   tickLabelProps={{
                     className: 'text-sm font-sans text-neutral-500',
