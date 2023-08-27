@@ -1,7 +1,12 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Prisma, PromptLibrary, Variation } from '@prisma/client/edge';
+import {
+  Prisma,
+  PromptLibrary,
+  ToneDescription,
+  Variation,
+} from '@prisma/client/edge';
 import { useCompletion } from 'ai/react';
 
 import { Button } from 'ui/button';
@@ -16,10 +21,12 @@ import {
 import { Icons } from 'components/icons';
 
 import { createVariation } from 'lib/api/actions';
+import { createSystemPrompt } from 'lib/tone';
 
 interface VariationPlaygroundProps {
   experimentId: string;
   promptLibrary: PromptLibrary[];
+  toneDescription: ToneDescription | null;
 }
 
 type VariationType = Variation | Prisma.VariationCreateWithoutExperimentInput;
@@ -27,6 +34,7 @@ type VariationType = Variation | Prisma.VariationCreateWithoutExperimentInput;
 export const VariationPlayground = ({
   experimentId,
   promptLibrary,
+  toneDescription,
 }: VariationPlaygroundProps) => {
   const {
     completion,
@@ -41,6 +49,9 @@ export const VariationPlayground = ({
         description: error.message,
         variant: 'destructive',
       });
+    },
+    body: {
+      systemPrompt: toneDescription && createSystemPrompt(toneDescription),
     },
   });
 

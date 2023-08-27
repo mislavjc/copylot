@@ -11,7 +11,7 @@ export const createSystemPrompt = ({
   desiredCTA,
   USPs,
 }: FormData): string => {
-  const parts: string[] = [];
+  const parts: string[] = ['Generate copy'];
 
   if (brandValues?.length) {
     parts.push(` for a ${brandValues} brand.`);

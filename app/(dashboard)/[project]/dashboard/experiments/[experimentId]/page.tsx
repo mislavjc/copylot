@@ -7,11 +7,12 @@ import { DataTable } from 'components/data-table';
 
 import { getExperiment } from 'lib/api/experiments';
 import { getPromptLibraty } from 'lib/api/prompt-library';
+import { getToneByProjectId } from 'lib/api/tone';
 
 import { AppParams } from 'types/indext';
 
 export const metadata = {
-  title: 'Experiment',
+  title: 'Copylot | Experiment',
   description: 'Manage your experiment',
 };
 
@@ -22,6 +23,7 @@ interface ExperimentPageProps extends AppParams {
 const ExperimentPage = async ({ params }: ExperimentPageProps) => {
   const experiment = await getExperiment(params.experimentId);
   const promptLibrary = await getPromptLibraty(params.project);
+  const toneDescription = await getToneByProjectId(experiment!.projectId);
 
   return (
     <div className="flex flex-col gap-4">
@@ -49,6 +51,7 @@ const ExperimentPage = async ({ params }: ExperimentPageProps) => {
           <VariationPlayground
             experimentId={params.experimentId}
             promptLibrary={promptLibrary}
+            toneDescription={toneDescription}
           />
         </CardContent>
       </Card>
