@@ -13,8 +13,6 @@ export const getProjects = async () => {
       _count: {
         select: {
           experiments: true,
-          promptLibraries: true,
-          toneDescriptions: true,
         },
       },
     },
@@ -25,6 +23,9 @@ export const getProjectByUrl = async (url: string) => {
   return await prisma.project.findFirst({
     where: {
       url,
+    },
+    include: {
+      toneDescription: true,
     },
   });
 };

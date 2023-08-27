@@ -79,10 +79,10 @@ model Project {
   url            String
   organizationId String
 
-  organization     Organization      @relation(fields: [organizationId], references: [id])
-  promptLibraries  PromptLibrary[]
-  toneDescriptions ToneDescription[]
-  experiments      Experiment[]
+  organization    Organization     @relation(fields: [organizationId], references: [id])
+  promptLibraries PromptLibrary[]
+  toneDescription ToneDescription?
+  experiments     Experiment[]
 
   @@index([organizationId])
 }
@@ -104,10 +104,16 @@ model ToneDescription {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
 
-  name        String
-  description String
-  value       String
-  projectId   String
+  tone                     String
+  formalityLevel           String
+  vocabularyPreferences    String
+  targetAudience           String
+  culturalNuances          String
+  sentenceLengthPreference String
+  brandValues              String
+  desiredCTA               String
+  USPs                     String
+  projectId                String @unique
 
   project Project @relation(fields: [projectId], references: [id])
 
