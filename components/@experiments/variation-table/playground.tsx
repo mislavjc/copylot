@@ -66,7 +66,6 @@ export const VariationPlayground = ({
 
   return (
     <div>
-      <h1 className="mt-4 text-2xl">Variation Playground</h1>
       <div className="mt-4 flex-col gap-4">
         <div>
           <form onSubmit={handleSubmit} className="my-4 flex gap-4">

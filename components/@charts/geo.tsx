@@ -9,7 +9,7 @@ import * as topojson from 'topojson-client';
 
 import topology from './world-topo.json';
 
-export const background = '#F9FAFB';
+export const background = '#fff';
 
 interface CountryData {
   countryCode: string;

@@ -1,3 +1,5 @@
+import { Card, CardContent } from 'ui/card';
+
 import { DataTableWrapper } from 'components/@experiments/experiments-table/wrapper';
 
 import { getExperiments } from 'lib/api/experiments';
@@ -5,7 +7,7 @@ import { getExperiments } from 'lib/api/experiments';
 import { AppParams } from 'types/indext';
 
 export const metadata = {
-  title: 'Experiments',
+  title: 'Copylot | Experiments',
   description: 'Manage your experiments',
 };
 
@@ -16,7 +18,11 @@ const ExperimentsPage = async ({ params }: ExperimentsPageProps) => {
 
   return (
     <div className="mx-auto">
-      <DataTableWrapper project={params.project} data={data} />
+      <Card>
+        <CardContent className="pt-2">
+          <DataTableWrapper project={params.project} data={data} />
+        </CardContent>
+      </Card>
     </div>
   );
 };

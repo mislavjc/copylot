@@ -1,3 +1,5 @@
+import { Card, CardContent, CardHeader, CardTitle } from 'ui/card';
+
 import { Chart } from 'components/@experiments/variation-chart/chart';
 import { columns } from 'components/@experiments/variation-table/columns';
 import { VariationPlayground } from 'components/@experiments/variation-table/playground';
@@ -22,13 +24,34 @@ const ExperimentPage = async ({ params }: ExperimentPageProps) => {
   const promptLibrary = await getPromptLibraty(params.project);
 
   return (
-    <div>
-      <Chart experimentId={experiment?.id!} />
-      <DataTable columns={columns} data={experiment?.variations ?? []} />
-      <VariationPlayground
-        experimentId={params.experimentId}
-        promptLibrary={promptLibrary}
-      />
+    <div className="flex flex-col gap-4">
+      <Card>
+        <CardHeader>
+          <CardTitle>Experiment clicks and views</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Chart experimentId={experiment?.id!} />
+        </CardContent>
+      </Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>Variations</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <DataTable columns={columns} data={experiment?.variations ?? []} />
+        </CardContent>
+      </Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>Playground</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <VariationPlayground
+            experimentId={params.experimentId}
+            promptLibrary={promptLibrary}
+          />
+        </CardContent>
+      </Card>
     </div>
   );
 };
