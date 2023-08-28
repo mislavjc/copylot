@@ -1,7 +1,10 @@
 'use client';
 
 import { ReactNode } from 'react';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+
+import { Button } from 'ui/button';
 
 interface RouteInfo {
   title: string;
@@ -18,6 +21,11 @@ const getRouteInfo = (route: string): RouteInfo | null => {
   if (pathSegments.includes('experiments') && pathSegments.length === 5) {
     return {
       title: `Experiment`,
+      action: (
+        <Link href={`${route}/chat`}>
+          <Button>Chat with experiment</Button>
+        </Link>
+      ),
     };
   }
 
@@ -63,6 +71,7 @@ const DashboardTemplate = ({ children }: { children: React.ReactNode }) => {
           <h2 className="max-w-screen-lg text-2xl text-neutral-500">
             {info?.title}
           </h2>
+          {info?.action}
         </div>
       </div>
       <div className="min-h-[calc(100vh-216px)] bg-gray-50">
