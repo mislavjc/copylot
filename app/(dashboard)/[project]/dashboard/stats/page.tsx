@@ -2,12 +2,14 @@ import { Card, CardContent, CardHeader, CardTitle } from 'ui/card';
 
 import { BarChart } from 'components/@charts/bar';
 import { CloroplethMap } from 'components/@charts/geo';
+import { BrowserList } from 'components/@stats/browser-list';
 
 import { getCountryCode3 } from 'lib/countries';
 
 import {
   sessionsAndViewsGroupedByCountry,
   sessionsAndViewsGroupedByWebsiteId,
+  sessionsGroupedByBrowser,
 } from 'db/clickhouse';
 
 import { AppParams } from 'types';
@@ -27,6 +29,7 @@ const colors = {
 const StatsPage = async ({ params }: StatsPageProps) => {
   const stats = await sessionsAndViewsGroupedByWebsiteId(params.project);
   const countryStats = await sessionsAndViewsGroupedByCountry(params.project);
+  const browserStats = await sessionsGroupedByBrowser(params.project);
 
   const countryData = countryStats.map((stat) => ({
     countryCode: getCountryCode3(stat.country),
@@ -69,6 +72,14 @@ const StatsPage = async ({ params }: StatsPageProps) => {
         </CardHeader>
         <CardContent className="h-[50vh] w-full px-8">
           <CloroplethMap data={countryData} />
+        </CardContent>
+      </Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>Devices</CardTitle>
+        </CardHeader>
+        <CardContent className="h-[50vh] w-full px-8">
+          <BrowserList data={browserStats} />
         </CardContent>
       </Card>
     </div>

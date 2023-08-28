@@ -222,3 +222,36 @@ export const getVariationStatsByExperimentId = async (
 
   return await result.json();
 };
+
+export interface SessionsGroupedByBrowserRow {
+  sessions: string;
+  browser: string;
+  percentage: string;
+}
+
+export const sessionsGroupedByBrowser = async (
+  website_id: string,
+): Promise<SessionsGroupedByBrowserRow[]> => {
+  const decodedUrl = decodeURIComponent(website_id);
+
+  const result = await client.query({
+    query: /* sql */ `
+      WITH total_sessions AS (
+          SELECT COUNT(DISTINCT session_id) as total
+          FROM ${TABLES.SESSIONS}
+          WHERE website_id = '${decodedUrl}'
+      )
+      SELECT 
+        COALESCE(NULLIF(browser, ''), 'Unknown') as browser, 
+        COUNT(DISTINCT session_id) as sessions,
+        (COUNT(DISTINCT session_id) * 100.0 / total) as percentage
+      FROM ${TABLES.SESSIONS}, total_sessions
+      WHERE website_id = '${decodedUrl}'
+      GROUP BY browser, total
+      ORDER BY COUNT(DISTINCT session_id) DESC
+    `,
+    format: 'JSONEachRow',
+  });
+
+  return await result.json();
+};
