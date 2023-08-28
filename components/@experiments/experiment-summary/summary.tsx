@@ -64,7 +64,7 @@ export const Summary = ({
                 <Icons.bot className="h-7 w-7 rounded bg-blue-600 p-1 text-gray-50" />
               )}
             </div>
-            <div className="w-full overflow-x-auto sm:w-auto">
+            <div className="w-full grow overflow-x-auto sm:w-auto">
               <MemoizedReactMarkdown
                 remarkPlugins={[remarkGfm, remarkMath]}
                 components={{
