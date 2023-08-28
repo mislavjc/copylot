@@ -22,6 +22,7 @@ import {
   ServerOff,
   Settings,
   Shuffle,
+  SlidersHorizontal,
   SunMedium,
   TestTube2,
   TestTubes,
@@ -64,4 +65,5 @@ export const Icons = {
   shuffle: Shuffle,
   serverOff: ServerOff,
   save: Save,
+  sliders: SlidersHorizontal,
 };

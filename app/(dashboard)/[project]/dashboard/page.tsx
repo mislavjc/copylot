@@ -1,36 +1,60 @@
-import { BarChart } from 'components/@charts/bar';
+import { ToneDescription } from '@prisma/client';
+
+import { DashboardCard } from 'components/@dashboard/card';
+import { Icons } from 'components/icons';
+
+import { getProjectDataByUrl } from 'lib/api/projects';
+
+import { AppParams } from 'types';
 
 export const metadata = {
-  title: 'Dashboard',
+  title: 'Copylot | Dashboard',
   description: 'Manage your project',
 };
 
-const Dashboard = () => {
+interface DashboardPageProps extends AppParams {}
+
+const DashboardPage = async ({ params }: DashboardPageProps) => {
+  const projectData = await getProjectDataByUrl(params.project);
+
+  const countSetFields = (obj: ToneDescription | {}): number => {
+    const validFieldCount = Object.values(obj).filter(
+      (value) => value != null && value !== '',
+    ).length;
+
+    return Math.max(validFieldCount - 3, 0);
+  };
+
+  const toneFieldsSet = countSetFields(projectData?.toneDescription || {});
+
   return (
-    <div>
-      <div className="h-[50vh] w-full">
-        <BarChart
-          data={data}
-          keys={['sessions', 'views']}
-          tooltipKeys={['date', 'sessions', 'views']}
-          colors={colors}
-        />
-      </div>
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+      <DashboardCard
+        icon={<Icons.experiments />}
+        title="Experiments"
+        count={projectData?._count.experiments || 0}
+        description="experiments created"
+        link={`/${params.project}/dashboard/experiments`}
+        buttonText="View Experiments"
+      />
+      <DashboardCard
+        icon={<Icons.library />}
+        title="Prompt library"
+        count={projectData?._count.promptLibraries || 0}
+        description="prompts created"
+        link={`/${params.project}/dashboard/prompt-library`}
+        buttonText="View Prompt library"
+      />
+      <DashboardCard
+        icon={<Icons.sliders />}
+        title="Tone Settings"
+        count={toneFieldsSet}
+        description="tone settings set"
+        link={`/${params.project}/dashboard/settings`}
+        buttonText="View Tone Settings"
+      />
     </div>
   );
 };
 
-export default Dashboard;
-
-const data = [
-  { date: '2023-08-01', views: 15, sessions: 5 },
-  { date: '2023-08-02', views: 30, sessions: 8 },
-  { date: '2023-08-03', views: 40, sessions: 12 },
-  { date: '2023-08-04', views: 20, sessions: 7 },
-  { date: '2023-08-05', views: 25, sessions: 6 },
-];
-
-const colors = {
-  views: '#1E40AF',
-  sessions: '#ff7f0e',
-};
+export default DashboardPage;

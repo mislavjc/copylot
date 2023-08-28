@@ -29,3 +29,20 @@ export const getProjectByUrl = async (url: string) => {
     },
   });
 };
+
+export const getProjectDataByUrl = async (url: string) => {
+  return await prisma.project.findFirst({
+    where: {
+      url,
+    },
+    include: {
+      toneDescription: true,
+      _count: {
+        select: {
+          experiments: true,
+          promptLibraries: true,
+        },
+      },
+    },
+  });
+};
