@@ -6,6 +6,8 @@ import { usePathname } from 'next/navigation';
 
 import { Button } from 'ui/button';
 
+import { ExperimentDialog } from 'components/@experiments/experiments-table/dialog';
+
 interface RouteInfo {
   title: string;
   action?: ReactNode;
@@ -53,6 +55,7 @@ const routeMapping: Routes = {
   },
   experiments: {
     title: 'Experiments',
+    action: <ExperimentDialog />,
   },
   chat: {
     title: 'Chat',
