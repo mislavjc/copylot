@@ -52,7 +52,7 @@ export const OrganizationForm = ({ organization }: OrganizationFormProps) => {
   };
 
   return (
-    <div className="rounded border p-5">
+    <div>
       <form className="flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-4 grid w-full items-center gap-2">
           <Label htmlFor="name">Organization name</Label>

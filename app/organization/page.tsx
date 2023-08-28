@@ -1,3 +1,5 @@
+import { Card, CardContent } from 'ui/card';
+
 import { Navbar } from 'components/@navbar/navbar';
 import { OrganizationForm } from 'components/@organization/organization-form';
 
@@ -28,8 +30,12 @@ const OrganizationPage = async () => {
         </div>
       </div>
       <div className="min-h-[calc(100vh-163px)] bg-gray-50">
-        <div className="mx-auto max-w-screen-sm pt-8">
-          <OrganizationForm organization={organization} />
+        <div className="mx-auto max-w-screen-sm p-4 pt-8">
+          <Card>
+            <CardContent className="pt-6">
+              <OrganizationForm organization={organization} />
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>

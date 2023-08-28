@@ -49,6 +49,9 @@ export const UserAccountNav = ({ user }: UserAccountNavProps) => {
             <DropdownMenuItem asChild>
               <Link href="/projects">Projects</Link>
             </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link href="/organization">Organization</Link>
+            </DropdownMenuItem>
           </>
         )}
         <DropdownMenuSeparator />
