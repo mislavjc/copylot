@@ -1,6 +1,8 @@
 import { OpenAIStream, StreamingTextResponse } from 'ai';
 import OpenAI from 'openai';
 
+import { checkRateLimit } from 'lib/ratelimit';
+
 import prisma from 'db/prisma';
 
 const openai = new OpenAI({
@@ -10,6 +12,12 @@ const openai = new OpenAI({
 export const runtime = 'edge';
 
 export async function POST(req: Request) {
+  const rateLimitResult = await checkRateLimit(req, 20, '1h');
+
+  if (rateLimitResult.response) {
+    return rateLimitResult.response;
+  }
+
   const { messages, systemPrompt, experimentId } = await req.json();
 
   const response = await openai.chat.completions.create({

@@ -8,6 +8,7 @@ import remarkMath from 'remark-math';
 
 import { Button } from 'ui/button';
 import { Textarea } from 'ui/textarea';
+import { toast } from 'ui/use-toast';
 
 import { CodeBlock } from 'components/code-block';
 import { Icons } from 'components/icons';
@@ -40,6 +41,13 @@ export const Summary = ({
       `,
     },
     initialMessages,
+    onError: (error) => {
+      toast({
+        title: 'Error',
+        description: error.message,
+        variant: 'destructive',
+      });
+    },
   });
 
   const { formRef, onKeyDown } = useEnterSubmit();
