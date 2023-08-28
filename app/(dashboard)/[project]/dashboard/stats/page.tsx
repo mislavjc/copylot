@@ -22,8 +22,8 @@ export const metadata = {
 interface StatsPageProps extends AppParams {}
 
 const colors = {
-  views: '#1E40AF',
-  sessions: '#ff7f0e',
+  views: '#93c5fd',
+  sessions: '#2563eb',
 };
 
 const StatsPage = async ({ params }: StatsPageProps) => {
