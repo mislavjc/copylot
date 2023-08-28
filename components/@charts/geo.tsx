@@ -1,7 +1,7 @@
 'use client';
 
 import { localPoint } from '@visx/event';
-import { Graticule, Mercator } from '@visx/geo';
+import { Mercator } from '@visx/geo';
 import { ParentSize } from '@visx/responsive';
 import { scaleQuantize } from '@visx/scale';
 import { defaultStyles, TooltipWithBounds, useTooltip } from '@visx/tooltip';
@@ -79,10 +79,6 @@ export const CloroplethMap = ({ data }: GeoMercatorProps) => {
               >
                 {(mercator) => (
                   <g>
-                    <Graticule
-                      graticule={(g) => mercator.path(g) || ''}
-                      stroke="rgba(33,33,33,0.05)"
-                    />
                     {mercator.features.map(({ feature, path }, i) => {
                       const countryData = data.find(
                         (d) => d.countryCode === feature.id,

@@ -56,7 +56,7 @@ const StatsPage = async ({ params }: StatsPageProps) => {
           </div>
         </CardHeader>
         <CardContent>
-          <div className="h-[50vh] w-full">
+          <div className="h-[40vh] w-full">
             <BarChart
               data={stats}
               keys={['sessions', 'views']}
@@ -66,22 +66,26 @@ const StatsPage = async ({ params }: StatsPageProps) => {
           </div>
         </CardContent>
       </Card>
-      <Card>
-        <CardHeader>
-          <CardTitle>Locations</CardTitle>
-        </CardHeader>
-        <CardContent className="h-[50vh] w-full px-8">
-          <CloroplethMap data={countryData} />
-        </CardContent>
-      </Card>
-      <Card>
-        <CardHeader>
-          <CardTitle>Devices</CardTitle>
-        </CardHeader>
-        <CardContent className="h-[50vh] w-full px-8">
-          <BrowserList data={browserStats} />
-        </CardContent>
-      </Card>
+
+      <div className="flex w-full flex-col gap-4 md:flex-row">
+        <Card className="w-full md:w-1/2">
+          <CardHeader>
+            <CardTitle>Locations</CardTitle>
+          </CardHeader>
+          <CardContent className="h-[40vh] w-full px-8">
+            <CloroplethMap data={countryData} />
+          </CardContent>
+        </Card>
+
+        <Card className="w-full md:w-1/2">
+          <CardHeader>
+            <CardTitle>Devices</CardTitle>
+          </CardHeader>
+          <CardContent className="h-[40vh] w-full px-8">
+            <BrowserList data={browserStats} />
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 };
