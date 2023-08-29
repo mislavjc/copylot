@@ -56,6 +56,8 @@ export const OrganizationForm = ({ organization }: OrganizationFormProps) => {
     await createOrganization(name);
 
     router.push('/projects');
+
+    setIsSubmitting(false);
   };
 
   return (
