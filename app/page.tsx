@@ -1,6 +1,7 @@
 import { Navbar } from 'components/@navbar/navbar';
 
 import { getVariation } from 'lib/api/variations';
+import { getCurrentUser } from 'lib/auth';
 
 export const metadata = {
   title: 'Home',

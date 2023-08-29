@@ -8,11 +8,13 @@ import env from 'lib/env';
 
 import prisma from 'db/prisma';
 
-export const cookieName = '__Secure-next-auth.session-token';
+export const cookieName = process.env.VERCEL
+  ? '__Secure-next-auth.session-token'
+  : 'next-auth.session-token';
 
 export const cookieOptions = {
   httpOnly: true,
-  sameSite: 'strict',
+  sameSite: process.env.VERCEL ? 'strict' : 'lax',
   path: '/',
   secure: true,
 } as const;
@@ -67,12 +69,6 @@ export const authOptions: NextAuthOptions = {
         email: dbUser.email,
         organizationId: dbUser.organizationId,
       };
-    },
-  },
-  cookies: {
-    sessionToken: {
-      name: cookieName,
-      options: cookieOptions,
     },
   },
 };
