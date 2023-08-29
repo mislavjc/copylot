@@ -8,6 +8,15 @@ import env from 'lib/env';
 
 import prisma from 'db/prisma';
 
+export const cookieName = '__Secure-next-auth.session-token';
+
+export const cookieOptions = {
+  httpOnly: true,
+  sameSite: 'strict',
+  path: '/',
+  secure: true,
+} as const;
+
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   session: {
@@ -62,13 +71,8 @@ export const authOptions: NextAuthOptions = {
   },
   cookies: {
     sessionToken: {
-      name: `__Secure-next-auth.session-token`,
-      options: {
-        httpOnly: true,
-        sameSite: 'lax',
-        path: '/',
-        secure: true,
-      },
+      name: cookieName,
+      options: cookieOptions,
     },
   },
 };

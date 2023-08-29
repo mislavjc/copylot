@@ -5,14 +5,14 @@ import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
 import { decode, encode } from 'next-auth/jwt';
 
-import prisma from 'db/prisma';
+import { cookieName, cookieOptions } from 'lib/auth';
 
-const sessionCookieName = '__Secure-next-auth.session-token';
+import prisma from 'db/prisma';
 
 export const createOrganization = async (name: string) => {
   const cookieStore = cookies();
 
-  const token = cookieStore.get(sessionCookieName);
+  const token = cookieStore.get(cookieName);
 
   const decoded = await decode({
     token: token?.value,
@@ -48,12 +48,7 @@ export const createOrganization = async (name: string) => {
     secret: process.env.NEXTAUTH_SECRET!,
   });
 
-  cookieStore.set(sessionCookieName, encoded, {
-    httpOnly: true,
-    sameSite: 'lax',
-    path: '/',
-    secure: true,
-  });
+  cookieStore.set(cookieName, encoded, cookieOptions);
 };
 
 export const updateOrganization = async (
