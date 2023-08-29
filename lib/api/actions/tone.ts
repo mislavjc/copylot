@@ -21,6 +21,7 @@ export const createToneDescription = async (
   });
 
   revalidatePath('/[project]/dashboard/settings');
+  revalidatePath('/[project]/dashboard');
 };
 
 export const updateToneDescription = async (
@@ -35,4 +36,5 @@ export const updateToneDescription = async (
   });
 
   revalidatePath('/[project]/dashboard/settings');
+  revalidatePath('/[project]/dashboard');
 };
