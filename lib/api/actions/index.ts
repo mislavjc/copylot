@@ -1,11 +1,13 @@
 'use server';
 
 import { Prisma } from '@prisma/client/edge';
-import { revalidateTag } from 'next/cache';
+import { revalidatePath } from 'next/cache';
 
 import { getProjectByUrl } from 'lib/api/projects';
 
 import prisma from 'db/prisma';
+
+const basePath = '/[project]/dashboard';
 
 export const addPromptToLibrary = async (
   projectId: string,
@@ -22,7 +24,8 @@ export const addPromptToLibrary = async (
     },
   });
 
-  revalidateTag('prompt-library');
+  revalidatePath(`${basePath}/prompt-library`);
+  revalidatePath(basePath);
 };
 
 export const updatePromptInLibrary = async (
@@ -36,7 +39,8 @@ export const updatePromptInLibrary = async (
     data,
   });
 
-  revalidateTag('prompt-library');
+  revalidatePath(`${basePath}/prompt-library`);
+  revalidatePath(basePath);
 };
 
 export const createExperiment = async (
@@ -60,7 +64,8 @@ export const createExperiment = async (
     },
   });
 
-  revalidateTag('experiments');
+  revalidatePath(`${basePath}/experiments`);
+  revalidatePath(basePath);
 
   return experiment;
 };
@@ -80,7 +85,7 @@ export const createVariation = async (
     },
   });
 
-  revalidateTag('variation');
+  revalidatePath(`${basePath}/experiments/[experimentId]`);
 
   return variation;
 };
@@ -96,5 +101,5 @@ export const updateProject = async (
     data,
   });
 
-  revalidateTag('projects');
+  revalidatePath('/projects');
 };

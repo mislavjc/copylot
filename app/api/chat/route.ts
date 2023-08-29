@@ -1,4 +1,5 @@
 import { OpenAIStream, StreamingTextResponse } from 'ai';
+import { revalidatePath } from 'next/cache';
 import OpenAI from 'openai';
 
 import { checkRateLimit } from 'lib/ratelimit';
@@ -10,6 +11,9 @@ const openai = new OpenAI({
 });
 
 export const runtime = 'edge';
+
+const chatRevalidatePath =
+  '/[project]/dashboard/[experiments]/[experimentId]/chat';
 
 export async function POST(req: Request) {
   const rateLimitResult = await checkRateLimit(req, 20, '1h');
@@ -41,6 +45,8 @@ export async function POST(req: Request) {
           experimentId,
         },
       });
+
+      revalidatePath(chatRevalidatePath);
     },
     onCompletion: async (completion) => {
       await prisma.message.create({
@@ -50,6 +56,8 @@ export async function POST(req: Request) {
           experimentId,
         },
       });
+
+      revalidatePath(chatRevalidatePath);
     },
   });
 
