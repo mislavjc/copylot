@@ -7,10 +7,14 @@ import { decode, encode } from 'next-auth/jwt';
 
 import prisma from 'db/prisma';
 
+const sessionCookieName = process.env.VERCEL
+  ? '__Secure-next-auth.session-token'
+  : 'next-auth.session-token';
+
 export const createOrganization = async (name: string) => {
   const cookieStore = cookies();
 
-  const token = cookieStore.get('next-auth.session-token');
+  const token = cookieStore.get(sessionCookieName);
 
   const decoded = await decode({
     token: token?.value,

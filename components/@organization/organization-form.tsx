@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Organization } from '@prisma/client/edge';
@@ -31,9 +32,13 @@ export const OrganizationForm = ({ organization }: OrganizationFormProps) => {
     },
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const router = useRouter();
 
   const onSubmit = async (data: FormData) => {
+    setIsSubmitting(true);
+
     const { name } = data;
 
     if (organization) {
@@ -42,6 +47,8 @@ export const OrganizationForm = ({ organization }: OrganizationFormProps) => {
       toast({
         description: 'Organization successfully updated!',
       });
+
+      setIsSubmitting(false);
 
       return;
     }
@@ -63,7 +70,7 @@ export const OrganizationForm = ({ organization }: OrganizationFormProps) => {
             {...register('name')}
           />
         </div>
-        <Button type="submit">
+        <Button type="submit" disabled={isSubmitting}>
           {organization ? 'Update organization' : 'Create organization'}
         </Button>
       </form>
