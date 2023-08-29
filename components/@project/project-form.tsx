@@ -9,8 +9,9 @@ import { z } from 'zod';
 import { Button } from 'ui/button';
 import { Input } from 'ui/input';
 import { Label } from 'ui/label';
+import { toast } from 'ui/use-toast';
 
-import { updateProject } from 'lib/api/actions';
+import { createProject, updateProject } from 'lib/api/actions/projects';
 import { projectFormCreateSchema } from 'lib/validations/project';
 
 type FormData = z.infer<typeof projectFormCreateSchema>;
@@ -38,20 +39,17 @@ export const ProjectForm = ({ project }: ProjectFormProps) => {
         name,
         url,
       });
+
+      toast({
+        description: 'Project updated successfully.',
+      });
+
       return;
     }
 
-    const response = await fetch('/api/projects', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ name, url }),
-    });
+    const { url: projectUrl } = await createProject({ name, url });
 
-    const { url: projecturl } = await response.json();
-
-    router.push(`/${projecturl}/dashboard`);
+    router.push(`/${projectUrl}/dashboard`);
   };
 
   return (
