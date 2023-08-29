@@ -50,7 +50,7 @@ export const createOrganization = async (name: string) => {
     secret: process.env.NEXTAUTH_SECRET!,
   });
 
-  cookieStore.set('next-auth.session-token', encoded);
+  cookieStore.set(sessionCookieName, encoded);
 };
 
 export const updateOrganization = async (
