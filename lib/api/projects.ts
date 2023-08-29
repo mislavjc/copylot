@@ -5,9 +5,13 @@ import prisma from 'db/prisma';
 export const getProjects = async () => {
   const user = await getCurrentUser();
 
+  if (!user?.organizationId) {
+    return [];
+  }
+
   return await prisma.project.findMany({
     where: {
-      organizationId: user?.organizationId!,
+      organizationId: user?.organizationId,
     },
     include: {
       _count: {

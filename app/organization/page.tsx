@@ -12,7 +12,7 @@ const OrganizationPage = async () => {
 
   const organization = await prisma.organization.findUnique({
     where: {
-      id: user?.organizationId!,
+      id: user?.organizationId ?? '',
     },
   });
 
