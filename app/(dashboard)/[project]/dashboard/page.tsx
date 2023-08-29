@@ -14,6 +14,8 @@ export const metadata = {
 
 interface DashboardPageProps extends AppParams {}
 
+export const dynamic = 'force-dynamic';
+
 const DashboardPage = async ({ params }: DashboardPageProps) => {
   const projectData = await getProjectDataByUrl(params.project);
 

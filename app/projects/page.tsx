@@ -6,6 +6,8 @@ export const metadata = {
   description: 'Manage your projects',
 };
 
+export const dynamic = 'force-dynamic';
+
 const ProjectsPage = () => {
   return (
     <div className="min-h-[calc(100vh-111px)] bg-slate-50">

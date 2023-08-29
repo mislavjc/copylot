@@ -14,6 +14,8 @@ export const metadata = {
 
 interface PromptLibraryProps extends AppParams {}
 
+export const dynamic = 'force-dynamic';
+
 const PromptLibrary = async ({ params }: PromptLibraryProps) => {
   const promptLibrary = await getPromptLibraty(params.project);
   const project = await getProjectByUrl(params.project);

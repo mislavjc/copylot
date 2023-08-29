@@ -20,6 +20,8 @@ interface ExperimentPageProps extends AppParams {
   params: AppParams['params'] & { experimentId: string };
 }
 
+export const dynamic = 'force-dynamic';
+
 const ExperimentPage = async ({ params }: ExperimentPageProps) => {
   const experiment = await getExperiment(params.experimentId);
   const promptLibrary = await getPromptLibraty(params.project);

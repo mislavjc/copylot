@@ -20,6 +20,8 @@ const code = `<script defer src="${
 
 interface SettingsPageProps extends AppParams {}
 
+export const dynamic = 'force-dynamic';
+
 const SettingsPage = async ({ params }: SettingsPageProps) => {
   const project = await getProjectByUrl(params.project);
   const toneDescription = await getToneByProjectId(project!.id);

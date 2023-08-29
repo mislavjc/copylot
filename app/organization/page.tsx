@@ -7,6 +7,8 @@ import { getCurrentUser } from 'lib/auth';
 
 import prisma from 'db/prisma';
 
+export const dynamic = 'force-dynamic';
+
 const OrganizationPage = async () => {
   const user = await getCurrentUser();
 

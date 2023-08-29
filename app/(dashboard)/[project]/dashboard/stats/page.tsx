@@ -26,6 +26,8 @@ const colors = {
   sessions: '#2563eb',
 };
 
+export const dynamic = 'force-dynamic';
+
 const StatsPage = async ({ params }: StatsPageProps) => {
   const stats = await sessionsAndViewsGroupedByWebsiteId(params.project);
   const countryStats = await sessionsAndViewsGroupedByCountry(params.project);

@@ -14,6 +14,8 @@ interface ChatPageProps extends AppParams {
   params: AppParams['params'] & { experimentId: string };
 }
 
+export const dynamic = 'force-dynamic';
+
 const ChatPage = async ({ params }: ChatPageProps) => {
   const stats = await getStats(params.experimentId);
   const initialMessages = await getMessages(params.experimentId);

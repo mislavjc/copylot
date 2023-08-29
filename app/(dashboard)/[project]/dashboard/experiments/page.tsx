@@ -13,6 +13,8 @@ export const metadata = {
 
 interface ExperimentsPageProps extends AppParams {}
 
+export const dynamic = 'force-dynamic';
+
 const ExperimentsPage = async ({ params }: ExperimentsPageProps) => {
   const data = await getExperiments(params.project);
 
