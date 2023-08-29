@@ -21,10 +21,6 @@ export const navbarConfig: NavbarConfig = {
       title: 'Projects',
       href: '/projects',
     },
-    {
-      title: 'Settings',
-      href: '/settings',
-    },
   ],
   dashboardNav: [
     {
