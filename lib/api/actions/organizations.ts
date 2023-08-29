@@ -48,7 +48,12 @@ export const createOrganization = async (name: string) => {
     secret: process.env.NEXTAUTH_SECRET!,
   });
 
-  cookieStore.set(sessionCookieName, encoded);
+  cookieStore.set(sessionCookieName, encoded, {
+    httpOnly: true,
+    sameSite: 'lax',
+    path: '/',
+    secure: true,
+  });
 };
 
 export const updateOrganization = async (
