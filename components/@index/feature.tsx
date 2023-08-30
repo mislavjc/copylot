@@ -2,8 +2,14 @@ import { ReactNode } from 'react';
 import Image, { StaticImageData } from 'next/image';
 
 export interface FeatureProps {
-  title: string;
-  description: string;
+  title: {
+    value: string;
+    variationId: string;
+  };
+  description: {
+    value: string;
+    variationId: string;
+  };
   icon?: ReactNode;
   image: {
     src: StaticImageData;
@@ -32,9 +38,9 @@ export const Feature = ({
           <div className="flex h-8 w-8 items-center justify-center rounded bg-blue-500 text-gray-50">
             {icon}
           </div>
-          <h2 className="text-xl font-bold md:text-3xl">{title}</h2>
+          <h2 className="text-xl font-bold md:text-3xl">{title.value}</h2>
         </div>
-        <p className="text-lg">{description}</p>
+        <p className="text-lg">{description.value}</p>
         <div>{cta}</div>
       </div>
       <div className="flex-1">

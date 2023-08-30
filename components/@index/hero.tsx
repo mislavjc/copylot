@@ -2,8 +2,14 @@ import { ReactNode } from 'react';
 import Image, { StaticImageData } from 'next/image';
 
 interface HeroProps {
-  title: string;
-  description: string;
+  title: {
+    value: string;
+    variationId: string;
+  };
+  description: {
+    value: string;
+    variationId: string;
+  };
   image: {
     src: StaticImageData;
     alt: string;
@@ -17,9 +23,11 @@ export const Hero = ({ title, description, image, cta }: HeroProps) => {
       <div className="mx-auto flex max-w-screen-lg flex-col gap-16 text-center">
         <div className="flex flex-col gap-8">
           <h1 className="text-3xl font-bold text-blue-950 md:text-5xl">
-            {title}
+            {title.value}
           </h1>
-          <p className="text-lg text-gray-700 md:text-xl">{description}</p>
+          <p className="text-lg text-gray-700 md:text-xl">
+            {description.value}
+          </p>
           <div>{cta}</div>
         </div>
         <Image src={image.src} alt={image.alt} />
