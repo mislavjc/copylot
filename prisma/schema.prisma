@@ -92,7 +92,7 @@ model PromptLibrary {
   createdAt DateTime @default(now())
 
   name      String
-  value     String
+  value     String @db.VarChar(5000)
   projectId String
 
   project Project @relation(fields: [projectId], references: [id])
@@ -137,15 +137,15 @@ model Experiment {
 }
 
 model Message {
-  id           String      @id @default(cuid())
-  createdAt    DateTime    @default(now())
-  updatedAt    DateTime    @updatedAt
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   role         MessageRole @default(user)
   content      String      @db.VarChar(5000)
   experimentId String
 
-  Experiment   Experiment  @relation(fields: [experimentId], references: [id])
+  Experiment Experiment @relation(fields: [experimentId], references: [id])
 
   @@index([experimentId])
 }
