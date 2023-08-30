@@ -18,8 +18,8 @@ export const getStats = async (experimentId: string) => {
 };
 
 const colors = {
-  experiment_click: '#007bff',
-  experiment_view: '#ff7f0e',
+  experiment_click: '#2563eb',
+  experiment_view: '#93c5fd',
 };
 
 export const Chart = async ({ experimentId }: ChartProps) => {
