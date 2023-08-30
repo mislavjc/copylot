@@ -9,6 +9,7 @@ import {
   CreditCard,
   File,
   FileText,
+  Folders,
   HelpCircle,
   Image,
   Laptop,
@@ -66,4 +67,5 @@ export const Icons = {
   serverOff: ServerOff,
   save: Save,
   sliders: SlidersHorizontal,
+  folders: Folders,
 };
