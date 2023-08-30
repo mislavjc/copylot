@@ -37,7 +37,7 @@ const HomePage = () => {
             alt: 'Advanced testing interface of Copylot',
           }}
           cta={
-            <Link href="/projects projects">
+            <Link href="/projects">
               <Button>Experience Precision — Try for Free</Button>
             </Link>
           }
