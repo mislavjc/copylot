@@ -1,7 +1,14 @@
+import Link from 'next/link';
+
+import { Button } from 'ui/button';
+
+import { Hero } from 'components/@index/hero';
 import { Navbar } from 'components/@navbar/navbar';
 
 import { getVariation } from 'lib/api/variations';
-import { getCurrentUser } from 'lib/auth';
+
+import ExperimentImg from 'public/@index/experiment.webp';
+import StatsImg from 'public/@index/stats.webp';
 
 export const metadata = {
   title: 'Home',
@@ -16,16 +23,21 @@ const HomePage = async () => {
   return (
     <>
       <Navbar />
-      <div>
-        <main className="flex min-h-screen flex-col items-center">
-          <button data-variation={variation.id} data-experiment={experimentId}>
-            Testing click events
-          </button>
-          <h1 data-variation={variation.id} data-experiment={experimentId}>
-            {variation.value}
-          </h1>
-        </main>
-      </div>
+      <main>
+        <Hero
+          title="A/B testing made easy"
+          description="Copylot is a tool that helps you run A/B tests on your copy."
+          image={{
+            src: ExperimentImg,
+            alt: 'Copylot stats',
+          }}
+          cta={
+            <Link href="/projects">
+              <Button>Try for free</Button>
+            </Link>
+          }
+        />
+      </main>
     </>
   );
 };
