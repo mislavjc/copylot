@@ -163,10 +163,10 @@ model Variation {
   updatedAt DateTime @updatedAt
 
   name         String
-  value        String @db.Text
+  value        String @db.VarChar(5000)
   experimentId String
 
-  experiment Experiment @relation(fields: [experimentId], references: [id])
+  experiment Experiment @relation(fields: [experimentId], references: [id], onDelete: Cascade)
 
   @@index([experimentId])
 }
