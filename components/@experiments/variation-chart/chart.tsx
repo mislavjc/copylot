@@ -1,4 +1,5 @@
 import { BarChart } from 'components/@charts/bar';
+import { CodeBlock } from 'components/code-block';
 import { Icons } from 'components/icons';
 
 import { linkData, processStats } from 'lib/charts';

@@ -12,6 +12,7 @@ import {
   Folders,
   HelpCircle,
   Image,
+  Info,
   Laptop,
   Library,
   Loader2,
@@ -68,4 +69,5 @@ export const Icons = {
   save: Save,
   sliders: SlidersHorizontal,
   folders: Folders,
+  info: Info,
 };
