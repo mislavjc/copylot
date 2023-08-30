@@ -37,7 +37,7 @@ const HomePage = () => {
             alt: 'Advanced testing interface of Copylot',
           }}
           cta={
-            <Link href="/projects">
+            <Link href="/projects projects">
               <Button>Experience Precision — Try for Free</Button>
             </Link>
           }
@@ -65,6 +65,11 @@ const features: FeatureProps[] = [
       src: StatsImg,
       alt: 'Copylot stats',
     },
+    cta: (
+      <Link href="/projects">
+        <Button>View Your Analytics</Button>
+      </Link>
+    ),
   },
   {
     title: 'Interactive Data Conversations',
@@ -75,6 +80,11 @@ const features: FeatureProps[] = [
       src: ChatImg,
       alt: 'Copylot chat interface',
     },
+    cta: (
+      <Link href="/projects">
+        <Button>Start a Data Conversation</Button>
+      </Link>
+    ),
   },
   {
     title: 'Infuse Personality into Your Copy',
@@ -85,6 +95,11 @@ const features: FeatureProps[] = [
       src: SettingsImg,
       alt: 'Copylot settings interface',
     },
+    cta: (
+      <Link href="/projects">
+        <Button>Personalize Your Copy</Button>
+      </Link>
+    ),
   },
   {
     title: 'Streamlined Project Management',
@@ -95,5 +110,10 @@ const features: FeatureProps[] = [
       src: ProjectsImg,
       alt: 'Copylot project management',
     },
+    cta: (
+      <Link href="/projects">
+        <Button>Manage Your Projects</Button>
+      </Link>
+    ),
   },
 ];
