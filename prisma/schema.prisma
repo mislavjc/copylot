@@ -79,7 +79,7 @@ model Project {
   url            String
   organizationId String
 
-  organization    Organization     @relation(fields: [organizationId], references: [id])
+  organization    Organization     @relation(fields: [organizationId], references: [id], onDelete: Cascade)
   promptLibraries PromptLibrary[]
   toneDescription ToneDescription?
   experiments     Experiment[]
@@ -95,7 +95,7 @@ model PromptLibrary {
   value     String @db.VarChar(5000)
   projectId String
 
-  project Project @relation(fields: [projectId], references: [id])
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
 
   @@index([projectId])
 }
@@ -115,7 +115,7 @@ model ToneDescription {
   USPs                     String
   projectId                String @unique
 
-  project Project @relation(fields: [projectId], references: [id])
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
 
   @@index([projectId])
 }
@@ -129,7 +129,7 @@ model Experiment {
   description String
   projectId   String
 
-  project    Project     @relation(fields: [projectId], references: [id])
+  project    Project     @relation(fields: [projectId], references: [id], onDelete: Cascade)
   variations Variation[]
   Message    Message[]
 
@@ -145,7 +145,7 @@ model Message {
   content      String      @db.VarChar(5000)
   experimentId String
 
-  Experiment Experiment @relation(fields: [experimentId], references: [id])
+  Experiment Experiment @relation(fields: [experimentId], references: [id], onDelete: Cascade)
 
   @@index([experimentId])
 }
