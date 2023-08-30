@@ -32,7 +32,7 @@ export const Feature = ({
           <div className="flex h-8 w-8 items-center justify-center rounded bg-blue-500 text-gray-50">
             {icon}
           </div>
-          <h2 className="text-xl md:text-3xl font-bold">{title}</h2>
+          <h2 className="text-xl font-bold md:text-3xl">{title}</h2>
         </div>
         <p className="text-lg">{description}</p>
         <div>{cta}</div>
