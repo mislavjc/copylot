@@ -44,9 +44,19 @@ export const getVariationData = async (experimentId: string) => {
   };
 };
 
-export const createCTAElement = (experimentId: string, value: string) => (
+interface CTAElement {
+  experimentId: string;
+  variationId: string;
+  value: string;
+}
+
+export const createCTAElement = ({
+  experimentId,
+  variationId,
+  value,
+}: CTAElement) => (
   <Link href="/projects">
-    <Button data-experiment={experimentId} data-variation={value}>
+    <Button data-experiment={experimentId} data-variation={variationId}>
       {value}
     </Button>
   </Link>
@@ -63,7 +73,11 @@ export const fetchHeroData = async (experiment: HeroExperimentInput) => {
     title: titleData,
     description: descriptionData,
     image: experiment.image,
-    cta: createCTAElement(experiment.ctaExperimentId, ctaData.value),
+    cta: createCTAElement({
+      experimentId: experiment.ctaExperimentId,
+      variationId: ctaData.variationId,
+      value: ctaData.value,
+    }),
   };
 };
 
@@ -79,7 +93,11 @@ export const fetchFeatures = async (experiments: Experiment[]) => {
       return {
         title: titleData,
         description: descriptionData,
-        cta: createCTAElement(experiment.ctaExperimentId, ctaData.value),
+        cta: createCTAElement({
+          experimentId: experiment.ctaExperimentId,
+          variationId: ctaData.variationId,
+          value: ctaData.value,
+        }),
         icon: experiment.icon,
         image: experiment.image,
       };
