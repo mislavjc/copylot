@@ -40,6 +40,7 @@ export const getVariationData = async (experimentId: string) => {
   return {
     value: variation.value,
     variationId: variation.id,
+    experimentId,
   };
 };
 

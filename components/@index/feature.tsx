@@ -5,10 +5,12 @@ export interface FeatureProps {
   title: {
     value: string;
     variationId: string;
+    experimentId: string;
   };
   description: {
     value: string;
     variationId: string;
+    experimentId: string;
   };
   icon?: ReactNode;
   image: {
@@ -38,9 +40,21 @@ export const Feature = ({
           <div className="flex h-8 w-8 items-center justify-center rounded bg-blue-500 text-gray-50">
             {icon}
           </div>
-          <h2 className="text-xl font-bold md:text-3xl">{title.value}</h2>
+          <h2
+            className="text-xl font-bold md:text-3xl"
+            data-variation={title.variationId}
+            data-experiment={title.experimentId}
+          >
+            {title.value}
+          </h2>
         </div>
-        <p className="text-lg">{description.value}</p>
+        <p
+          className="text-lg"
+          data-variation={description.variationId}
+          data-experiment={description.experimentId}
+        >
+          {description.value}
+        </p>
         <div>{cta}</div>
       </div>
       <div className="flex-1">
