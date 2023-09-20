@@ -133,7 +133,7 @@ export const BarChart = <T extends {}>({
                     if (/^\d{4}-\d{2}-\d{2}$/.test(d)) {
                       const date = parseISO(d);
                       if (isValid(date)) {
-                        return format(date, 'MMMM do');
+                        return format(date, 'MMM do');
                       }
                     }
                     return `${d}`;
