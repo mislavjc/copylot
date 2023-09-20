@@ -46,7 +46,7 @@ export async function POST(req: Request) {
         },
       });
 
-      revalidatePath(chatRevalidatePath);
+      revalidatePath(chatRevalidatePath, 'page');
     },
     onCompletion: async (completion) => {
       await prisma.message.create({
@@ -57,7 +57,7 @@ export async function POST(req: Request) {
         },
       });
 
-      revalidatePath(chatRevalidatePath);
+      revalidatePath(chatRevalidatePath, 'page');
     },
   });
 

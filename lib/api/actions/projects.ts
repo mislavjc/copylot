@@ -42,7 +42,7 @@ export const createProject = async (
     },
   });
 
-  revalidatePath('/projects');
+  revalidatePath('/projects', 'page');
 
   return project;
 };
@@ -58,5 +58,5 @@ export const updateProject = async (
     data,
   });
 
-  revalidatePath('/projects');
+  revalidatePath('/projects', 'page');
 };

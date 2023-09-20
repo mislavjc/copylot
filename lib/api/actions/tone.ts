@@ -20,8 +20,8 @@ export const createToneDescription = async (
     },
   });
 
-  revalidatePath('/[project]/dashboard/settings');
-  revalidatePath('/[project]/dashboard');
+  revalidatePath('/[project]/dashboard/settings', 'page');
+  revalidatePath('/[project]/dashboard', 'page');
 };
 
 export const updateToneDescription = async (
@@ -35,6 +35,6 @@ export const updateToneDescription = async (
     data,
   });
 
-  revalidatePath('/[project]/dashboard/settings');
-  revalidatePath('/[project]/dashboard');
+  revalidatePath('/[project]/dashboard/settings', 'page');
+  revalidatePath('/[project]/dashboard', 'page');
 };

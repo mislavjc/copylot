@@ -1,4 +1,4 @@
-import { ToneDescription } from '@prisma/client';
+import { ToneDescription } from '@prisma/client/edge';
 
 import { DashboardCard } from 'components/@dashboard/card';
 import { Icons } from 'components/icons';

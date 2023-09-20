@@ -24,8 +24,8 @@ export const addPromptToLibrary = async (
     },
   });
 
-  revalidatePath(`${basePath}/prompt-library`);
-  revalidatePath(basePath);
+  revalidatePath(`${basePath}/prompt-library`, 'page');
+  revalidatePath(basePath, 'page');
 };
 
 export const updatePromptInLibrary = async (
@@ -39,8 +39,8 @@ export const updatePromptInLibrary = async (
     data,
   });
 
-  revalidatePath(`${basePath}/prompt-library`);
-  revalidatePath(basePath);
+  revalidatePath(`${basePath}/prompt-library`, 'page');
+  revalidatePath(basePath, 'page');
 };
 
 export const createExperiment = async (
@@ -64,8 +64,8 @@ export const createExperiment = async (
     },
   });
 
-  revalidatePath(`${basePath}/experiments`);
-  revalidatePath(basePath);
+  revalidatePath(`${basePath}/experiments`, 'page');
+  revalidatePath(basePath, 'page');
 
   return experiment;
 };
@@ -85,7 +85,7 @@ export const createVariation = async (
     },
   });
 
-  revalidatePath(`${basePath}/experiments/[experimentId]`);
+  revalidatePath(`${basePath}/experiments/[experimentId]`, 'page');
 
   return variation;
 };

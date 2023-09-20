@@ -62,5 +62,5 @@ export const updateOrganization = async (
     data,
   });
 
-  revalidatePath('/organization');
+  revalidatePath('/organization', 'page');
 };
