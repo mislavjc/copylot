@@ -7,14 +7,16 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prisma:generate": "pnpx prisma generate --data-proxy",
-    "postinstall": "pnpx prisma generate --data-proxy",
+    "prisma:generate": "pnpx prisma generate",
+    "postinstall": "pnpx prisma generate",
     "knip": "knip"
   },
   "dependencies": {
     "@clickhouse/client": "^0.2.3",
     "@hookform/resolvers": "^3.3.2",
     "@next-auth/prisma-adapter": "^1.0.7",
+    "@planetscale/database": "^1.11.0",
+    "@prisma/adapter-planetscale": "^5.4.3",
     "@prisma/client": "5.4.2",
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-aspect-ratio": "^1.0.3",

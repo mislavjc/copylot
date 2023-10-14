@@ -14,6 +14,12 @@ dependencies:
   '@next-auth/prisma-adapter':
     specifier: ^1.0.7
     version: 1.0.7(@prisma/client@5.4.2)(next-auth@4.23.2)
+  '@planetscale/database':
+    specifier: ^1.11.0
+    version: 1.11.0
+  '@prisma/adapter-planetscale':
+    specifier: ^5.4.3
+    version: 5.4.3(@planetscale/database@1.11.0)
   '@prisma/client':
     specifier: 5.4.2
     version: 5.4.2(prisma@5.4.2)
@@ -820,6 +826,11 @@ packages:
       tslib: 2.5.0
     dev: true
 
+  /@planetscale/database@1.11.0:
+    resolution: {integrity: sha512-aWbU+D/IRHoDE9975y+Q4c+EwwAWxCPwFId+N1AhQVFXzbeJMkj6KN2iQtoi03elcLMRdfT+V3i9Z4WRw+/oIA==}
+    engines: {node: '>=16'}
+    dev: false
+
   /@pnpm/constants@7.1.1:
     resolution: {integrity: sha512-31pZqMtjwV+Vaq7MaPrT1EoDFSYwye3dp6BiHIGRJmVThCQwySRKM7hCvqqI94epNkqFAAYoWrNynWoRYosGdw==}
     engines: {node: '>=16.14'}
@@ -944,6 +955,17 @@ packages:
       - domexception
     dev: true
 
+  /@prisma/adapter-planetscale@5.4.3(@planetscale/database@1.11.0):
+    resolution: {integrity: sha512-P0BHR7dE1NfWHsX/+DzAin20kD1L6kTL9YwlzfvXS7pRq1EqjbjJ+I7AseldXtajYsmckGD8oCjhYVql4kPV4g==}
+    peerDependencies:
+      '@planetscale/database': ^1.11.0
+    dependencies:
+      '@planetscale/database': 1.11.0
+      '@prisma/driver-adapter-utils': 5.4.3
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /@prisma/client@5.4.2(prisma@5.4.2):
     resolution: {integrity: sha512-2xsPaz4EaMKj1WS9iW6MlPhmbqtBsXAOeVttSePp8vTFTtvzh2hZbDgswwBdSCgPzmmwF+tLB259QzggvCmJqA==}
     engines: {node: '>=16.13'}
@@ -956,6 +978,14 @@ packages:
     dependencies:
       '@prisma/engines-version': 5.4.1-2.ac9d7041ed77bcc8a8dbd2ab6616b39013829574
       prisma: 5.4.2
+    dev: false
+
+  /@prisma/driver-adapter-utils@5.4.3:
+    resolution: {integrity: sha512-qNWKVQBSAkgaOT4KGZ7+W6W/tw6Jts20QsihOn2/Msn32F/zATv/Q6614LNNI9OMn0t2nMECWrKtK5yuZ8I2GA==}
+    dependencies:
+      debug: 4.3.4
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   /@prisma/engines-version@5.4.1-2.ac9d7041ed77bcc8a8dbd2ab6616b39013829574:
