@@ -10,6 +10,20 @@ Introducing Copylot, a prototype for A/B testing content generation utilizing AI
 
 **Libraries:** React Email, Next Auth, Prisma, Zod, Vercel AI
 
+## Some of the features
+
+<h4 align="center">GDPR-compliant analytics tracking</h4>
+
+![Screenshot of analytics dashboard](public/@index/stats.webp)
+
+<h4 align="center">A/B testing content generation</h4>
+
+![Screenshot of A/B testing dashboard](public/@index/variations.webp)
+
+<h4 align="center">Chatting with experiments using AI</h4>
+
+![Screenshot of chat with experiment](public/@index/chat.webp)
+
 ## Run Locally
 
 To set up and run Copylot locally, follow these steps:
