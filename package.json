@@ -42,7 +42,6 @@
     "@tanstack/react-table": "^8.10.7",
     "@upstash/ratelimit": "^0.4.4",
     "@upstash/redis": "^1.23.3",
-    "@vercel/kv": "^0.2.3",
     "@visx/axis": "^3.4.0",
     "@visx/event": "^3.3.0",
     "@visx/geo": "^3.3.0",

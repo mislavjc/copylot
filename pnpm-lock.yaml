@@ -95,9 +95,6 @@ dependencies:
   '@upstash/redis':
     specifier: ^1.23.3
     version: 1.23.3
-  '@vercel/kv':
-    specifier: ^0.2.3
-    version: 0.2.3
   '@visx/axis':
     specifier: ^3.4.0
     version: 3.4.0(react@18.2.0)
@@ -2568,27 +2565,10 @@ packages:
       - encoding
     dev: false
 
-  /@upstash/redis@1.22.0:
-    resolution: {integrity: sha512-sXoJDoEqqik0HbrNE7yRWckOySEFsoBxfRdCgOqkc0w6py19ZZG50SpGkDDEUXSnBqP8VgGYXhWAiBpqxrt5oA==}
-    dependencies:
-      isomorphic-fetch: 3.0.0
-    transitivePeerDependencies:
-      - encoding
-    dev: false
-
   /@upstash/redis@1.23.3:
     resolution: {integrity: sha512-6b66nGdkbWl/BZ4Hs9cG9szNNXF8UDgPTUyC/4fcZvDLTs552SlItMSQnmwAKMz0EHjpbVH51VQ4waHNnDy/Xw==}
     dependencies:
       isomorphic-fetch: 3.0.0
-    transitivePeerDependencies:
-      - encoding
-    dev: false
-
-  /@vercel/kv@0.2.3:
-    resolution: {integrity: sha512-Wq1+EsRBQmvLlcqCZeYVg1MAARWrnETgLe3Sy3UCqG+zg7LThpkt0YHZe1NN3Aj4IRmCKQamotWrLDdEx+ZB3w==}
-    engines: {node: '>=14.6'}
-    dependencies:
-      '@upstash/redis': 1.22.0
     transitivePeerDependencies:
       - encoding
     dev: false

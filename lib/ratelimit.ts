@@ -1,5 +1,6 @@
 import { Ratelimit } from '@upstash/ratelimit';
-import { kv } from '@vercel/kv';
+
+import redis from 'db/redis';
 
 type Unit = 'ms' | 's' | 'm' | 'h' | 'd';
 type Duration = `${number} ${Unit}` | `${number}${Unit}`;
@@ -16,7 +17,7 @@ export const checkRateLimit = async (
   ) {
     const ip = req.headers.get('x-forwarded-for');
     const ratelimit = new Ratelimit({
-      redis: kv,
+      redis,
       limiter: Ratelimit.slidingWindow(maxRequests, timeWindowSeconds),
     });
 
