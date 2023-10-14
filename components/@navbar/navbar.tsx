@@ -1,10 +1,11 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 import { getProjects } from 'lib/api/projects';
 import { getCurrentUser } from 'lib/auth';
 import { cn } from 'lib/utils';
 
-import { Icons } from '../icons';
+import LogoSvg from 'public/icons/logo.svg';
 
 import { Links, LinksConfig } from './links';
 import { ProjectSelect } from './project-select';
@@ -30,7 +31,11 @@ export const Navbar = async ({ config = [], isDashboard }: NavbarProps) => {
           <div className="flex justify-center gap-6">
             <span className="flex items-center gap-2">
               <Link href="/">
-                <Icons.logo className="self-center" />
+                <Image
+                  src={LogoSvg}
+                  className="h-8 w-8 self-center"
+                  alt="Logo"
+                />
               </Link>
               {isDashboard ? (
                 <ProjectSelect projects={projects} />
