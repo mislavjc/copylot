@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Copylot
 
-## Getting Started
+Introducing Copylot, a prototype for A/B testing content generation utilizing AI. This project was developed as part of my bachelor's thesis.
 
-First, run the development server:
+## Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+**Frontend:** Next.js, TailwindCSS, shadcn/ui, visx
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Databases:** Clickhouse, PlanetScale, Upstash Redis
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Libraries:** React Email, Next Auth, Prisma, Zod, Vercel AI
 
-[http://localhost:3000/api/hello](http://localhost:3000/api/hello) is an endpoint that uses [Route Handlers](https://beta.nextjs.org/docs/routing/route-handlers). This endpoint can be edited in `app/api/hello/route.ts`.
+## Run Locally
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+To set up and run Copylot locally, follow these steps:
 
-## Learn More
+1. **Clone the Project**
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   git clone https://github.com/mislavjc/copylot.git
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Navigate to the Project Directory**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   ```bash
+   cd copylot
+   ```
 
-## Deploy on Vercel
+3. **Install Dependencies**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   pnpm install
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+4. **Start the Development Server**
+   ```bash
+   npm run dev
+   ```
+
+## Environment Variables
+
+To run this project, you'll need to add the following environment variables to your .env file:
+
+### ClickHouse
+
+- `CLICKHOUSE_HOST`
+- `CLICKHOUSE_USER`
+- `CLICKHOUSE_PASSWORD`
+
+### UpStash Redis
+
+- `REDIS_URL`
+- `UPSTASH_URL`
+- `UPSTASH_TOKEN`
+
+### PlanetScale
+
+- `DATABASE_URL`
+
+### Authentication
+
+- `NEXTAUTH_SECRET`
+- `NEXTAUTH_URL`
+- `GOOGLE_ID`
+- `GOOGLE_SECRET`
+
+### Email (AWS SES)
+
+- `SMTP_USER`
+- `SMTP_PASSWORD`
+- `SMTP_FROM`
+- `AWS_SES_REGION`
+
+### OpenAI
+
+- `OPENAI_API_KEY`
