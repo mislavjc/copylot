@@ -10,8 +10,6 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-export const runtime = 'edge';
-
 const chatRevalidatePath =
   '/[project]/dashboard/[experiments]/[experimentId]/chat';
 
