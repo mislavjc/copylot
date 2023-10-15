@@ -11,8 +11,8 @@ export const checkRateLimit = async (
   timeWindowSeconds: Duration,
 ) => {
   if (
-    process.env.KV_REST_API_URL &&
-    process.env.KV_REST_API_TOKEN &&
+    process.env.UPSTASH_URL &&
+    process.env.UPSTASH_TOKEN &&
     process.env.VERCEL
   ) {
     const ip = req.headers.get('x-forwarded-for');
