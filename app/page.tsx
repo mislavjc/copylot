@@ -9,11 +9,6 @@ import {
   heroInfo,
 } from 'lib/experiments';
 
-export const metadata = {
-  title: 'Copylot',
-  description: 'Copylot is a tool for copywriters and marketers to test copy.',
-};
-
 const HomePage = async () => {
   const features = await fetchFeatures(experiments);
   const hero = await fetchHeroData(heroInfo);
