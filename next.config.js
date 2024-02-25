@@ -15,6 +15,11 @@ const nextConfig = {
       },
     ],
   },
+  webpack: function (config) {
+    config.experiments = { asyncWebAssembly: true, layers: true };
+
+    return config;
+  },
 };
 
 module.exports = withPlausibleProxy()(nextConfig);
