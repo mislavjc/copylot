@@ -31,7 +31,7 @@ export const Navbar = async ({ config = [], isDashboard }: NavbarProps) => {
           <div className="flex justify-center gap-6">
             <span className="flex items-center gap-2">
               <Link href="/">
-                <div className="h-8 w-8 self-center">
+                <div className="size-8 self-center">
                   <Image src={LogoSvg} alt="Logo" />
                 </div>
               </Link>

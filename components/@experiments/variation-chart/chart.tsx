@@ -42,7 +42,7 @@ export const Chart = async ({ experimentId }: ChartProps) => {
         />
       ) : (
         <div className="flex h-full flex-col items-center justify-center gap-2">
-          <Icons.serverOff className="h-32 w-32" />
+          <Icons.serverOff className="size-32" />
           <h2 className="text-2xl font-semibold">No data available</h2>
           <p>When experiment gets views a graph will be shown</p>
         </div>

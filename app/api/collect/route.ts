@@ -1,5 +1,5 @@
 import { createHash } from 'crypto';
-import isbot from 'isbot';
+import { isbot } from 'isbot';
 import { NextResponse, userAgent } from 'next/server';
 
 import { getGeoData } from 'lib/utils';

@@ -37,7 +37,7 @@ export const Feature = ({
     >
       <div className="flex flex-1 flex-col justify-center gap-4">
         <div className="flex flex-col gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded bg-blue-500 text-gray-50">
+          <div className="flex size-8 items-center justify-center rounded bg-blue-500 text-gray-50">
             {icon}
           </div>
           <h2

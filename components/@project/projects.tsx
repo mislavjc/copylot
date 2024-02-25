@@ -26,7 +26,7 @@ export const Projects = async () => {
                 </div>
               </CardContent>
               <CardFooter className="mt-4 flex items-center">
-                <Icons.experiments className="mr-1 inline-block h-3 w-3 from-neutral-600" />
+                <Icons.experiments className="mr-1 inline-block size-3 from-neutral-600" />
                 <span className="from-neutral-600 text-sm">
                   {project._count.experiments}{' '}
                   {project._count.experiments === 1
@@ -40,7 +40,7 @@ export const Projects = async () => {
       </div>
       {projects.length === 0 && (
         <div className="flex min-h-[50vh] flex-col items-center justify-center">
-          <Icons.serverOff className="h-32 w-32" />
+          <Icons.serverOff className="size-32" />
           <h2 className="mt-4 text-xl font-semibold text-neutral-900">
             No projects yet
           </h2>

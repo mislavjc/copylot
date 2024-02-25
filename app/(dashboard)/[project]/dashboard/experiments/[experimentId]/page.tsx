@@ -74,7 +74,7 @@ const ExperimentPage = async ({ params }: ExperimentPageProps) => {
             <p>Logging view and click events</p>
             <CodeBlock code={usageCode} />
             <p className="text-sm">
-              <Icons.info className="mr-1 inline-block h-4 w-4" />
+              <Icons.info className="mr-1 inline-block size-4" />
               Clicks are automatically logged for all buttons that have
               variation id and experiment id attached.
             </p>

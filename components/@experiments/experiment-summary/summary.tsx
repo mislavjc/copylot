@@ -59,9 +59,9 @@ export const Summary = ({
           <div key={m.id} className="flex gap-4">
             <div>
               {m.role === 'user' ? (
-                <Icons.user className="h-7 w-7 rounded bg-orange-600 p-1 text-gray-50" />
+                <Icons.user className="size-7 rounded bg-orange-600 p-1 text-gray-50" />
               ) : (
-                <Icons.bot className="h-7 w-7 rounded bg-blue-600 p-1 text-gray-50" />
+                <Icons.bot className="size-7 rounded bg-blue-600 p-1 text-gray-50" />
               )}
             </div>
             <div className="w-full grow overflow-x-auto sm:w-auto">
