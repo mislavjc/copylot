@@ -4,7 +4,7 @@ import { PrismaClient } from '@prisma/client';
 
 const connectionString = `${process.env.DATABASE_URL}`;
 
-const client = new Client({ url: connectionString })
+const client = new Client({ url: connectionString });
 const adapter = new PrismaPlanetScale(client);
 
 const globalForPrisma = globalThis as unknown as {
