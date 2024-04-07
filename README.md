@@ -67,9 +67,10 @@ To run this project, you'll need to add the following environment variables to y
 - `UPSTASH_URL`
 - `UPSTASH_TOKEN`
 
-### PlanetScale
+### Turso
 
-- `DATABASE_URL`
+- `TURSO_DATABASE_URL`
+- `TURSO_AUTH_TOKEN`
 
 ### Authentication
 

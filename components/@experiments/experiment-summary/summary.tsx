@@ -40,7 +40,11 @@ export const Summary = ({
         END DATA
       `,
     },
-    initialMessages,
+    initialMessages: initialMessages.map((m) => ({
+      id: m.id,
+      role: m.role as 'user' | 'function' | 'system' | 'assistant',
+      content: m.content,
+    })),
     onError: (error) => {
       toast({
         title: 'Error',

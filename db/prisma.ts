@@ -1,11 +1,13 @@
-import { Client } from '@planetscale/database';
-import { PrismaPlanetScale } from '@prisma/adapter-planetscale';
+import { createClient } from '@libsql/client';
+import { PrismaLibSQL } from '@prisma/adapter-libsql';
 import { PrismaClient } from '@prisma/client';
 
-const connectionString = `${process.env.DATABASE_URL}`;
+const libsql = createClient({
+  url: `${process.env.TURSO_DATABASE_URL}`,
+  authToken: `${process.env.TURSO_AUTH_TOKEN}`,
+});
 
-const client = new Client({ url: connectionString });
-const adapter = new PrismaPlanetScale(client);
+const adapter = new PrismaLibSQL(libsql);
 
 const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;

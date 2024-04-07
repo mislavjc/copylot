@@ -28,8 +28,8 @@ export const Projects = async () => {
               <CardFooter className="mt-4 flex items-center">
                 <Icons.experiments className="mr-1 inline-block size-3 from-neutral-600" />
                 <span className="from-neutral-600 text-sm">
-                  {project._count.experiments}{' '}
-                  {project._count.experiments === 1
+                  {project.experiments.length}{' '}
+                  {project.experiments.length === 1
                     ? 'experiment'
                     : 'experiments'}
                 </span>

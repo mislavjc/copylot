@@ -14,11 +14,7 @@ export const getProjects = async () => {
       organizationId: user?.organizationId,
     },
     include: {
-      _count: {
-        select: {
-          experiments: true,
-        },
-      },
+      experiments: true,
     },
   });
 };
